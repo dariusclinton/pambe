@@ -1,0 +1,35 @@
+ws_admin_homepage:
+    path:     /
+    defaults: { _controller: WSAdminBundle:Acceuil:index }
+
+ws_admin_administrateur:
+    path:     /administrateur
+    defaults: { _controller: WSAdminBundle:Administrateur:index }
+
+ws_admin_client:
+    path:     /client
+    defaults: { _controller: WSAdminBundle:Client:index }
+
+ws_admin_client_delete:
+    path:     /client/delete/{id}
+    defaults: { _controller: WSAdminBundle:Client:delete }
+
+ws_admin_donate:
+    path:     /donate
+    defaults: { _controller: WSAdminBundle:Donate:index }
+
+ws_admin_freelancer:
+    path:     /freelancer
+    defaults: { _controller: WSAdminBundle:Freelancer:index }
+
+ws_admin_freelancer_delete:
+    path:     /freelancer/delete/{id}
+    defaults: { _controller: WSAdminBundle:Freelancer:delete }
+
+ws_admin_temoignage:
+    path:     /temoignage
+    defaults: { _controller: WSAdminBundle:Temoignage:index }
+
+admin_registration:
+    path:  /administrateur/registration
+    defaults: { _controller: AppUserBundle:RegistrationAdmin:register }

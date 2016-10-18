@@ -1,0 +1,3 @@
+ws_service_homepage:
+    path:     /
+    defaults: { _controller: WSServiceBundle:Default:index }

@@ -1,0 +1,8 @@
+services:
+#    ws_user.example:
+#        class: WS\UserBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
+    acme.twig.country_extension:
+        class: WS\UserBundle\Twig\CountryExtension
+        tags:
+            - { name: twig.extension }

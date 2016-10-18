@@ -1,0 +1,187 @@
+<?php
+
+namespace WS\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Realization
+ *
+ * @ORM\Table(name="realization")
+ * @ORM\Entity(repositoryClass="WS\UserBundle\Repository\RealizationRepository")
+ */
+class Realization
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="libel", type="string", length=255)
+     */
+    private $libel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=255, nullable=true)
+     */
+    private $url;
+
+    /**
+     * @ORM\OneToOne(targetEntity="WS\UserBundle\Entity\Media", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $image;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="WS\UserBundle\Entity\Freelancer", inversedBy="realizations", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $freelancer;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set libel
+     *
+     * @param string $libel
+     *
+     * @return Realization
+     */
+    public function setLibel($libel)
+    {
+        $this->libel = $libel;
+
+        return $this;
+    }
+
+    /**
+     * Get libel
+     *
+     * @return string
+     */
+    public function getLibel()
+    {
+        return $this->libel;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Realization
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     *
+     * @return Realization
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \WS\UserBundle\Entity\Media $image
+     *
+     * @return Realization
+     */
+    public function setImage(\WS\UserBundle\Entity\Media $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \WS\UserBundle\Entity\Media
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set freelancer
+     *
+     * @param \WS\UserBundle\Entity\Freelancer $freelancer
+     *
+     * @return Realization
+     */
+    public function setFreelancer(\WS\UserBundle\Entity\Freelancer $freelancer)
+    {
+        $this->freelancer = $freelancer;
+
+        return $this;
+    }
+
+    /**
+     * Get freelancer
+     *
+     * @return \WS\UserBundle\Entity\Freelancer
+     */
+    public function getFreelancer()
+    {
+        return $this->freelancer;
+    }
+}

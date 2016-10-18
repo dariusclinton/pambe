@@ -1,0 +1,127 @@
+{% extends "WSAdminBundle::base.html.twig" %}
+
+
+{% block body %}
+
+    <div class="right_col" role="main">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>ADMINISTRATEUR <small>Créer un compte</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Settings 1</a>
+                                    </li>
+                                    <li><a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        {% trans_default_domain 'FOSUserBundle' %}
+
+                        <form action="{{ path('admin_registration') }}" {{ form_enctype(form) }} method="POST" autocomplete="off">
+
+                            {{ form_errors(form) }}
+
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    {{ form_label(form.email, 'Email', { 'attr' : { 'class' : 'control-label col-md-3 col-sm-3 col-xs-12'} }) }} <span class="asterisk red">*</span>
+                                    {{ form_widget(form.email, { 'attr' : { 'class' : 'form-control col-md-7 col-xs-12'} }) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.username, 'Pseudo', { 'attr' : { 'class' : 'control-label col-md-3 col-sm-3 col-xs-12'} }) }} <span class="asterisk red">*</span>
+                                    {{ form_widget(form.username, { 'attr' : { 'class' : 'form-control col-md-7 col-xs-12'} }) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.plainPassword.first, 'Mot de passe', { 'attr' : { 'class' : 'control-label col-md-3 col-sm-3 col-xs-12'} }) }} <span class="asterisk red">*</span>
+                                    {{ form_widget(form.plainPassword.first, { 'attr' : { 'class' : 'form-control col-md-7 col-xs-12'} }) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.plainPassword.second, 'Confirmer Mot de passe', { 'attr' : { 'class' : 'control-label col-md-3 col-sm-3 col-xs-12'} }) }} <span class="asterisk red">*</span>
+                                    {{ form_widget(form.plainPassword.second, { 'attr' : { 'class' : 'form-control col-md-7 col-xs-12'} }) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.country, 'Pays', { 'attr' : { 'class' : 'control-label col-md-3 col-sm-3 col-xs-12'} }) }} <span class="asterisk red">*</span>
+                                    {{ form_widget(form.country, { 'attr' : { 'class' : 'form-control col-md-7 col-xs-12'} }) }}
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    {{ form_label(form.nom, 'Nom', { 'attr' : { 'class' : 'control-label col-md-3 col-sm-3 col-xs-12'} }) }}
+                                    {{ form_widget(form.nom, { 'attr' : { 'class' : 'form-control col-md-7 col-xs-12'} }) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.prenom, 'Prénom', { 'attr' : { 'class' : 'control-label col-md-3 col-sm-3 col-xs-12'} }) }}
+                                    {{ form_widget(form.prenom, { 'attr' : { 'class' : 'form-control col-md-7 col-xs-12'} }) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.adresse, 'Adresse', { 'attr' : { 'class' : 'control-label col-md-3 col-sm-3 col-xs-12'} }) }}
+                                    {{ form_widget(form.adresse, { 'attr' : { 'class' : 'form-control col-md-7 col-xs-12'} }) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.image.file, 'Photo de profil', { 'attr' : { 'class' : 'control-label col-md-3 col-sm-3 col-xs-12'} }) }}
+                                    {{ form_widget(form.image.file, { 'attr' : { 'class' : 'form-control col-md-7 col-xs-12'} }) }}
+                                </div>
+                            </div>
+
+                            <div class="col-sm-9 col-sm-offset-3" style="margin-top: 40px;">
+                                <div class="pull-right">
+                                    <input type="submit" value="{{ 'registration.submit'|trans }}" class="btn btn-success"/>
+                                </div>
+                            </div>
+                            <span class="hidden"> {{ form_rest(form) }} </span>
+
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>ADMINISTRATEURS <small>Liste des comptes</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Settings 1</a>
+                                    </li>
+                                    <li><a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
