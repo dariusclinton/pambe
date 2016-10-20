@@ -1,12 +1,16 @@
+ws_core:
+    resource: "@WSCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ws_service:
     resource: "@WSServiceBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /service
 
 ws_admin:
     resource: "@WSAdminBundle/Resources/config/routing.yml"
     prefix:   /admin
 
-app_user:
+ws_user:
     resource: "@WSUserBundle/Resources/config/routing.yml"
     prefix:   /
 
