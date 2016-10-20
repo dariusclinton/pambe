@@ -87,10 +87,16 @@ class Mission
      */
     private $client;
 
+
     /**
-     * @ORM\ManyToMany(targetEntity="WS\UserBundle\Entity\Freelancer", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\FreelancePostuleMission", mappedBy="mission")
      */
     private $postulants;
+
+    /**
+     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\MissionSolicitFreelance", mappedBy="mission")
+     */
+    private $solicits;
 
 
 
@@ -325,36 +331,36 @@ class Mission
     }
 
     /**
-     * Add postulant
+     * Add domain
      *
-     * @param \WS\UserBundle\Entity\Freelancer $postulant
+     * @param \WS\UserBundle\Entity\Domain $domain
      *
      * @return Mission
      */
-    public function addPostulant(\WS\UserBundle\Entity\Freelancer $postulant)
+    public function addDomain(\WS\UserBundle\Entity\Domain $domain)
     {
-        $this->postulants[] = $postulant;
+        $this->domains[] = $domain;
 
         return $this;
     }
 
     /**
-     * Remove postulant
+     * Remove domain
      *
-     * @param \WS\UserBundle\Entity\Freelancer $postulant
+     * @param \WS\UserBundle\Entity\Domain $domain
      */
-    public function removePostulant(\WS\UserBundle\Entity\Freelancer $postulant)
+    public function removeDomain(\WS\UserBundle\Entity\Domain $domain)
     {
-        $this->postulants->removeElement($postulant);
+        $this->domains->removeElement($domain);
     }
 
     /**
-     * Get postulants
+     * Get domains
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPostulants()
+    public function getDomains()
     {
-        return $this->postulants;
+        return $this->domains;
     }
 }

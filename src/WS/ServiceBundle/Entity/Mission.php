@@ -87,10 +87,16 @@ class Mission
      */
     private $client;
 
+
     /**
-     * @ORM\ManyToMany(targetEntity="WS\UserBundle\Entity\Freelancer", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\FreelancePostuleMission", mappedBy="mission")
      */
     private $postulants;
+
+    /**
+     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\MissionSolicitFreelance", mappedBy="mission")
+     */
+    private $solicits;
 
 
 
@@ -325,40 +331,6 @@ class Mission
     }
 
     /**
-     * Add postulant
-     *
-     * @param \WS\UserBundle\Entity\Freelancer $postulant
-     *
-     * @return Mission
-     */
-    public function addPostulant(\WS\UserBundle\Entity\Freelancer $postulant)
-    {
-        $this->postulants[] = $postulant;
-
-        return $this;
-    }
-
-    /**
-     * Remove postulant
-     *
-     * @param \WS\UserBundle\Entity\Freelancer $postulant
-     */
-    public function removePostulant(\WS\UserBundle\Entity\Freelancer $postulant)
-    {
-        $this->postulants->removeElement($postulant);
-    }
-
-    /**
-     * Get postulants
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPostulants()
-    {
-        return $this->postulants;
-    }
-
-    /**
      * Add domain
      *
      * @param \WS\UserBundle\Entity\Domain $domain
@@ -390,5 +362,73 @@ class Mission
     public function getDomains()
     {
         return $this->domains;
+    }
+
+    /**
+     * Add postulant
+     *
+     * @param \WS\ServiceBundle\Entity\FreelancePostuleMission $postulant
+     *
+     * @return Mission
+     */
+    public function addPostulant(\WS\ServiceBundle\Entity\FreelancePostuleMission $postulant)
+    {
+        $this->postulants[] = $postulant;
+
+        return $this;
+    }
+
+    /**
+     * Remove postulant
+     *
+     * @param \WS\ServiceBundle\Entity\FreelancePostuleMission $postulant
+     */
+    public function removePostulant(\WS\ServiceBundle\Entity\FreelancePostuleMission $postulant)
+    {
+        $this->postulants->removeElement($postulant);
+    }
+
+    /**
+     * Get postulants
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPostulants()
+    {
+        return $this->postulants;
+    }
+
+    /**
+     * Add solicit
+     *
+     * @param \WS\ServiceBundle\Entity\MissionSolicitFreelance $solicit
+     *
+     * @return Mission
+     */
+    public function addSolicit(\WS\ServiceBundle\Entity\MissionSolicitFreelance $solicit)
+    {
+        $this->solicits[] = $solicit;
+
+        return $this;
+    }
+
+    /**
+     * Remove solicit
+     *
+     * @param \WS\ServiceBundle\Entity\MissionSolicitFreelance $solicit
+     */
+    public function removeSolicit(\WS\ServiceBundle\Entity\MissionSolicitFreelance $solicit)
+    {
+        $this->solicits->removeElement($solicit);
+    }
+
+    /**
+     * Get solicits
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSolicits()
+    {
+        return $this->solicits;
     }
 }

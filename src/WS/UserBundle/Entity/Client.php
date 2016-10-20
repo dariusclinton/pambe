@@ -31,6 +31,11 @@ class Client extends User
      */
     private $missions;
 
+    public function __construct() {
+        parent::__construct();
+        $this->roles = array('ROLE_CLIENT');
+    }
+
     /**
      * Set siteWeb
      *

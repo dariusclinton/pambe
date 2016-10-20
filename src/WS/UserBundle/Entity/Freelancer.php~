@@ -58,9 +58,15 @@ class Freelancer extends User
     private $langues;
 
     /**
-     * @ORM\ManyToMany(targetEntity="WS\ServiceBundle\Entity\Mission", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\FreelancePostuleMission", mappedBy="freelancer")
      */
     private $missionPostules;
+
+    /**
+     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\MissionSolicitFreelance", mappedBy="freelancer")
+     */
+    private $missionSolicites;
+
 
     /**
      * Set premium

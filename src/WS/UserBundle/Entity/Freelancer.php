@@ -58,9 +58,15 @@ class Freelancer extends User
     private $langues;
 
     /**
-     * @ORM\ManyToMany(targetEntity="WS\ServiceBundle\Entity\Mission", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\FreelancePostuleMission", mappedBy="freelancer")
      */
     private $missionPostules;
+
+    /**
+     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\MissionSolicitFreelance", mappedBy="freelancer")
+     */
+    private $missionSolicites;
+
 
     /**
      * Set premium
@@ -147,6 +153,7 @@ class Freelancer extends User
 
     public function __construct() {
         parent::__construct();
+        $this->roles = array('ROLE_FREELANCE');
         $this->premium = false;
         $this->rating = 0;
         $this->dateCreation = new \DateTime;
@@ -349,11 +356,11 @@ class Freelancer extends User
     /**
      * Add missionPostule
      *
-     * @param \WS\ServiceBundle\Entity\Mission $missionPostule
+     * @param \WS\ServiceBundle\Entity\FreelancePostuleMission $missionPostule
      *
      * @return Freelancer
      */
-    public function addMissionPostule(\WS\ServiceBundle\Entity\Mission $missionPostule)
+    public function addMissionPostule(\WS\ServiceBundle\Entity\FreelancePostuleMission $missionPostule)
     {
         $this->missionPostules[] = $missionPostule;
 
@@ -363,9 +370,9 @@ class Freelancer extends User
     /**
      * Remove missionPostule
      *
-     * @param \WS\ServiceBundle\Entity\Mission $missionPostule
+     * @param \WS\ServiceBundle\Entity\FreelancePostuleMission $missionPostule
      */
-    public function removeMissionPostule(\WS\ServiceBundle\Entity\Mission $missionPostule)
+    public function removeMissionPostule(\WS\ServiceBundle\Entity\FreelancePostuleMission $missionPostule)
     {
         $this->missionPostules->removeElement($missionPostule);
     }
@@ -378,5 +385,39 @@ class Freelancer extends User
     public function getMissionPostules()
     {
         return $this->missionPostules;
+    }
+
+    /**
+     * Add missionSolicite
+     *
+     * @param \WS\ServiceBundle\Entity\MissionSolicitFreelance $missionSolicite
+     *
+     * @return Freelancer
+     */
+    public function addMissionSolicite(\WS\ServiceBundle\Entity\MissionSolicitFreelance $missionSolicite)
+    {
+        $this->missionSolicites[] = $missionSolicite;
+
+        return $this;
+    }
+
+    /**
+     * Remove missionSolicite
+     *
+     * @param \WS\ServiceBundle\Entity\MissionSolicitFreelance $missionSolicite
+     */
+    public function removeMissionSolicite(\WS\ServiceBundle\Entity\MissionSolicitFreelance $missionSolicite)
+    {
+        $this->missionSolicites->removeElement($missionSolicite);
+    }
+
+    /**
+     * Get missionSolicites
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMissionSolicites()
+    {
+        return $this->missionSolicites;
     }
 }
