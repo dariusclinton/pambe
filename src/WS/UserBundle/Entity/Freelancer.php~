@@ -73,6 +73,19 @@ class Freelancer extends User
 
     /**
      * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\MissionSolicitFreelance", mappedBy="freelancer")
+<<<<<<< HEAD
+=======
+     */
+    private $missionSolicites;
+
+
+    /**
+     * Set premium
+     *
+     * @param boolean $premium
+     *
+     * @return User
+>>>>>>> f1c8c176434cfa1e2605c82a992d0892156d3ea9
      */
     private $missionSolicites;
 

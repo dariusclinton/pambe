@@ -332,10 +332,17 @@ class Mission
     }
 
     /**
+<<<<<<< HEAD
      * Get solicits
+=======
+     * Add domain
+     *
+     * @param \WS\UserBundle\Entity\Domain $domain
+>>>>>>> f1c8c176434cfa1e2605c82a992d0892156d3ea9
      *
      * @return \Doctrine\Common\Collections\Collection
      */
+<<<<<<< HEAD
     public function getSolicits()
     {
         return $this->solicits;
@@ -357,11 +364,38 @@ class Mission
 
     /**
      * Get validate
+=======
+    public function addDomain(\WS\UserBundle\Entity\Domain $domain)
+    {
+        $this->domains[] = $domain;
+
+        return $this;
+    }
+
+    /**
+     * Remove domain
+     *
+     * @param \WS\UserBundle\Entity\Domain $domain
+     */
+    public function removeDomain(\WS\UserBundle\Entity\Domain $domain)
+    {
+        $this->domains->removeElement($domain);
+    }
+
+    /**
+     * Get domains
+>>>>>>> f1c8c176434cfa1e2605c82a992d0892156d3ea9
      *
      * @return boolean
      */
+<<<<<<< HEAD
     public function getValidate()
     {
         return $this->validate;
+=======
+    public function getDomains()
+    {
+        return $this->domains;
+>>>>>>> f1c8c176434cfa1e2605c82a992d0892156d3ea9
     }
 }

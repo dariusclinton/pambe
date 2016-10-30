@@ -31,11 +31,16 @@ class FreelancePostuleMission
     /**
      * @var \DateTime
      *
+<<<<<<< HEAD
      * @ORM\Column(name="dateValidation", type="datetime", nullable=true)
+=======
+     * @ORM\Column(name="dateValidation", type="datetime")
+>>>>>>> f1c8c176434cfa1e2605c82a992d0892156d3ea9
      */
     private $dateValidation;
 
     /**
+<<<<<<< HEAD
      * @var float
      *
      * @ORM\Column(type="float", nullable=true)
@@ -50,6 +55,8 @@ class FreelancePostuleMission
     private $duration;
 
     /**
+=======
+>>>>>>> f1c8c176434cfa1e2605c82a992d0892156d3ea9
      * @ORM\ManyToOne(targetEntity="WS\ServiceBundle\Entity\Mission", inversedBy="postulants", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */

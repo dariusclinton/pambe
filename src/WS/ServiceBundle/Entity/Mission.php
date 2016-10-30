@@ -423,7 +423,6 @@ class Mission
     public function setStartDate($startDate)
     {
         $this->startDate = $startDate;
-
         return $this;
     }
 
