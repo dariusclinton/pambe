@@ -1,0 +1,42 @@
+<div class="modal fade bs-view-{{f.id}}-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel" style="text-align: center;">
+                    <br>Client : {{ f.nom }} {{ f.prenom }}.
+                </h4>
+            </div>
+            <div class="modal-body" style="text-align: left;">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="{{ asset('uploads/profils/'~f.image) }}" alt="..." width="100px" height="100px">
+                    </div>
+                    <div class="col-md-9">
+                        <span>Pseudo</span>
+                        <h2>{{ f.username }}</h2>
+                        <span>Email</span>
+                        <h2>{{ f.email }}</h2>
+                        <span>Pays</span>
+                        <h2>{{ f.country | country(app.request.locale) }}</h2>
+                        <span>Adresse</span>
+                        <h2>{{ f.adresse }}</h2>
+                        <span>Site Web</span>
+                        <h2>{{ f.siteWeb }}</h2>
+                        <span>Statut</span>
+                        <h2>
+                            {% if f.enabled == true %}
+                                Activé.
+                            {%else%}
+                                Désactivé
+                            {% endif %}
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>

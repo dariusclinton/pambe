@@ -14,6 +14,7 @@
 {% block body %}
 
     <div class="right_col" role="main">
+        {{ parent() }}
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -135,8 +136,8 @@
                                 <th>Pseudo</th>
                                 <th>Email</th>
                                 <th>Pays</th>
+                                <th>Adresse</th>
                                 <th>Site Web</th>
-                                <th>Telephone</th>
                                 <th>Activé ?</th>
                                 <th>Options</th>
                             </tr>
@@ -145,7 +146,7 @@
                             {% for f in clients %}
                                 <tr>
                                     <td style="text-align: center;">
-                                        <img src="{{ asset('uploads/'~f.image) }}" alt="..." width="60px" height="60px">
+                                        <img src="{{ asset('uploads/profils/'~f.image) }}" alt="..." width="60px" height="60px">
                                     </td>
                                     <td style="text-align: center;">
                                         {{ f.nom }}
@@ -167,16 +168,24 @@
                                     </td>
                                     <td style="text-align: center;">
                                         {% if f.enabled == true %}
-                                            <span class="badge bg-green">Oui</span>
+                                            <a class="btn btn-success" title="Désactiver"
+                                               href="{{ path('ws_admin_client_ableOrEnable', {'id' : f.id, 'val' : 0}) }}">
+                                                Oui
+                                            </a>
                                         {%else%}
-                                            <span class="badge bg-red">Non</span>
+                                            <a class="btn btn-danger" title="Activer"
+                                               href="{{ path('ws_admin_client_ableOrEnable', {'id' : f.id, 'val' : 1}) }}">
+                                                Non
+                                            </a>
                                         {% endif %}
                                     </td>
                                     <td style="text-align: center;">
-                                        <a class="btn btn-success" title="Visualiser">
+                                        <a class="btn btn-success" title="Visualiser"
+                                           data-toggle="modal" data-target=".bs-view-{{f.id}}-modal-sm">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                        <a class="btn btn-primary tooltipster-punk" title="Modifier">
+                                        <a class="btn btn-primary tooltipster-punk" title="Modifier"
+                                           href="{{ path('ws_admin_client_update', {'id' : f.id}) }}">
                                             <i class="fa fa-pencil-square-o"></i>
                                         </a>
                                         <a class="btn btn-danger tooltipster-punk" title="Supprimer"
@@ -184,6 +193,7 @@
                                             <i class="fa fa-trash"></i>
                                         </a>
                                         {% include 'WSAdminBundle:Client:delete_dialog.html.twig' with { 'c': f } %}
+                                        {% include 'WSAdminBundle:Client:view_dialog.html.twig' with { 'f': f } %}
                                     </td>
                                 </tr>
                             {% endfor %}

@@ -40,19 +40,19 @@ class Mission
      *
      * @ORM\Column(type="string", nullable=true)
      */
-    private $lieu;
+    private $place;
 
     /**
      * @var string
      *
      * @ORM\Column(type="string", nullable=true)
      */
-    private $duree;
+    private $duration;
 
     /**
      * @var float
      *
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $budget;
 
@@ -66,14 +66,19 @@ class Mission
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateDebut", type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $dateDebut;
+    private $startDate;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $valide;
+    private $validate;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $open;
 
     /**
      * @ORM\ManyToMany(targetEntity="WS\UserBundle\Entity\Domain", cascade={"persist"})
@@ -87,10 +92,16 @@ class Mission
      */
     private $client;
 
+
     /**
-     * @ORM\ManyToMany(targetEntity="WS\UserBundle\Entity\Freelancer", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\FreelancePostuleMission", mappedBy="mission")
      */
     private $postulants;
+
+    /**
+     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\MissionSolicitFreelance", mappedBy="mission")
+     */
+    private $solicits;
 
 
 
@@ -181,54 +192,6 @@ class Mission
     }
 
     /**
-     * Set lieu
-     *
-     * @param string $lieu
-     *
-     * @return RequestService
-     */
-    public function setLieu($lieu)
-    {
-        $this->lieu = $lieu;
-
-        return $this;
-    }
-
-    /**
-     * Get lieu
-     *
-     * @return string
-     */
-    public function getLieu()
-    {
-        return $this->lieu;
-    }
-
-    /**
-     * Set duree
-     *
-     * @param string $duree
-     *
-     * @return RequestService
-     */
-    public function setDuree($duree)
-    {
-        $this->duree = $duree;
-
-        return $this;
-    }
-
-    /**
-     * Get duree
-     *
-     * @return string
-     */
-    public function getDuree()
-    {
-        return $this->duree;
-    }
-
-    /**
      * Set budget
      *
      * @param float $budget
@@ -253,30 +216,6 @@ class Mission
     }
 
     /**
-     * Set valide
-     *
-     * @param boolean $valide
-     *
-     * @return RequestService
-     */
-    public function setValide($valide)
-    {
-        $this->valide = $valide;
-
-        return $this;
-    }
-
-    /**
-     * Get valide
-     *
-     * @return boolean
-     */
-    public function getValide()
-    {
-        return $this->valide;
-    }
-
-    /**
      * Set dateCreation
      *
      * @param \DateTime $dateCreation
@@ -298,64 +237,6 @@ class Mission
     public function getDateCreation()
     {
         return $this->dateCreation;
-    }
-
-    /**
-     * Set dateDebut
-     *
-     * @param \DateTime $dateDebut
-     *
-     * @return RequestService
-     */
-    public function setDateDebut($dateDebut)
-    {
-        $this->dateDebut = $dateDebut;
-
-        return $this;
-    }
-
-    /**
-     * Get dateDebut
-     *
-     * @return \DateTime
-     */
-    public function getDateDebut()
-    {
-        return $this->dateDebut;
-    }
-
-    /**
-     * Add postulant
-     *
-     * @param \WS\UserBundle\Entity\Freelancer $postulant
-     *
-     * @return Mission
-     */
-    public function addPostulant(\WS\UserBundle\Entity\Freelancer $postulant)
-    {
-        $this->postulants[] = $postulant;
-
-        return $this;
-    }
-
-    /**
-     * Remove postulant
-     *
-     * @param \WS\UserBundle\Entity\Freelancer $postulant
-     */
-    public function removePostulant(\WS\UserBundle\Entity\Freelancer $postulant)
-    {
-        $this->postulants->removeElement($postulant);
-    }
-
-    /**
-     * Get postulants
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPostulants()
-    {
-        return $this->postulants;
     }
 
     /**
@@ -390,5 +271,193 @@ class Mission
     public function getDomains()
     {
         return $this->domains;
+    }
+
+    /**
+     * Add postulant
+     *
+     * @param \WS\ServiceBundle\Entity\FreelancePostuleMission $postulant
+     *
+     * @return Mission
+     */
+    public function addPostulant(\WS\ServiceBundle\Entity\FreelancePostuleMission $postulant)
+    {
+        $this->postulants[] = $postulant;
+
+        return $this;
+    }
+
+    /**
+     * Remove postulant
+     *
+     * @param \WS\ServiceBundle\Entity\FreelancePostuleMission $postulant
+     */
+    public function removePostulant(\WS\ServiceBundle\Entity\FreelancePostuleMission $postulant)
+    {
+        $this->postulants->removeElement($postulant);
+    }
+
+    /**
+     * Get postulants
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPostulants()
+    {
+        return $this->postulants;
+    }
+
+    /**
+     * Add solicit
+     *
+     * @param \WS\ServiceBundle\Entity\MissionSolicitFreelance $solicit
+     *
+     * @return Mission
+     */
+    public function addSolicit(\WS\ServiceBundle\Entity\MissionSolicitFreelance $solicit)
+    {
+        $this->solicits[] = $solicit;
+
+        return $this;
+    }
+
+    /**
+     * Remove solicit
+     *
+     * @param \WS\ServiceBundle\Entity\MissionSolicitFreelance $solicit
+     */
+    public function removeSolicit(\WS\ServiceBundle\Entity\MissionSolicitFreelance $solicit)
+    {
+        $this->solicits->removeElement($solicit);
+    }
+
+    /**
+     * Get solicits
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSolicits()
+    {
+        return $this->solicits;
+    }
+
+    /**
+     * Set validate
+     *
+     * @param boolean $validate
+     *
+     * @return Mission
+     */
+    public function setValidate($validate)
+    {
+        $this->validate = $validate;
+
+        return $this;
+    }
+
+    /**
+     * Get validate
+     *
+     * @return boolean
+     */
+    public function getValidate()
+    {
+        return $this->validate;
+    }
+
+    /**
+     * Set place
+     *
+     * @param string $place
+     *
+     * @return Mission
+     */
+    public function setPlace($place)
+    {
+        $this->place = $place;
+
+        return $this;
+    }
+
+    /**
+     * Get place
+     *
+     * @return string
+     */
+    public function getPlace()
+    {
+        return $this->place;
+    }
+
+    /**
+     * Set duration
+     *
+     * @param string $duration
+     *
+     * @return Mission
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Get duration
+     *
+     * @return string
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * Set startDate
+     *
+     * @param \DateTime $startDate
+     *
+     * @return Mission
+     */
+    public function setStartDate($startDate)
+    {
+        $this->startDate = $startDate;
+
+        return $this;
+    }
+
+    /**
+     * Get startDate
+     *
+     * @return \DateTime
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * Set open
+     *
+     * @param boolean $open
+     *
+     * @return Mission
+     */
+    public function setOpen($open)
+    {
+        $this->open = $open;
+
+        return $this;
+    }
+
+    /**
+     * Get open
+     *
+     * @return boolean
+     */
+    public function getOpen()
+    {
+        return $this->open;
     }
 }

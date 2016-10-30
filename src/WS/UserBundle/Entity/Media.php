@@ -208,7 +208,7 @@ class Media
      */
     public function __construct()
     {
-        $this->name = "userProfile";
+        $this->name = "media";
         $this->path = "user.png";
     }
 

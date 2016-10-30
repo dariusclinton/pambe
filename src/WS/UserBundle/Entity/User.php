@@ -33,6 +33,10 @@ abstract class User extends BaseUser
     /**
      * @ORM\OneToOne(targetEntity="WS\UserBundle\Entity\Media", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
+     * @Assert\Image(
+     *     mimeTypes = {"image/jpeg", "image/jpg", "image/png"},
+     *     mimeTypesMessage = "Le fichier choisi ne correspond pas à un fichier valide!"
+     * )
      */
     private $image;
 

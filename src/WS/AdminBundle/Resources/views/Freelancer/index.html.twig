@@ -14,6 +14,7 @@
 {% block body %}
 
     <div class="right_col" role="main">
+        {{ parent() }}
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -132,7 +133,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <table id="datatable-responsive" class="table table-striped table-hover table-dynamic table-bordered" cellspacing="0" width="100%">
+                        <table class="datatable-responsive table table-striped table-hover table-dynamic table-bordered" cellspacing="0" width="100%">
                             <thead>
                             <tr>
                                 <th>Photo de profil</th>
@@ -142,7 +143,8 @@
                                 <th>Pays</th>
                                 <th>Adresse</th>
                                 <th>Genre</th>
-                                <th>Premium ?</th>
+                                <th>Date validité Premium</th>
+                                <th>Date validité Enchère</th>
                                 <th>Activé ?</th>
                                 <th>Rating</th>
                                 <th>Options</th>
@@ -152,7 +154,7 @@
                             {% for f in freelancers %}
                                 <tr>
                                     <td style="text-align: center;">
-                                        <img src="{{ asset('uploads/'~f.image) }}" alt="..." width="60px" height="60px">
+                                        <img src="{{ asset('uploads/profils/'~f.image) }}" alt="..." width="60px" height="60px">
                                     </td>
                                     <td style="text-align: center;">
                                         {{ f.nom }} {{ f.prenom }}
@@ -173,27 +175,34 @@
                                         {{ f.sexe }}
                                     </td>
                                     <td style="text-align: center;">
-                                        {% if f.premium == true %}
-                                            <span class="badge bg-green">Oui</span>
-                                        {%else%}
-                                            <span class="badge bg-red">Non</span>
-                                        {% endif %}
+                                        {{ f.dateValiditePremium | date('d/m/Y H:i') }}
+                                    </td>
+                                    <td style="text-align: center;">
+                                        {{ f.dateValiditeEnchere | date('d/m/Y H:i') }}
                                     </td>
                                     <td style="text-align: center;">
                                         {% if f.enabled == true %}
-                                            <span class="badge bg-green">Oui</span>
+                                            <a class="btn btn-success" title="Désactiver"
+                                               href="{{ path('ws_admin_freelancer_ableOrEnable', {'id' : f.id, 'val' : 0}) }}">
+                                                Oui
+                                            </a>
                                         {%else%}
-                                            <span class="badge bg-red">Non</span>
+                                            <a class="btn btn-danger" title="Activer"
+                                               href="{{ path('ws_admin_freelancer_ableOrEnable', {'id' : f.id, 'val' : 1}) }}">
+                                                Non
+                                            </a>
                                         {% endif %}
                                     </td>
                                     <td style="text-align: center;">
                                         {{ f.rating }}
                                     </td>
                                     <td style="text-align: center;">
-                                        <a class="btn btn-success" title="Visualiser">
+                                        <a class="btn btn-success" title="Visualiser"
+                                           data-toggle="modal" data-target=".bs-view-{{f.id}}-modal-sm">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                        <a class="btn btn-primary tooltipster-punk" title="Modifier">
+                                        <a class="btn btn-primary tooltipster-punk" title="Modifier"
+                                           href="{{ path('ws_admin_freelancer_update', {'id' : f.id}) }}">
                                             <i class="fa fa-pencil-square-o"></i>
                                         </a>
                                         <a class="btn btn-danger tooltipster-punk" title="Supprimer"
@@ -201,6 +210,7 @@
                                             <i class="fa fa-trash"></i>
                                         </a>
                                         {% include 'WSAdminBundle:Freelancer:delete_dialog.html.twig' with { 'f': f } %}
+                                        {% include 'WSAdminBundle:Freelancer:view_dialog.html.twig' with { 'f': f } %}
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -273,7 +283,7 @@
                 keys: true
             });
 
-            $('#datatable-responsive').DataTable();
+            $('.datatable-responsive').DataTable();
 
             $('#datatable-scroller').DataTable({
                 ajax: "js/datatables/json/scroller-demo.json",

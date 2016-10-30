@@ -22,7 +22,7 @@ class Client extends User
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $siteWeb;
 
@@ -30,6 +30,11 @@ class Client extends User
      * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\Mission", mappedBy="client")
      */
     private $missions;
+
+    public function __construct() {
+        parent::__construct();
+        $this->roles = array('ROLE_CLIENT');
+    }
 
     /**
      * Set siteWeb

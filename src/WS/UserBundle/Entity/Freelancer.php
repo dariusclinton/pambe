@@ -23,14 +23,23 @@ class Freelancer extends User
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateCreation", type="datetime")
+     * @ORM\Column(name="dateDerniereMiseAJour", type="datetime")
      */
-    private $dateCreation;
+    private $dateDerniereMiseAJour;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateValiditeEnchere", type="datetime", nullable=true)
      */
-    private $premium;
+    private $dateValiditeEnchere;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateValiditePremium", type="datetime", nullable=true)
+     */
+    private $dateValiditePremium;
 
     /**
      * @ORM\OneToMany(targetEntity="WS\UserBundle\Entity\Competence", mappedBy="freelancer")
@@ -58,33 +67,15 @@ class Freelancer extends User
     private $langues;
 
     /**
-     * @ORM\ManyToMany(targetEntity="WS\ServiceBundle\Entity\Mission", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\FreelancePostuleMission", mappedBy="freelancer")
      */
     private $missionPostules;
 
     /**
-     * Set premium
-     *
-     * @param boolean $premium
-     *
-     * @return User
+     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\MissionSolicitFreelance", mappedBy="freelancer")
      */
-    public function setPremium($premium)
-    {
-        $this->premium = $premium;
+    private $missionSolicites;
 
-        return $this;
-    }
-
-    /**
-     * Get premium
-     *
-     * @return boolean
-     */
-    public function getPremium()
-    {
-        return $this->premium;
-    }
 
     /**
      * @ORM\Column(type="integer")
@@ -147,9 +138,9 @@ class Freelancer extends User
 
     public function __construct() {
         parent::__construct();
-        $this->premium = false;
+        $this->roles = array('ROLE_FREELANCE');
         $this->rating = 0;
-        $this->dateCreation = new \DateTime;
+        $this->dateDerniereMiseAJour = new \DateTime;
     }
 
     /**
@@ -255,30 +246,6 @@ class Freelancer extends User
     }
 
     /**
-     * Set dateCreation
-     *
-     * @param \DateTime $dateCreation
-     *
-     * @return Freelancer
-     */
-    public function setDateCreation($dateCreation)
-    {
-        $this->dateCreation = $dateCreation;
-
-        return $this;
-    }
-
-    /**
-     * Get dateCreation
-     *
-     * @return \DateTime
-     */
-    public function getDateCreation()
-    {
-        return $this->dateCreation;
-    }
-
-    /**
      * Add outil
      *
      * @param \WS\UserBundle\Entity\Outil $outil
@@ -349,11 +316,11 @@ class Freelancer extends User
     /**
      * Add missionPostule
      *
-     * @param \WS\ServiceBundle\Entity\Mission $missionPostule
+     * @param \WS\ServiceBundle\Entity\FreelancePostuleMission $missionPostule
      *
      * @return Freelancer
      */
-    public function addMissionPostule(\WS\ServiceBundle\Entity\Mission $missionPostule)
+    public function addMissionPostule(\WS\ServiceBundle\Entity\FreelancePostuleMission $missionPostule)
     {
         $this->missionPostules[] = $missionPostule;
 
@@ -363,9 +330,9 @@ class Freelancer extends User
     /**
      * Remove missionPostule
      *
-     * @param \WS\ServiceBundle\Entity\Mission $missionPostule
+     * @param \WS\ServiceBundle\Entity\FreelancePostuleMission $missionPostule
      */
-    public function removeMissionPostule(\WS\ServiceBundle\Entity\Mission $missionPostule)
+    public function removeMissionPostule(\WS\ServiceBundle\Entity\FreelancePostuleMission $missionPostule)
     {
         $this->missionPostules->removeElement($missionPostule);
     }
@@ -378,5 +345,111 @@ class Freelancer extends User
     public function getMissionPostules()
     {
         return $this->missionPostules;
+    }
+
+    /**
+     * Add missionSolicite
+     *
+     * @param \WS\ServiceBundle\Entity\MissionSolicitFreelance $missionSolicite
+     *
+     * @return Freelancer
+     */
+    public function addMissionSolicite(\WS\ServiceBundle\Entity\MissionSolicitFreelance $missionSolicite)
+    {
+        $this->missionSolicites[] = $missionSolicite;
+
+        return $this;
+    }
+
+    /**
+     * Remove missionSolicite
+     *
+     * @param \WS\ServiceBundle\Entity\MissionSolicitFreelance $missionSolicite
+     */
+    public function removeMissionSolicite(\WS\ServiceBundle\Entity\MissionSolicitFreelance $missionSolicite)
+    {
+        $this->missionSolicites->removeElement($missionSolicite);
+    }
+
+    /**
+     * Get missionSolicites
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMissionSolicites()
+    {
+        return $this->missionSolicites;
+    }
+
+    /**
+     * Set dateDerniereMiseAJour
+     *
+     * @param \DateTime $dateDerniereMiseAJour
+     *
+     * @return Freelancer
+     */
+    public function setDateDerniereMiseAJour($dateDerniereMiseAJour)
+    {
+        $this->dateDerniereMiseAJour = $dateDerniereMiseAJour;
+
+        return $this;
+    }
+
+    /**
+     * Get dateDerniereMiseAJour
+     *
+     * @return \DateTime
+     */
+    public function getDateDerniereMiseAJour()
+    {
+        return $this->dateDerniereMiseAJour;
+    }
+
+    /**
+     * Set dateValiditeEnchere
+     *
+     * @param \DateTime $dateValiditeEnchere
+     *
+     * @return Freelancer
+     */
+    public function setDateValiditeEnchere($dateValiditeEnchere)
+    {
+        $this->dateValiditeEnchere = $dateValiditeEnchere;
+
+        return $this;
+    }
+
+    /**
+     * Get dateValiditeEnchere
+     *
+     * @return \DateTime
+     */
+    public function getDateValiditeEnchere()
+    {
+        return $this->dateValiditeEnchere;
+    }
+
+    /**
+     * Set dateValiditePremium
+     *
+     * @param \DateTime $dateValiditePremium
+     *
+     * @return Freelancer
+     */
+    public function setDateValiditePremium($dateValiditePremium)
+    {
+        $this->dateValiditePremium = $dateValiditePremium;
+
+        return $this;
+    }
+
+    /**
+     * Get dateValiditePremium
+     *
+     * @return \DateTime
+     */
+    public function getDateValiditePremium()
+    {
+        return $this->dateValiditePremium;
     }
 }

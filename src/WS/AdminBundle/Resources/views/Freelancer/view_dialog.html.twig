@@ -1,0 +1,262 @@
+<div class="modal fade bs-view-{{f.id}}-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-lg" role="document" style="width: 70%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel" style="text-align: center;">
+                    <br>Freelance : {{ f.nom }} {{ f.prenom }}.
+                </h4>
+            </div>
+            <div class="modal-body" style="text-align: left;">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="{{ asset('uploads/profils/'~f.image) }}" alt="..." width="200px" height="200px">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="col-md-3">
+                            <span>Pseudo</span>
+                            <h2>{{ f.username }}</h2>
+                            <span>Email</span>
+                            <h2>{{ f.email }}</h2>
+                            <span>Pays</span>
+                            <h2>{{ f.country | country(app.request.locale) }}</h2>
+                        </div>
+                        <div class="col-md-3">
+                            <span>Adresse</span>
+                            <h2>{{ f.adresse }}</h2>
+                            <span>Genre</span>
+                            <h2>{{ f.sexe }}</h2>
+                        </div>
+                        <div class="col-md-3">
+                            <span>Date validité Premium</span>
+                            <h2>{{ f.dateValiditePremium | date('d/m/Y H:i') }}</h2>
+                            <span>Date validité Enchère</span>
+                            <h2>{{ f.dateValiditeEnchere | date('d/m/Y H:i') }}</h2>
+                        </div>
+                        <div class="col-md-3">
+                            <span>Statut</span>
+                            <h2>
+                                {% if f.enabled == true %}
+                                    Activé.
+                                {%else%}
+                                    Désactivé
+                                {% endif %}
+                            </h2>
+                            <span>Rating</span>
+                            <h2>{{ f.rating }}</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 10px; margin-top: 10px;">
+                    <div class="col-md-4 col-md-offset-8">
+                        <a class="btn btn-success"> Missions Postulées </a>
+                        <a class="btn btn-info"> Missions Solicitées </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>LANGUES.</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-down"></i></a></li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content collapse">
+                                <table  class="datatable-responsive table table-striped table-hover table-dynamic table-bordered" cellspacing="0" width="50%">
+                                    <thead>
+                                    <tr>
+                                        <th>Libelle</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for c in f.langues %}
+                                        <tr>
+                                            <td style="text-align: center;">
+                                                {{ c.libelle }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>DOMAINES.</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-down"></i></a></li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content collapse">
+                                <table  class="datatable-responsive table table-striped table-hover table-dynamic table-bordered" cellspacing="0" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Catégorie</th>
+                                        <th>Libelle</th>
+                                        <th>Description</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for c in f.domains %}
+                                        <tr>
+                                            <td style="text-align: center;">
+                                            </td>
+                                            <td style="text-align: center;">
+                                                {{ c.category.libelle }}
+                                            </td>
+                                            <td style="text-align: center;">
+                                                {{ f.libel }}
+                                            </td>
+                                            <td style="text-align: center;">
+                                                {{ f.description }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>COMPETENCES.</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-down"></i></a></li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content collapse">
+                                <table  class="datatable-responsive table table-striped table-hover table-dynamic table-bordered" cellspacing="0" width="50%">
+                                    <thead>
+                                    <tr>
+                                        <th>Libelle</th>
+                                        <th>Nombre d'années d'expérience</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for c in f.competences %}
+                                        <tr>
+                                            <td style="text-align: center;">
+                                                {{ c.libel }}
+                                            </td>
+                                            <td style="text-align: center;">
+                                                {{ f.nbAnneeExp }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>REALISATIONS.</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-down"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content collapse">
+                                <table  class="datatable-responsive table table-striped table-hover table-dynamic table-bordered" cellspacing="0" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Libelle</th>
+                                        <th>Description</th>
+                                        <th>URL</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for c in f.realizations %}
+                                        <tr>
+                                            <td style="text-align: center;">
+                                                {{ c.libel }}
+                                            </td>
+                                            <td style="text-align: center;">
+                                                {{ c.libel }}
+                                            </td>
+                                            <td style="text-align: center;">
+                                                {{ f.description }}
+                                            </td>
+                                            <td style="text-align: center;">
+                                                {{ c.url }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>OUTILS.</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-down"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content collapse">
+                                <table  class="datatable-responsive table table-striped table-hover table-dynamic table-bordered" cellspacing="0" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>Libelle</th>
+                                        <th>Niveau d'expérence</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for o in f.outils %}
+                                        <tr>
+                                            <td style="text-align: center;">
+                                                {{ o.libel }}
+                                            </td>
+                                            <td style="text-align: center;">
+                                                {{ o.nivExpertise }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
