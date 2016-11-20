@@ -1,245 +1,273 @@
 {% extends 'WSCoreBundle::layout.html.twig' %}
 
 {% block title %}
-  Accueil - {{ parent() }}
+  Lorem ipsum dolor sit amet sum - {{ parent() }}
 {% endblock title %}
 
 {% block body %}
   <!-- Header Carousel -->
   <header class="barner" style="background-image: url('{{ asset('images/freelancer-banner.jpg') }}')">
     <div class="container">
-      <div class="block-search">
-        <div class="row">
-          <div class="col-md-12">
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
-              <li class="active">
-                <a href="#freelance-search" role="tab" data-toggle="tab">Rechercher un freelance</a>
-              </li>
-              <li><a href="#client-search" role="tab" data-toggle="tab">Rechercher une mission</a></li>
-            </ul>
-
-            <!-- Tab panes -->
-            <div class="tab-content">
-              <!-- tab-pane 1 -->
-              <div class="tab-pane active" id="freelance-search">
-                <div class="row">
-                  <div class="col-md-12">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                      laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                      voluptate velit esse cillum dolore eu.
-                    </p>
-                  </div>
-                  <div class="col-md-5">
-                    <select class="form-control">
-                      <option value="--">Domaine</option>
-                      <option value="Developpement">Developpement</option>
-                      <option value="Analyse des SI">Analyse des SI</option>
-                      <option value="Administration de BD">Administration de BD</option>
-                      <option value="Réseau informatique">Réseau informatique</option>
-                      <option value="Télécommunications">Télécommunications</option>
-                      <option value="Infographie">Infographie</option>
-                      <option value="Cryptographie">Cryptographie</option>
-                      <option value="Maintenance">Maintenance</option>
-                      <option value="Bureautique">Bureautique</option>
-                    </select>
-                  </div>
-                  <div class="col-md-5">
-                    <select class="form-control">
-                      <option value="--">Pays</option>
-                      <option value="Cameroun">Cameroun</option>
-                      <option value="Côte d'ivoire">Côte d'ivoire</option>
-                    </select>
-                  </div>
-                  <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary btn-block">Rechercher</button>
-                  </div>
-                </div>
-              </div>
-              <!-- tab-pane 2 -->
-              <div class="tab-pane" id="client-search">
-                <div class="row">
-                  <div class="col-md-12">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                      laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                      voluptate velit esse cillum dolore eu .
-                    </p>
-                  </div>
-                  <div class="col-md-5">
-                    <select class="form-control">
-                      <option value="--">Domaine</option>
-                      <option value="Developpement">Developpement</option>
-                      <option value="Analyse des SI">Analyse des SI</option>
-                      <option value="Administration de BD">Administration de BD</option>
-                      <option value="Réseau informatique">Réseau informatique</option>
-                      <option value="Télécommunications">Télécommunications</option>
-                      <option value="Infographie">Infographie</option>
-                      <option value="Cryptographie">Cryptographie</option>
-                      <option value="Maintenance">Maintenance</option>
-                      <option value="Bureautique">Bureautique</option>
-                    </select>
-                  </div>
-                  <div class="col-md-5">
-                    <select class="form-control">
-                      <option value="--">Pays</option>
-                      <option value="Cameroun">Cameroun</option>
-                      <option value="Cote d'ivoire">Cameroun</option>
-                    </select>
-                  </div>
-                  <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary btn-block">Rechercher</button>
-                  </div>
-                </div>
-              </div>
-              <!-- /.tab-pane 2 -->
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="block-info">
+            <div class="row text-center">
+              <h3><span class="bg-danger">Vous avez des projets et besoin de main d'oeuvre</span></h3>
+              <h1>
+                <span class="bg-primary">Déposez gratuitement vos offres de missions et laissez les freelances vous suivre</span>
+              </h1>
+              <h3><span class="bg-danger">Vous êtes freelance</span></h3>
+              <h1>
+                <span class="bg-primary">Postulez à des missions et gagnez des marchés de grande envergure</span>
+              </h1>
             </div>
-            <!-- /.tab-pane -->
           </div>
         </div>
       </div>
     </div>
   </header>
 
+  {# search #}
+  <div class="search">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="block-search">
+            <div class="row">
+              <div class="col-md-12">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                  <li class="active">
+                    <a href="#freelance-search" role="tab" data-toggle="tab">Rechercher un freelance</a>
+                  </li>
+                  <li><a href="#client-search" role="tab" data-toggle="tab">Rechercher une mission</a></li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                  <!-- tab-pane 1 -->
+                  <div class="tab-pane active" id="freelance-search">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                          labore et dolore magna aliqua.
+                        </p>
+                      </div>
+                      <div class="col-md-5">
+                        <select class="form-control">
+                          <option value="--">Domaine</option>
+                          <option value="Developpement">Developpement</option>
+                          <option value="Analyse des SI">Analyse des SI</option>
+                          <option value="Administration de BD">Administration de BD</option>
+                          <option value="Réseau informatique">Réseau informatique</option>
+                          <option value="Télécommunications">Télécommunications</option>
+                          <option value="Infographie">Infographie</option>
+                          <option value="Cryptographie">Cryptographie</option>
+                          <option value="Maintenance">Maintenance</option>
+                          <option value="Bureautique">Bureautique</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <select class="form-control">
+                          <option value="--">Pays</option>
+                          <option value="Cameroun">Cameroun</option>
+                          <option value="Côte d'ivoire">Côte d'ivoire</option>
+                        </select>
+                      </div>
+                      <div class="col-md-3">
+                        <button type="submit" class="btn btn-danger btn-block">Rechercher</button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- tab-pane 2 -->
+                  <div class="tab-pane" id="client-search">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                          labore et dolore magna aliqua.
+                        </p>
+                      </div>
+                      <div class="col-md-5">
+                        <select class="form-control">
+                          <option value="--">Domaine</option>
+                          <option value="Developpement">Developpement</option>
+                          <option value="Analyse des SI">Analyse des SI</option>
+                          <option value="Administration de BD">Administration de BD</option>
+                          <option value="Réseau informatique">Réseau informatique</option>
+                          <option value="Télécommunications">Télécommunications</option>
+                          <option value="Infographie">Infographie</option>
+                          <option value="Cryptographie">Cryptographie</option>
+                          <option value="Maintenance">Maintenance</option>
+                          <option value="Bureautique">Bureautique</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <select class="form-control">
+                          <option value="--">Pays</option>
+                          <option value="Cameroun">Cameroun</option>
+                          <option value="Cote d'ivoire">Cameroun</option>
+                        </select>
+                      </div>
+                      <div class="col-md-3">
+                        <button type="submit" class="btn btn-danger btn-block">Rechercher</button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.tab-pane 2 -->
+                </div>
+                <!-- /.tab-pane -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {# /.search #}
+
   <!-- domains section -->
   <div class="domains">
     <div class="container">
-      <h1 class="page-header text-center">Trouvez un freelance en 1 clic </h1>
-      <div id="carousel-generic" class="carousel slide" data-ride="carousel" data-interval="10000">
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <!-- Item 1 -->
-          <div class="item active">
-            <div class="row">
-              <div class="col-md-3">
-                <div class="thumbnail">
-                  <a href="#"><img src="{{ asset('images/dev2.jpg') }}" alt="..."></a>
-                  <div class="caption">
-                    <p><span class="badge badge-danger">200</span> Freelances</p>
-                    <h3>Développement</h3>
-                    <hr>
-                    <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="thumbnail">
-                  <a href="#"><img src="{{ asset('images/analyse.png') }}" alt="..."></a>
-                  <div class="caption">
-                    <p><span class="badge badge-danger">167</span> Freelances</p>
-                    <h3>Analyse des SI</h3>
-                    <hr>
-                    <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="thumbnail">
-                  <a href="#"><img src="{{ asset('images/dba.jpg') }}" alt="..."></a>
-                  <div class="caption">
-                    <p><span class="badge badge-danger">95</span> Freelances</p>
-                    <h3>Administrateur des BD</h3>
-                    <hr>
-                    <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="thumbnail">
-                  <a href="#"><img src="{{ asset('images/reseau.jpg') }}" alt="..."></a>
-                  <div class="caption">
-                    <p><span class="badge badge-danger">50</span> Freelances</p>
-                    <h3>Réseau</h3>
-                    <hr>
-                    <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-                  </div>
-                </div>
-              </div>
+      <h1 class="page-header text-center text-bold">Trouvez des freelances en 1 clic </h1>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/dev2.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">200</span> Freelances</p>#}
+              <h3>Développement</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block btn-sm">Rechercher</a></p>
             </div>
           </div>
-          <!-- End item 1 -->
-
-          <!-- Iteme 2 -->
-          <div class="item">
-            <div class="row">
-              <div class="col-md-3">
-                <div class="thumbnail">
-                  <a href="#"><img src="{{ asset('images/telecom2.jpg') }}" alt="..."></a>
-                  <div class="caption">
-                    <p><span class="badge badge-danger">34</span> Freelances</p>
-                    <h3>Télécommunications</h3>
-                    <hr>
-                    <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="thumbnail">
-                  <a href="#"><img src="{{ asset('images/infographie.jpg') }}" alt="..."></a>
-                  <div class="caption">
-                    <p><span class="badge badge-danger">167</span> Freelances</p>
-                    <h3>Infographie</h3>
-                    <hr>
-                    <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="thumbnail">
-                  <a href="#"><img src="{{ asset('images/crypto.jpg') }}" alt="..."></a>
-                  <div class="caption">
-                    <p><span class="badge badge-danger">95</span> Freelances</p>
-                    <h3>Cryptographie</h3>
-                    <hr>
-                    <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="thumbnail">
-                  <a href="#"><img src="{{ asset('images/maintenance.jpg') }}" alt="..."></a>
-                  <div class="caption">
-                    <p><span class="badge badge-danger">50</span> Freelances</p>
-                    <h3>Maintenance</h3>
-                    <hr>
-                    <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- End item 2 -->
-
-          <!-- Iteme 3 -->
-          <div class="item">
-            <div class="row">
-              <div class="col-md-3">
-                <div class="thumbnail">
-                  <a href="#"><img src="{{ asset('images/bureautique.jpg') }}" alt="..."></a>
-                  <div class="caption">
-                    <p><span class="badge badge-danger">34</span> Freelances</p>
-                    <h3>Bureautique</h3>
-                    <hr>
-                    <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- End item 3 -->
-
         </div>
-
-        <!-- Controls -->
-        <a class="left carousel-control" href="#carousel-generic" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="right carousel-control" href="#carousel-generic" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/analyse.png') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">167</span> Freelances</p>#}
+              <h3>Analyse des SI</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/dba.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">95</span> Freelances</p>#}
+              <h3>Administration de BD</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/reseau.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">50</span> Freelances</p>#}
+              <h3>Réseau</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/telecom2.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">34</span> Freelances</p>#}
+              <h3>Télécommunications</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/infographie.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">167</span> Freelances</p>#}
+              <h3>Infographie</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/crypto.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">95</span> Freelances</p>#}
+              <h3>Cryptographie</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/maintenance.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">50</span> Freelances</p>#}
+              <h3>Maintenance</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/bureautique.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">34</span> Freelances</p>#}
+              <h3>Bureautique</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/bureautique.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">34</span> Freelances</p>#}
+              <h3>Bureautique</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/bureautique.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">34</span> Freelances</p>#}
+              <h3>Bureautique</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/bureautique.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">34</span> Freelances</p>#}
+              <h3>Bureautique</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -250,7 +278,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-          <h1 class="page-header">Un pôle du freelance</h1>
+          <h1 class="page-header text-bold">Un pôle du freelance</h1>
         </div>
       </div>
       <div class="row">
@@ -359,7 +387,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
-          <h1>Ils ont utilisé et en témoignent</h1>
+          <h1 class="text-bold">Pambé, on en parle</h1>
           <br>
         </div>
       </div>
@@ -393,8 +421,8 @@
                   <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                 </div>
                 <div class="person-text rel">
-                  <img alt="" src="{{ asset('images/profil1.jpg') }}" class="img-circle">
-                  <a title="" href="#">Dariuso Tsafack</a>
+                  <img alt="" src="{{ asset('images/aurelien.jpg') }}" class="img-circle">
+                  <a title="" href="#">Aurelien Tegus</a>
                   <i>Nigeria</i>
                 </div>
               </div>
@@ -467,7 +495,7 @@
                   <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                 </div>
                 <div class="person-text rel">
-                  <img alt="" src="{{ asset('images/profil1.jpg') }}" class="img-circle">
+                  <img alt="" src="{{ asset('images/darius.jpg') }}" class="img-circle">
                   <a title="" href="#">Anna</a>
                   <i>Nigeria</i>
                 </div>
@@ -481,7 +509,7 @@
                   <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                 </div>
                 <div class="person-text rel">
-                  <img alt="" src="{{ asset('images/profil1.jpg') }}" class="img-circle">
+                  <img alt="" src="{{ asset('images/aurelien.jpg') }}" class="img-circle">
                   <a title="" href="#">Ella Mentree</a>
                   <i>Cameroun</i>
                 </div>
@@ -495,7 +523,7 @@
                   <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                 </div>
                 <div class="person-text rel">
-                  <img alt="" src="{{ asset('images/profil1.jpg') }}" class="img-circle">
+                  <img alt="" src="{{ asset('images/darius.jpg') }}" class="img-circle">
                   <a title="" href="#">Rannynm</a>
                   <i>Côte d'ivoire</i>
                 </div>

@@ -6,3 +6,8 @@ services:
         class: WS\UserBundle\Twig\CountryExtension
         tags:
             - { name: twig.extension }
+
+    ws_user.login:
+        class: WS\UserBundle\Service\Login
+        arguments: [@request, @security.csrf.token_manager]
+        scope: request

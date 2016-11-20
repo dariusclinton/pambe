@@ -12,20 +12,21 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{ path('ws_core_homepage') }}">Pambé</a>
+        <a class="navbar-brand" href="{{ path('ws_core_homepage') }}">
+          <img src="{{ asset('images/logo.png') }}" alt="Logo Pambé">
+        </a>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="{{ path('ws_core_homepage') }}">Accueil</a></li>
-          <li><a href="#">Comment ça marche</a></li>
-          <li><a href="about.html">A propos</a></li>
-          <li><a href="contact.html">Nous contacter</a></li>
+          <li><a href="{{ path('ws_core_how_to') }}">Comment ça marche ?</a></li>
+          <li class="new-mission"><a href="#">+ Deposer une mission</a></li>
 
           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                {{ app.user.username }} <span class="caret"></span>
+              <a href="#" class="dropdown-toggle username" data-toggle="dropdown">
+                {{ app.user.prenom }} {{ app.user.nom }}<span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="{{ path('fos_user_profile_show') }}">Profil</a></li>
@@ -39,20 +40,17 @@
             </li>
           {% else %}
             <form class="navbar-form navbar-left">
-              <a href="{{ path('fos_user_security_login') }}" class="btn btn-danger btn-sm btn-outline">
-                {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+              {#<a href="{{ path('fos_user_security_login') }}" class="btn btn-danger btn-sm btn-outline">#}
+              {#{{ 'layout.login'|trans({}, 'FOSUserBundle') }}#}
+              {#</a>#}
+              <a class="btn btn-danger btn-sm btn-outline" data-toggle="modal" data-target="#modalLogin">
+                Connexion
               </a>
-              <a href="#" class="btn btn-danger btn-sm">Créer un compte</a>
+              <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalRegistration">
+                Inscription gratuite
+              </a>
             </form>
           {% endif %}
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Langue <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Français</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Anglais</a></li>
-            </ul>
-          </li>
         </ul>
       </div>
       <!-- /.navbar-collapse -->
@@ -72,7 +70,9 @@
           <div class="row">
             <div class="col-md-3">
               <div id="meta-4" class="widget widgetFooter widget_meta">
-                <h1 class="widgettitle">Pambé</h1>
+                <h1 class="widgettitle">
+                  <img src="{{ asset('images/logo_blanc.png') }}" alt="Logo Pambé" class="img-responsive">
+                </h1>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
                   et dolore magna aliqua.
@@ -87,10 +87,9 @@
                 <h4 class="widgettitle">Pages importantes :</h4>
                 <ul>
                   <li><a href="{{ path('ws_core_homepage') }}"><i class="fa fa-home fa-fw"></i> Accueil</a></li>
-                  <li><a href="#"><i class="fa fa-book"></i> Comment ça marche</a></li>
-                  <li><a href="#"><i class="fa fa-phone"></i> Nous contacter</a></li>
-                  <li><a href="#"><i class="fa fa-info-circle"></i> A propos</a></li>
-                  <li><a href="#"><i class="fa fa-envelope fa-fw"></i> Nous contacter</a></li>
+                  <li><a href="{{ path('ws_core_how_to') }}"><i class="fa fa-book"></i> Comment ça marche ?</a></li>
+                  <li><a href="{{ path('ws_core_contact') }}"><i class="fa fa-phone"></i> Nous contacter</a></li>
+                  <li><a href="{{ path('ws_core_about') }}"><i class="fa fa-info-circle"></i> A propos</a></li>
                 </ul>
               </div>
             </div> <!-- end widget1 -->
@@ -148,5 +147,11 @@
     </div>
   </footer>
 
+  {# Modal login #}
+  {% include 'WSCoreBundle:Core:modal_login.html.twig' %}
+
+  {# Modal registration #}
+  {% include 'WSCoreBundle:Core:modal_registration.html.twig' %}
 {% endblock main %}
+
 

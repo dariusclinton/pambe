@@ -1,3 +1,15 @@
 ws_core_homepage:
     path:     /
     defaults: { _controller: WSCoreBundle:Core:index }
+
+ws_core_about:
+    path:     /about
+    defaults: { _controller: WSCoreBundle:Core:about }
+
+ws_core_contact:
+    path:     /contact
+    defaults: { _controller: WSCoreBundle:Core:contact }
+
+ws_core_how_to:
+    path:     /how-to
+    defaults: { _controller: WSCoreBundle:Core:howto }
