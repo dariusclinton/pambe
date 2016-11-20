@@ -2,10 +2,29 @@ ws_admin_homepage:
     path:     /
     defaults: { _controller: WSAdminBundle:Acceuil:index }
 
-ws_admin_administrateur:
+#ADMIN_HOMEPAGE
+admin_registration:
+    path:  /administrateur/registration
+    defaults: { _controller: AppUserBundle:RegistrationAdmin:register }
+
+#ADMIN_ADMIN
+ws_admin_admin:
     path:     /administrateur
     defaults: { _controller: WSAdminBundle:Administrateur:index }
 
+ws_admin_admin_delete:
+    path:     /administrateur/delete/{id}
+    defaults: { _controller: WSAdminBundle:Administrateur:delete }
+
+ws_admin_admin_update:
+    path:     /administrateur/update/{id}
+    defaults: { _controller: WSAdminBundle:Administrateur:update }
+
+ws_admin_admin_ableOrEnable:
+    path:     /administrateur/ableOrEnable/{id}/{val}
+    defaults: { _controller: WSAdminBundle:Administrateur:AbleOrEnable }
+
+#ADMIN_CLIENT
 ws_admin_client:
     path:     /client
     defaults: { _controller: WSAdminBundle:Client:index }
@@ -14,10 +33,15 @@ ws_admin_client_delete:
     path:     /client/delete/{id}
     defaults: { _controller: WSAdminBundle:Client:delete }
 
-ws_admin_donate:
-    path:     /donate
-    defaults: { _controller: WSAdminBundle:Donate:index }
+ws_admin_client_update:
+    path:     /client/update/{id}
+    defaults: { _controller: WSAdminBundle:Client:update }
 
+ws_admin_client_ableOrEnable:
+    path:     /client/ableOrEnable/{id}/{val}
+    defaults: { _controller: WSAdminBundle:Client:AbleOrEnable }
+
+#ADMIN_FREELANCE
 ws_admin_freelancer:
     path:     /freelancer
     defaults: { _controller: WSAdminBundle:Freelancer:index }
@@ -26,10 +50,68 @@ ws_admin_freelancer_delete:
     path:     /freelancer/delete/{id}
     defaults: { _controller: WSAdminBundle:Freelancer:delete }
 
-ws_admin_temoignage:
-    path:     /temoignage
+ws_admin_freelancer_update:
+    path:     /freelancer/update/{id}
+    defaults: { _controller: WSAdminBundle:Freelancer:update }
+
+ws_admin_freelancer_ableOrEnable:
+    path:     /freelancer/ableOrEnable/{id}/{val}
+    defaults: { _controller: WSAdminBundle:Freelancer:AbleOrEnable }
+
+
+#ADMIN_DONATE
+ws_admin_donate:
+    path:     /donate
+    defaults: { _controller: WSAdminBundle:Donate:index }
+
+#ADMIN_LANGUE
+ws_admin_langue:
+    path:     /langue
+    defaults: { _controller: WSAdminBundle:Langue:index }
+
+ws_admin_langue_delete:
+    path:     /langue/delete/{id}
+    defaults: { _controller: WSAdminBundle:Langue:delete }
+
+ws_admin_langue_update:
+    path:     /langue/update/{id}
+    defaults: { _controller: WSAdminBundle:Langue:update }
+
+#ADMIN_CATEGORY
+ws_admin_category:
+    path:     /category
+    defaults: { _controller: WSAdminBundle:Categorie:index }
+
+ws_admin_category_delete:
+    path:     /category/delete/{id}
+    defaults: { _controller: WSAdminBundle:Categorie:delete }
+
+ws_admin_category_update:
+    path:     /category/update/{id}
+    defaults: { _controller: WSAdminBundle:Categorie:update }
+
+#ADMIN_DOMAIN
+ws_admin_domain:
+    path:     /domain
+    defaults: { _controller: WSAdminBundle:Domaine:index }
+
+ws_admin_domain_delete:
+    path:     /domain/delete/{id}
+    defaults: { _controller: WSAdminBundle:Domaine:delete }
+
+ws_admin_domain_update:
+    path:     /domain/update/{id}
+    defaults: { _controller: WSAdminBundle:Domaine:update }
+
+#ADMIN_TESTIMONIAL
+ws_admin_testimonial:
+    path:     /testimonial
     defaults: { _controller: WSAdminBundle:Temoignage:index }
 
-admin_registration:
-    path:  /administrateur/registration
-    defaults: { _controller: AppUserBundle:RegistrationAdmin:register }
+ws_admin_testimonial_delete:
+    path:     /testimonial/delete/{id}
+    defaults: { _controller: WSAdminBundle:Temoignage:delete }
+
+ws_admin_testimonial_update:
+    path:     /testimonial/update/{id}
+    defaults: { _controller: WSAdminBundle:Temoignage:update }

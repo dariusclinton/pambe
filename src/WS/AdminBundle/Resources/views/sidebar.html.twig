@@ -9,10 +9,10 @@
         <!-- menu profile quick info -->
         <div class="profile">
             <div class="profile_pic">
-                <img src="{{ asset('uploads/'~app.user.image) }}" alt="..." class="img-circle profile_img">
+                <img src="{{ asset('uploads/profils/'~app.user.image) }}" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
-                <span>Welcome,</span>
+                <span>{{ 'Bienvenu'|trans }},</span>
                 <h2>{{ app.user.username }}</h2>
             </div>
         </div>
@@ -23,37 +23,40 @@
         <!-- sidebar menu -->
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div style="margin-top: 100px;" class="menu_section">
-                <h3>General</h3>
+                <h3> {{ 'Général'|trans }}</h3>
                 <ul class="nav side-menu">
                     <li>
-                        <a href="{{ path('ws_admin_homepage') }}"><i class="fa fa-home"></i> Home </a>
+                        <a href="{{ path('ws_admin_homepage') }}"><i class="fa fa-home"></i> {{ 'Acceuil'|trans }} </a>
                     </li>
                     <li>
-                        <a href="{{ path('ws_admin_administrateur') }}"><i class="fa fa-user-secret"></i> Administrateur </a>
+                        <a href="{{ path('ws_admin_admin') }}"><i class="fa fa-user-secret"></i> {{ 'Administrateur'|trans }} </a>
                     </li>
                     <li>
-                        <a href="{{ path('ws_admin_freelancer') }}"><i class="fa fa-users"></i> Freelancer </a>
+                        <a href="{{ path('ws_admin_freelancer') }}"><i class="fa fa-users"></i> {{ 'Freelance'|trans }} </a>
                     </li>
                     <li>
-                        <a href="{{ path('ws_admin_client') }}"><i class="fa fa-male"></i> Client </a>
+                        <a href="{{ path('ws_admin_client') }}"><i class="fa fa-male"></i> {{ 'Client'|trans }} </a>
                     </li>
-                    <li><a><i class="fa fa-start"></i> Extra <span class="fa fa-chevron-down"></span></a>
+                    <li>
+                        <a href="#"><i class="fa fa-start"></i> {{ 'Mission'|trans }} </a>
+                    </li>
+                    <li><a><i class="fa fa-start"></i> {{ 'Extra'|trans }} <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#">Catégorie</a></li>
-                            <li><a href="#">Domaine</a></li>
-                            <li><a href="#">Langue</a></li>
+                            <li><a href="{{ path('ws_admin_category') }}">{{ 'Catégorie'|trans }}</a></li>
+                            <li><a href="{{ path('ws_admin_domain') }}">{{ 'Domaine'|trans }}</a></li>
+                            <li><a href="{{ path('ws_admin_langue') }}">{{ 'Langue'|trans }}</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
             <div class="menu_section">
-                <h3>Live On</h3>
+                <h3>{{ 'Live On'|trans }}</h3>
                 <ul class="nav side-menu">
                     <li>
-                        <a href="{{ path('ws_admin_temoignage') }}"><i class="fa fa-text-width"></i> Témoignages</a>
+                        <a href="{{ path('ws_admin_testimonial') }}"><i class="fa fa-text-width"></i> {{ 'Témoignage'|trans }}</a>
                     </li>
                     <li>
-                        <a  href="{{ path('ws_admin_donate') }}"><i class="fa fa-money"></i> Donate</a>
+                        <a  href="{{ path('ws_admin_donate') }}"><i class="fa fa-money"></i> {{ 'Offre'|trans }}</a>
                     </li>
                 </ul>
             </div>

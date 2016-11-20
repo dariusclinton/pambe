@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 20 Octobre 2016 à 09:13
+-- Généré le :  Jeu 27 Octobre 2016 à 07:25
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -37,7 +37,6 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT INTO `admin` (`id`) VALUES
-(15),
 (16),
 (17),
 (18);
@@ -65,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 DROP TABLE IF EXISTS `client`;
 CREATE TABLE IF NOT EXISTS `client` (
   `id` int(11) NOT NULL,
-  `site_web` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `site_web` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -74,8 +73,8 @@ CREATE TABLE IF NOT EXISTS `client` (
 --
 
 INSERT INTO `client` (`id`, `site_web`) VALUES
-(2, ''),
-(21, ''),
+(2, NULL),
+(21, 'www.client2.com'),
 (25, 'clie.com');
 
 -- --------------------------------------------------------
@@ -137,10 +136,11 @@ CREATE TABLE IF NOT EXISTS `donate` (
 DROP TABLE IF EXISTS `freelancer`;
 CREATE TABLE IF NOT EXISTS `freelancer` (
   `id` int(11) NOT NULL,
-  `premium` tinyint(1) NOT NULL,
   `rating` int(11) NOT NULL,
   `sexe` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `dateCreation` datetime NOT NULL,
+  `dateDerniereMiseAJour` datetime NOT NULL,
+  `dateValiditeEnchere` datetime DEFAULT NULL,
+  `dateValiditePremium` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -148,11 +148,9 @@ CREATE TABLE IF NOT EXISTS `freelancer` (
 -- Contenu de la table `freelancer`
 --
 
-INSERT INTO `freelancer` (`id`, `premium`, `rating`, `sexe`, `dateCreation`) VALUES
-(1, 0, 0, '', '0000-00-00 00:00:00'),
-(13, 0, 0, 'Homme', '0000-00-00 00:00:00'),
-(20, 0, 0, 'Homme', '0000-00-00 00:00:00'),
-(24, 0, 0, 'Homme', '2016-10-17 11:55:26');
+INSERT INTO `freelancer` (`id`, `rating`, `sexe`, `dateDerniereMiseAJour`, `dateValiditeEnchere`, `dateValiditePremium`) VALUES
+(13, 0, 'Homme', '0000-00-00 00:00:00', NULL, NULL),
+(24, 0, 'Homme', '2016-10-17 11:55:26', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -196,7 +194,9 @@ CREATE TABLE IF NOT EXISTS `freelance_postule_mission` (
   `mission_id` int(11) NOT NULL,
   `freelancer_id` int(11) NOT NULL,
   `validate` tinyint(1) NOT NULL,
-  `dateValidation` datetime NOT NULL,
+  `dateValidation` datetime DEFAULT NULL,
+  `cost` double DEFAULT NULL,
+  `duration` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_6020621FBE6CAE90` (`mission_id`),
   KEY `IDX_6020621F8545BDF5` (`freelancer_id`)
@@ -228,23 +228,21 @@ CREATE TABLE IF NOT EXISTS `media` (
   `path` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `updateAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Contenu de la table `media`
 --
 
 INSERT INTO `media` (`id`, `name`, `path`, `updateAt`) VALUES
-(2, ' ', '307ca42ad9436357183cf2c6e21bb7141785acea.jpeg', '2016-10-14 06:40:07'),
-(4, 'userProfile', 'user.png', '2016-10-14 06:53:25'),
-(5, 'userProfile', '00f7321ef11fc06fef116d6cfc2074f1c370fda0.jpeg', '2016-10-14 06:54:28'),
-(6, 'userProfile', '82e6c5bdbb273f193257af13b7469a8133d1acae.jpeg', '2016-10-14 06:57:29'),
+(2, ' ', '541909172b6d68ef75546330c3655b5b3e8eefce.jpeg', '2016-10-27 06:47:25'),
+(5, 'userProfile', '05ab10a34d5e2a45c75d82bc3e8f2637991edd20.png', '2016-10-27 03:28:35'),
+(6, 'userProfile', '0b4781348f7b49cb419cafc912913bf61c37fdb2.png', '2016-10-27 03:29:21'),
 (7, 'userProfile', 'user.png', '2016-10-14 07:02:53'),
-(8, 'userProfile', 'user.png', '2016-10-15 06:14:39'),
-(9, 'userProfile', 'user.png', '2016-10-15 06:21:14'),
-(10, 'userProfile', '787e4f24ac9e1463d8e0cae47066bfaee99f39b5.jpeg', '2016-10-15 06:39:45'),
-(13, 'userProfile', 'e0ac5b8d5d5b9c30d23df021b3404d2bb6f88047.jpeg', '2016-10-17 11:55:28'),
-(14, 'userProfile', '784c604aa5ed95f5a0a8a481609ef9dec61a8c06.jpeg', '2016-10-17 11:58:04');
+(10, 'userProfile', '3e56dbbb2d7c2f2296887a97ce31e984ca6e0803.jpeg', '2016-10-27 03:42:07'),
+(13, 'userProfile', '75daee72181e46750fcaf3904fc6bd7118809a65.jpeg', '2016-10-27 03:54:54'),
+(14, 'userProfile', '784c604aa5ed95f5a0a8a481609ef9dec61a8c06.jpeg', '2016-10-17 11:58:04'),
+(16, 'userProfile', '2bf3b314e8db035e4ae4e08391100ccf97bb6643.jpeg', '2016-10-27 03:46:15');
 
 -- --------------------------------------------------------
 
@@ -258,12 +256,13 @@ CREATE TABLE IF NOT EXISTS `mission` (
   `client_id` int(11) NOT NULL,
   `object` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8_unicode_ci,
-  `lieu` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `duree` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `budget` double NOT NULL,
+  `budget` double DEFAULT NULL,
   `dateCreation` datetime NOT NULL,
-  `dateDebut` datetime DEFAULT NULL,
-  `valide` tinyint(1) NOT NULL,
+  `start_date` datetime DEFAULT NULL,
+  `validate` tinyint(1) NOT NULL,
+  `place` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `duration` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `open` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_9067F23C19EB6921` (`client_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -350,7 +349,15 @@ CREATE TABLE IF NOT EXISTS `testimonial` (
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_E6BDCDF7A76ED395` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `testimonial`
+--
+
+INSERT INTO `testimonial` (`id`, `content`, `datetime`, `user_id`) VALUES
+(2, 'dfd\r\ndf\r\ndf\r\ndf\r\nd\r\nf', '2016-10-26 02:00:17', 17),
+(3, 'Tks Pambé.cm', '2016-10-26 02:01:34', 18);
 
 -- --------------------------------------------------------
 
@@ -395,17 +402,14 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `locked`, `expired`, `expires_at`, `confirmation_token`, `password_requested_at`, `roles`, `credentials_expired`, `credentials_expire_at`, `nom`, `type`, `prenom`, `adresse`, `image_id`, `country`) VALUES
-(1, 'free', 'free', 'free@yahoo.com', 'free@yahoo.com', 1, 'm8lxzfts4sgwkkw8kscoc8gs0g0gko8', '7GTCe3YPgKO2OvDNmbw1J/rbfuNGQSgxxGaWROzBSPfo/nYLGSuTrx4rMh3x8f8weDcTXPFvdQPM+p+RwdmW+A==', '2016-10-13 13:23:21', 0, 0, NULL, NULL, NULL, 'a:0:{}', 0, NULL, 'free', 'freelancer', '', '', 8, ''),
-(2, 'client', 'client', 'client@yahoo.com', 'client@yahoo.com', 1, '946vqxdgu8kcoko0oscgk4coscccoko', '4ZfMcmHt5iMFk0kKIIf7v+gpgA8muutHNnm1v7AxO4npSFbDXEllEVKJM6M+2sOsavciQzIpCemz2YeOcxyY9Q==', '2016-10-13 03:17:25', 0, 0, NULL, NULL, NULL, 'a:0:{}', 0, NULL, 'client', 'client', '', '', NULL, ''),
-(13, 'test', 'test', 'test@yahoo.com', 'test@yahoo.com', 1, 'bqxgh6ujvwo44k0cscks4o48k0o4sow', 'dfJICr3FLJpbeMURy5pCLxhobj8Ivm4nEWTRNDVF/SYr379Ws8Qd7jwjf6byAjQePE8njeq2QvbVAXw78a8Q1A==', '2016-10-14 06:40:07', 0, 0, NULL, NULL, NULL, 'a:0:{}', 0, NULL, 'test', 'freelancer', 'test', 'test', 2, ''),
-(15, 'ad', 'ad', 'ad@yahoo.com', 'ad@yahoo.com', 1, '9ep8t6haavwgw0kwcokgwgs8os80coc', 'RKCSgNKPWmIwcYi+KOon3EJWnXs2CN0yEMBPnFEVDA3QOy0VqGCExf3nz8odopr/InQGKQ+5WCUazOn8gbjoCQ==', '2016-10-14 06:53:25', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:10:"ROLE_ADMIN";}', 0, NULL, 'ad', 'admin', 'ad', 'ad', 4, ''),
-(16, 'ps', 'ps', 'ps@yahoo.com', 'ps@yahoo.com', 1, '6gviywlhdyg4s8004kwkscksowwcccg', 'Cr5oV9WQKWYZnVOp578fqF9zjHAdWZcmAFpAGKdZSBup/ohw3d6pEx8NPsfEQgivY4cUGF/bloGsMGSLGElaCA==', '2016-10-14 06:54:28', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:10:"ROLE_ADMIN";}', 0, NULL, 'ps', 'admin', 'ps', 'ps', 5, ''),
-(17, 'Tegus', 'tegus', 'tegus@yahoo.com', 'tegus@yahoo.com', 1, '9qsdojopyggskcgw48ow88scgo8s8ok', 'PEcu01bod4PIZkeNnMq5OK97JtJe+Q8cvNAuru+e5pJpuWjKNzs0dezvtYVKeWbDEciv8ZRZV1gYSaVTwi9MmA==', '2016-10-20 08:03:50', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:10:"ROLE_ADMIN";}', 0, NULL, 'tegus', 'admin', 'tegus', 'tegus', 6, ''),
-(18, 'admin', 'admin', 'admin@ws.cm', 'admin@ws.cm', 1, '6v6lpgvwmyw44wco4ck8sos0wokk8k4', '68Yb8LB05Fq/Il5x7VOMmOamLQMeHhHRPXwV07GY7ygcKeRXB0iXQ0IJt6oUnRb6e8iwqk2jKOc3GMPvXYsQiA==', '2016-10-16 10:57:41', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:10:"ROLE_ADMIN";}', 0, NULL, 'admin', 'admin', 'admin', 'admin', 7, ''),
-(20, 'testlancer', 'testlancer', 'testlancer@yahoo.com', 'testlancer@yahoo.com', 1, '1nupr1mkyjr4880okwcw04840488448', 'lRUfL7yytfeKPMNlvp8w17OfMrk/DgVM6c4iUZHejYgXTagRWhALNhDQl6/eKTS6F+XBdMZDjCXQ1zPs5nfC9Q==', '2016-10-15 06:22:52', 0, 0, NULL, NULL, NULL, 'a:0:{}', 0, NULL, 'testlancer', 'freelancer', 'testlancer', 'testlancer', 9, ''),
-(21, 'client2', 'client2', 'client2@yahoo.com', 'client2@yahoo.com', 1, 'hkqp0aatyj48oows8s0ssk4sscc8kco', 'ZtohZGTZ5lc6y7PwBycjUtNGqgBgTawH+o1OiTDhwW7jZcsIQjIsglEIr32w9lIf34NAFOl+Op2PGG45qoQwLg==', '2016-10-15 06:39:45', 0, 0, NULL, NULL, NULL, 'a:0:{}', 0, NULL, 'client2', 'client', 'client2', 'client2', 10, ''),
+(2, 'client', 'client', 'client@yahoo.com', 'client@yahoo.com', 0, '946vqxdgu8kcoko0oscgk4coscccoko', '4ZfMcmHt5iMFk0kKIIf7v+gpgA8muutHNnm1v7AxO4npSFbDXEllEVKJM6M+2sOsavciQzIpCemz2YeOcxyY9Q==', '2016-10-13 03:17:25', 0, 0, NULL, NULL, NULL, 'a:0:{}', 0, NULL, 'client', 'client', NULL, NULL, 16, 'AR'),
+(13, 'test', 'test', 'test@yahoo.com', 'test@yahoo.com', 0, 'bqxgh6ujvwo44k0cscks4o48k0o4sow', 'dfJICr3FLJpbeMURy5pCLxhobj8Ivm4nEWTRNDVF/SYr379Ws8Qd7jwjf6byAjQePE8njeq2QvbVAXw78a8Q1A==', '2016-10-14 06:40:07', 0, 0, NULL, NULL, NULL, 'a:0:{}', 0, NULL, 'test', 'freelancer', 'test', 'test', 2, 'BI'),
+(16, 'Dariuso', 'dariuso', 'darius@yahoo.com', 'darius@yahoo.com', 0, '6gviywlhdyg4s8004kwkscksowwcccg', 'fzpqukyRwczNy2XCjmDVcgcj+C9DIvh/HcCt8tyGht+Dp00zsnXTfFOirW3KaRqdEFE1gF3kQxv7NTReR3ueww==', '2016-10-14 06:54:28', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:10:"ROLE_ADMIN";}', 0, NULL, 'Darius', 'admin', 'TSAFACK', 'Pitoaré, Maroua', 5, 'CM'),
+(17, 'Tegus', 'tegus', 'tegus@yahoo.com', 'tegus@yahoo.com', 1, '9qsdojopyggskcgw48ow88scgo8s8ok', 'PEcu01bod4PIZkeNnMq5OK97JtJe+Q8cvNAuru+e5pJpuWjKNzs0dezvtYVKeWbDEciv8ZRZV1gYSaVTwi9MmA==', '2016-10-27 05:29:54', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:10:"ROLE_ADMIN";}', 0, NULL, 'tegus', 'admin', 'tegus', 'tegus', 6, 'CM'),
+(18, 'admin', 'admin', 'admin@ws.cm', 'admin@ws.cm', 1, '6v6lpgvwmyw44wco4ck8sos0wokk8k4', '68Yb8LB05Fq/Il5x7VOMmOamLQMeHhHRPXwV07GY7ygcKeRXB0iXQ0IJt6oUnRb6e8iwqk2jKOc3GMPvXYsQiA==', '2016-10-26 02:01:11', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:10:"ROLE_ADMIN";}', 0, NULL, 'admin', 'admin', 'admin', 'admin', 7, ''),
+(21, 'client2', 'client2', 'client2@yahoo.com', 'client2@yahoo.com', 1, 'hkqp0aatyj48oows8s0ssk4sscc8kco', 'ZtohZGTZ5lc6y7PwBycjUtNGqgBgTawH+o1OiTDhwW7jZcsIQjIsglEIr32w9lIf34NAFOl+Op2PGG45qoQwLg==', '2016-10-15 06:39:45', 0, 0, NULL, NULL, NULL, 'a:0:{}', 0, NULL, 'client2', 'client', 'client2', 'client2', 10, 'DZ'),
 (24, 'lancer', 'lancer', 'lancer@yahoo.com', 'lancer@yahoo.com', 1, '2uiq0m7t8ds0oc44go4k4ok004gw8k0', 't1I96mJQRNO8epqcL3caqj5MhUabXb4t4J6r8+nglpWmmmdq5UlGyAlk/xT17j0ppFXtk6ZKvF1+f/EvohZeIw==', '2016-10-17 11:55:28', 0, 0, NULL, NULL, NULL, 'a:0:{}', 0, NULL, 'lancer', 'freelancer', 'lancer', 'lancer', 13, 'CM'),
-(25, 'clie', 'clie', 'clie@yahoo.com', 'clie@yahoo.com', 1, 'l47qtwzgt3444004cswc4g8gkss0c4s', 'Pbp4ZJUrv3ijrWfY8iIN2yAgW4FrWYcqebMGMMVesYOI2E1to6leCK2vTEoaKjsAE4egz1f5JB64MxDNXhte7Q==', '2016-10-17 11:58:04', 0, 0, NULL, NULL, NULL, 'a:0:{}', 0, NULL, 'clie', 'client', NULL, 'clie', 14, 'KH');
+(25, 'clie', 'clie', 'clie@yahoo.com', 'clie@yahoo.com', 0, 'l47qtwzgt3444004cswc4g8gkss0c4s', 'Pbp4ZJUrv3ijrWfY8iIN2yAgW4FrWYcqebMGMMVesYOI2E1to6leCK2vTEoaKjsAE4egz1f5JB64MxDNXhte7Q==', '2016-10-17 11:58:04', 0, 0, NULL, NULL, NULL, 'a:0:{}', 0, NULL, 'clie', 'client', NULL, 'clie', 14, 'KH');
 
 --
 -- Contraintes pour les tables exportées

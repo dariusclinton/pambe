@@ -40,19 +40,19 @@ class Mission
      *
      * @ORM\Column(type="string", nullable=true)
      */
-    private $lieu;
+    private $place;
 
     /**
      * @var string
      *
      * @ORM\Column(type="string", nullable=true)
      */
-    private $duree;
+    private $duration;
 
     /**
      * @var float
      *
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $budget;
 
@@ -66,14 +66,19 @@ class Mission
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateDebut", type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $dateDebut;
+    private $startDate;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $valide;
+    private $validate;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $open;
 
     /**
      * @ORM\ManyToMany(targetEntity="WS\UserBundle\Entity\Domain", cascade={"persist"})
@@ -187,54 +192,6 @@ class Mission
     }
 
     /**
-     * Set lieu
-     *
-     * @param string $lieu
-     *
-     * @return RequestService
-     */
-    public function setLieu($lieu)
-    {
-        $this->lieu = $lieu;
-
-        return $this;
-    }
-
-    /**
-     * Get lieu
-     *
-     * @return string
-     */
-    public function getLieu()
-    {
-        return $this->lieu;
-    }
-
-    /**
-     * Set duree
-     *
-     * @param string $duree
-     *
-     * @return RequestService
-     */
-    public function setDuree($duree)
-    {
-        $this->duree = $duree;
-
-        return $this;
-    }
-
-    /**
-     * Get duree
-     *
-     * @return string
-     */
-    public function getDuree()
-    {
-        return $this->duree;
-    }
-
-    /**
      * Set budget
      *
      * @param float $budget
@@ -259,30 +216,6 @@ class Mission
     }
 
     /**
-     * Set valide
-     *
-     * @param boolean $valide
-     *
-     * @return RequestService
-     */
-    public function setValide($valide)
-    {
-        $this->valide = $valide;
-
-        return $this;
-    }
-
-    /**
-     * Get valide
-     *
-     * @return boolean
-     */
-    public function getValide()
-    {
-        return $this->valide;
-    }
-
-    /**
      * Set dateCreation
      *
      * @param \DateTime $dateCreation
@@ -304,30 +237,6 @@ class Mission
     public function getDateCreation()
     {
         return $this->dateCreation;
-    }
-
-    /**
-     * Set dateDebut
-     *
-     * @param \DateTime $dateDebut
-     *
-     * @return RequestService
-     */
-    public function setDateDebut($dateDebut)
-    {
-        $this->dateDebut = $dateDebut;
-
-        return $this;
-    }
-
-    /**
-     * Get dateDebut
-     *
-     * @return \DateTime
-     */
-    public function getDateDebut()
-    {
-        return $this->dateDebut;
     }
 
     /**
@@ -430,5 +339,124 @@ class Mission
     public function getSolicits()
     {
         return $this->solicits;
+    }
+
+    /**
+     * Set validate
+     *
+     * @param boolean $validate
+     *
+     * @return Mission
+     */
+    public function setValidate($validate)
+    {
+        $this->validate = $validate;
+
+        return $this;
+    }
+
+    /**
+     * Get validate
+     *
+     * @return boolean
+     */
+    public function getValidate()
+    {
+        return $this->validate;
+    }
+
+    /**
+     * Set place
+     *
+     * @param string $place
+     *
+     * @return Mission
+     */
+    public function setPlace($place)
+    {
+        $this->place = $place;
+
+        return $this;
+    }
+
+    /**
+     * Get place
+     *
+     * @return string
+     */
+    public function getPlace()
+    {
+        return $this->place;
+    }
+
+    /**
+     * Set duration
+     *
+     * @param string $duration
+     *
+     * @return Mission
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Get duration
+     *
+     * @return string
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * Set startDate
+     *
+     * @param \DateTime $startDate
+     *
+     * @return Mission
+     */
+    public function setStartDate($startDate)
+    {
+        $this->startDate = $startDate;
+        return $this;
+    }
+
+    /**
+     * Get startDate
+     *
+     * @return \DateTime
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * Set open
+     *
+     * @param boolean $open
+     *
+     * @return Mission
+     */
+    public function setOpen($open)
+    {
+        $this->open = $open;
+
+        return $this;
+    }
+
+    /**
+     * Get open
+     *
+     * @return boolean
+     */
+    public function getOpen()
+    {
+        return $this->open;
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -39,21 +39,20 @@
         {% include "WSAdminBundle::topnavigation.html.twig" %}
         <!-- /top navigation -->
 
-        {% for type in ['success', 'danger'] %}
-            {% for flashMessage in app.session.flashbag.get(type) %}
-                <div class="alert alert-{{ type }} alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h4>
-                        <i class="fa fa-{{ type == 'success'? 'check': 'ban' }}"></i>
-                        Notification
-                    </h4>
-                    {{ flashMessage }}
-                </div>
-            {% endfor %}
-        {% endfor %}
-
         <!-- page content -->
         {% block body %}
+            {% for type in ['success', 'danger'] %}
+                {% for flashMessage in app.session.flashbag.get(type) %}
+                    <div class="alert alert-{{ type }} alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4>
+                            <i class="fa fa-{{ type == 'success'? 'check': 'ban' }}"></i>
+                            Notification
+                        </h4>
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
         {% endblock %}
         <!-- /page content -->
 

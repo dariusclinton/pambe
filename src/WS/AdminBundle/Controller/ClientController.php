@@ -18,8 +18,10 @@ class ClientController extends Controller
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
+
             $client->setEnabled(true);
             $client->setLastLogin(new \DateTime);
+            $client->getImage()->setDirectory("profils");
 
             $em->persist($client);
             $em->flush();
@@ -49,6 +51,46 @@ class ClientController extends Controller
             return $this->redirect($this->generateUrl('ws_admin_client'));
         }
         $this->get('session')->getFlashBag()->Add('success', "Client supprimée avec succès!");
+        return $this->redirect($this->generateUrl('ws_admin_client'));
+    }
+
+    public function updateAction($id) {
+        $request = $this->get('request');
+        $em = $this->getDoctrine()->getManager();
+        $client = $em->getRepository('WSUserBundle:Client')->find($id);
+
+        $form = $this->createForm(new RegistrationClientFormType(), $client);
+
+        if ($request->getMethod() == 'POST'){
+            $form->handleRequest($request);
+
+            $client->getImage()->setDirectory("profils");
+
+            $em->merge($client);
+            $em->flush();
+            $this->get('session')->getFlashBag()->Add('success', "Ce client a été modifié avec succès!");
+            return $this->redirect($this->generateUrl('ws_admin_client'));
+        }
+
+        return $this->render('WSAdminBundle:Client:update.html.twig', [
+            'form' => $form->createView(),
+            'client' => $client
+        ]);
+    }
+
+    public function AbleOrEnableAction($id, $val) {
+        $em = $this->getDoctrine()->getManager();
+        $client = $em->getRepository('WSUserBundle:Client')->find($id);
+
+        $client->setEnabled($val);
+        $em->merge($client);
+        $em->flush();
+
+        if ($val == 1) {
+            $this->get('session')->getFlashBag()->Add('success', "Client annulé avec succès");
+        } else {
+            $this->get('session')->getFlashBag()->Add('success', "Client ratifé avec succès");
+        }
         return $this->redirect($this->generateUrl('ws_admin_client'));
     }
 }

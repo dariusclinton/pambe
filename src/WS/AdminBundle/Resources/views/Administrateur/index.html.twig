@@ -4,6 +4,7 @@
 {% block body %}
 
     <div class="right_col" role="main">
+        {{ parent() }}
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -28,7 +29,7 @@
                         <br />
                         {% trans_default_domain 'FOSUserBundle' %}
 
-                        <form action="{{ path('admin_registration') }}" {{ form_enctype(form) }} method="POST" autocomplete="off">
+                        <form action="{{ path('ws_admin_admin') }}" {{ form_enctype(form) }} method="POST" autocomplete="off">
 
                             {{ form_errors(form) }}
 
@@ -117,7 +118,74 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <br />
+                        <table id="datatable-responsive" class="table table-striped table-hover table-dynamic table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th>Photo de profil</th>
+                                <th>Nom & Prénom</th>
+                                <th>Pseudo</th>
+                                <th>Email</th>
+                                <th>Pays</th>
+                                <th>Adresse</th>
+                                <th>Activé ?</th>
+                                <th>Options</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for f in admins %}
+                                <tr>
+                                    <td style="text-align: center;">
+                                        <img src="{{ asset('uploads/profils/'~f.image) }}" alt="..." width="60px" height="60px">
+                                    </td>
+                                    <td style="text-align: center;">
+                                        {{ f.nom }} {{ f.prenom }}
+                                    </td>
+                                    <td style="text-align: center;">
+                                        {{ f.username }}
+                                    </td>
+                                    <td style="text-align: center;">
+                                        {{ f.email }}
+                                    </td>
+                                    <td style="text-align: center;">
+                                        {{ f.country | country(app.request.locale) }}
+                                    </td>
+                                    <td style="text-align: center;">
+                                        {{ f.adresse }}
+                                    </td>
+                                    <td style="text-align: center;">
+                                        {% if f.enabled == true %}
+                                            <a class="btn btn-success" title="Désactiver"
+                                               href="{{ path('ws_admin_admin_ableOrEnable', {'id' : f.id, 'val' : 0}) }}">
+                                                Oui
+                                            </a>
+                                        {%else%}
+                                            <a class="btn btn-danger" title="Activer"
+                                               href="{{ path('ws_admin_admin_ableOrEnable', {'id' : f.id, 'val' : 1}) }}">
+                                                Non
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <a class="btn btn-success" title="Visualiser"
+                                           data-toggle="modal" data-target=".bs-view-{{f.id}}-modal-sm">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                        <a class="btn btn-primary tooltipster-punk" title="Modifier"
+                                           href="{{ path('ws_admin_admin_update', {'id' : f.id}) }}">
+                                            <i class="fa fa-pencil-square-o"></i>
+                                        </a>
+                                        <a class="btn btn-danger tooltipster-punk" title="Supprimer"
+                                           data-toggle="modal" data-target=".bs-{{f.id}}-modal-sm">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                        {% include 'WSAdminBundle:Administrateur:delete_dialog.html.twig' with { 'f': f } %}
+                                        {% include 'WSAdminBundle:Administrateur:view_dialog.html.twig' with { 'f': f } %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
                     </div>
                 </div>
             </div>

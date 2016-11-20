@@ -31,11 +31,32 @@ class FreelancePostuleMission
     /**
      * @var \DateTime
      *
+<<<<<<< HEAD
+     * @ORM\Column(name="dateValidation", type="datetime", nullable=true)
+=======
      * @ORM\Column(name="dateValidation", type="datetime")
+>>>>>>> f1c8c176434cfa1e2605c82a992d0892156d3ea9
      */
     private $dateValidation;
 
     /**
+<<<<<<< HEAD
+     * @var float
+     *
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $cost;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $duration;
+
+    /**
+=======
+>>>>>>> f1c8c176434cfa1e2605c82a992d0892156d3ea9
      * @ORM\ManyToOne(targetEntity="WS\ServiceBundle\Entity\Mission", inversedBy="postulants", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
@@ -152,5 +173,53 @@ class FreelancePostuleMission
     public function getFreelancer()
     {
         return $this->freelancer;
+    }
+
+    /**
+     * Set duration
+     *
+     * @param string $duration
+     *
+     * @return FreelancePostuleMission
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Get duration
+     *
+     * @return string
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * Set cost
+     *
+     * @param float $cost
+     *
+     * @return FreelancePostuleMission
+     */
+    public function setCost($cost)
+    {
+        $this->cost = $cost;
+
+        return $this;
+    }
+
+    /**
+     * Get cost
+     *
+     * @return float
+     */
+    public function getCost()
+    {
+        return $this->cost;
     }
 }

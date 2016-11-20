@@ -23,14 +23,23 @@ class Freelancer extends User
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateCreation", type="datetime")
+     * @ORM\Column(name="dateDerniereMiseAJour", type="datetime")
      */
-    private $dateCreation;
+    private $dateDerniereMiseAJour;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateValiditeEnchere", type="datetime", nullable=true)
      */
-    private $premium;
+    private $dateValiditeEnchere;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateValiditePremium", type="datetime", nullable=true)
+     */
+    private $dateValiditePremium;
 
     /**
      * @ORM\OneToMany(targetEntity="WS\UserBundle\Entity\Competence", mappedBy="freelancer")
@@ -64,6 +73,8 @@ class Freelancer extends User
 
     /**
      * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\MissionSolicitFreelance", mappedBy="freelancer")
+<<<<<<< HEAD
+=======
      */
     private $missionSolicites;
 
@@ -74,23 +85,10 @@ class Freelancer extends User
      * @param boolean $premium
      *
      * @return User
+>>>>>>> f1c8c176434cfa1e2605c82a992d0892156d3ea9
      */
-    public function setPremium($premium)
-    {
-        $this->premium = $premium;
+    private $missionSolicites;
 
-        return $this;
-    }
-
-    /**
-     * Get premium
-     *
-     * @return boolean
-     */
-    public function getPremium()
-    {
-        return $this->premium;
-    }
 
     /**
      * @ORM\Column(type="integer")
@@ -153,6 +151,7 @@ class Freelancer extends User
 
     public function __construct() {
         parent::__construct();
+        $this->roles = array('ROLE_FREELANCE');
         $this->premium = false;
         $this->rating = 0;
         $this->dateCreation = new \DateTime;
@@ -261,30 +260,6 @@ class Freelancer extends User
     }
 
     /**
-     * Set dateCreation
-     *
-     * @param \DateTime $dateCreation
-     *
-     * @return Freelancer
-     */
-    public function setDateCreation($dateCreation)
-    {
-        $this->dateCreation = $dateCreation;
-
-        return $this;
-    }
-
-    /**
-     * Get dateCreation
-     *
-     * @return \DateTime
-     */
-    public function getDateCreation()
-    {
-        return $this->dateCreation;
-    }
-
-    /**
      * Add outil
      *
      * @param \WS\UserBundle\Entity\Outil $outil
@@ -350,5 +325,73 @@ class Freelancer extends User
     public function getLangues()
     {
         return $this->langues;
+    }
+
+    /**
+     * Add missionPostule
+     *
+     * @param \WS\ServiceBundle\Entity\FreelancePostuleMission $missionPostule
+     *
+     * @return Freelancer
+     */
+    public function addMissionPostule(\WS\ServiceBundle\Entity\FreelancePostuleMission $missionPostule)
+    {
+        $this->missionPostules[] = $missionPostule;
+
+        return $this;
+    }
+
+    /**
+     * Remove missionPostule
+     *
+     * @param \WS\ServiceBundle\Entity\FreelancePostuleMission $missionPostule
+     */
+    public function removeMissionPostule(\WS\ServiceBundle\Entity\FreelancePostuleMission $missionPostule)
+    {
+        $this->missionPostules->removeElement($missionPostule);
+    }
+
+    /**
+     * Get missionPostules
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMissionPostules()
+    {
+        return $this->missionPostules;
+    }
+
+    /**
+     * Add missionSolicite
+     *
+     * @param \WS\ServiceBundle\Entity\MissionSolicitFreelance $missionSolicite
+     *
+     * @return Freelancer
+     */
+    public function addMissionSolicite(\WS\ServiceBundle\Entity\MissionSolicitFreelance $missionSolicite)
+    {
+        $this->missionSolicites[] = $missionSolicite;
+
+        return $this;
+    }
+
+    /**
+     * Remove missionSolicite
+     *
+     * @param \WS\ServiceBundle\Entity\MissionSolicitFreelance $missionSolicite
+     */
+    public function removeMissionSolicite(\WS\ServiceBundle\Entity\MissionSolicitFreelance $missionSolicite)
+    {
+        $this->missionSolicites->removeElement($missionSolicite);
+    }
+
+    /**
+     * Get missionSolicites
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMissionSolicites()
+    {
+        return $this->missionSolicites;
     }
 }

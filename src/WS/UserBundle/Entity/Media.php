@@ -13,228 +13,220 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Media
 {
-  /**
-   * @var integer
-   *
-   * @ORM\Column(name="id", type="integer")
-   * @ORM\Id
-   * @ORM\GeneratedValue(strategy="AUTO")
-   */
-  private $id;
 
-  /**
-   * @var string
-   *
-   * @ORM\Column(name="name", type="string", length=255, nullable=true)
-   */
-  private $name;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
-  /**
-   * @var string
-   *
-   * @ORM\Column(name="path", type="string", length=255, nullable=true)
-   */
-  private $path;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
 
-  private $directory;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="path", type="string", length=255, nullable=true)
+     */
+    private $path;
+    
+    private $directory;
 
-  /**
-   * @var \DateTime
-   *
-   * @ORM\Column(name="updateAt", type="datetime", nullable=true)
-   */
-  private $updateAt;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updateAt", type="datetime", nullable=true)
+     */
+    private $updateAt;
 
-  /**
-   *
-   */
-  public function postLoad()
-  {
-    $this->updateAt = new \DateTime();
-  }
-
-  public $file;
-
-
-  public function getUploadRootDir()
-  {
-    return __DIR__ . '/../../../../web/uploads/' . $this->directory;
-  }
-
-  public function getAbsolutePath()
-  {
-    return null === $this->path ? null : $this->getUploadRootDir() . '/' . $this->path;
-  }
-
-  /**
-   * @ORM\PrePersist()
-   * @ORM\PreUpdate()
-   */
-  public function preUpload()
-  {
-    $this->tempFile = $this->getAbsolutePath();
-    $this->oldFile = $this->getPath();
-    $this->updateAt = new \DateTime();
-
-    if ($this->file !== null) {
-      $this->path = sha1(uniqid(mt_rand(), true)) . '.' . $this->file->guessExtension();
+    /**
+     * @ORM\PostLoad()
+     */
+    public function postLoad() {
+        $this->updateAt = new \DateTime();
     }
-  }
 
-  /**
-   * @ORM\PostPersist()
-   */
-  public function upload_PostPersist()
-  {
-    if ($this->file !== null) {
-      $this->file->move($this->getUploadRootDir(), $this->path);
-      unset($this->file);
+    public $file;
+
+
+    public function getUploadRootDir() {
+        return __DIR__.'/../../../../web/uploads/'.$this->directory;
     }
-  }
 
-  /**
-   * @ORM\PostUpdate()
-   */
-  public function upload_PostUpdate()
-  {
-    if ($this->file !== null) {
-      $this->file->move($this->getUploadRootDir(), $this->path);
-      unset($this->file);
-
-      if ($this->oldFile != null) {
-        unlink($this->tempFile);
-      }
+    public function getAbsolutePath() {
+        return null === $this->path ? null : $this->getUploadRootDir().'/'.$this->path;
     }
-  }
 
-  /**
-   * @ORM\PreRemove()
-   */
-  public function preRemoveUpload()
-  {
-    $this->tempFile = $this->getAbsolutePath();
-  }
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload() {
+        $this->tempFile = $this->getAbsolutePath();
+        $this->oldFile = $this->getPath();
+        $this->updateAt = new \DateTime();
 
-  /**
-   * @ORM\PostRemove()
-   */
-  public function postRemoveUpload()
-  {
-    if (file_exists($this->tempFile)) unlink($this->tempFile);
-  }
+        if ($this->file !== null) {
+            $this->path = sha1(uniqid(mt_rand(), true)).'.'.$this->file->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     */
+    public function upload_PostPersist() {
+        if ($this->file !== null) {
+            $this->file->move($this->getUploadRootDir(), $this->path);
+            unset($this->file);
+        }
+    }
+
+    /**
+     * @ORM\PostUpdate()
+     */
+    public function upload_PostUpdate() {
+        if ($this->file !== null) {
+            $this->file->move($this->getUploadRootDir(), $this->path);
+            unset($this->file);
+
+            if ($this->oldFile != null) {
+                unlink($this->tempFile);
+            }
+        }
+    }
+
+    /**
+     * @ORM\PreRemove()
+     */
+    public function preRemoveUpload() {
+        $this->tempFile = $this->getAbsolutePath();
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function postRemoveUpload() {
+        if (file_exists($this->tempFile)) unlink($this->tempFile);
+    }
 
 
-  /**
-   * @return \DateTime
-   */
-  public function getUpdateAt()
-  {
-    return $this->updateAt;
-  }
+    /**
+     * @return \DateTime
+     */
+    public function getUpdateAt()
+    {
+        return $this->updateAt;
+    }
 
-  /**
-   * Get id
-   *
-   * @return integer
-   */
-  public function getId()
-  {
-    return $this->id;
-  }
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-  /**
-   * Set name
-   *
-   * @param string $name
-   * @return Media
-   */
-  public function setName($name)
-  {
-    $this->name = $name;
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Media
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
 
-    return $this;
-  }
+        return $this;
+    }
 
-  /**
-   * Get name
-   *
-   * @return string
-   */
-  public function getName()
-  {
-    return $this->name;
-  }
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
-  /**
-   * Set path
-   *
-   * @param string $path
-   * @return Media
-   */
-  public function setPath($path)
-  {
-    $this->path = $path;
+    /**
+     * Set path
+     *
+     * @param string $path
+     * @return Media
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
 
-    return $this;
-  }
+        return $this;
+    }
 
-  /**
-   * Get path
-   *
-   * @return string
-   */
-  public function getPath()
-  {
-    return $this->path;
-  }
+    /**
+     * Get path
+     *
+     * @return string 
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+    
+    /**
+     * Set directory
+     *
+     * @param string $directory
+     * @return Media
+     */
+    public function setDirectory($directory)
+    {
+        $this->directory = $directory;
 
-  /**
-   * Set directory
-   *
-   * @param string $directory
-   * @return Media
-   */
-  public function setDirectory($directory)
-  {
-    $this->directory = $directory;
+        return $this;
+    }
 
-    return $this;
-  }
+    /**
+     * Get directory
+     *
+     * @return string 
+     */
+    public function getDirectory()
+    {
+        return $this->directory;
+    }
 
-  /**
-   * Get directory
-   *
-   * @return string
-   */
-  public function getDirectory()
-  {
-    return $this->directory;
-  }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->name = "media";
+        $this->path = "user.png";
+    }
 
-  /**
-   * Constructor
-   */
-  public function __construct()
-  {
-    $this->name = "userProfile";
-    $this->path = "user.png";
-  }
+    /**
+     * Set updateAt
+     *
+     * @param \DateTime $updateAt
+     * @return Media
+     */
+    public function setUpdateAt($updateAt)
+    {
+        $this->updateAt = $updateAt;
 
-  /**
-   * Set updateAt
-   *
-   * @param \DateTime $updateAt
-   * @return Media
-   */
-  public function setUpdateAt($updateAt)
-  {
-    $this->updateAt = $updateAt;
-
-    return $this;
-  }
-
-  public function __toString()
-  {
-    return $this->getPath();
-  }
+        return $this;
+    }
+    
+    public function __toString() {
+        return $this->getPath();
+    }
 }
