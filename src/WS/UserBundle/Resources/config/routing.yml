@@ -1,8 +1,3 @@
-ws_user_homepage:
-    path:     /
-    defaults: { _controller: WSUserBundle:Default:index }
-    
-    
 freelancer_registration:
     path:  /register/freelancer
     defaults: { _controller: WSUserBundle:RegistrationFreelancer:register }

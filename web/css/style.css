@@ -1,0 +1,466 @@
+
+/* Color variables
+
+@colordef #42c5bf ; ~green
+@colordef #dd4563 ; ~pink
+@colordef #0ab4c5 ; ~dark green
+*/
+
+
+
+
+/*@font-face {*/
+  /*font-family: 'FontAwesome';*/
+  /*src: url('../fonts/FontAwesome.otf');*/
+/*}*/
+
+/* Global Styles
+-----------------------------------------------------------*/
+
+html,
+body {
+  height: 100%;
+  font-family: Georgia, Arial, Helvetica, sans-serif;
+}
+
+body {
+  padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.border-bottom {
+  border-bottom: 1px inset;
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.bg-primary {
+  background-color: #42c5bf;
+  color: #fff;
+}
+
+.bg-danger {
+  background-color: #dd4563;
+  color: #fff;
+}
+
+.btn.btn-primary {
+  background-color: #42c5bf;
+  border-color: #42c5bf;
+}
+
+.btn {
+  text-transform: uppercase;
+}
+
+.btn.btn-primary:active{
+  background-color: #42c5bf;
+}
+
+.btn.btn-danger {
+  background-color: #dd4563;
+}
+
+.btn.btn-danger:active {
+  background-color: #dd4563;
+}
+
+.badge {
+  border-radius: 50%;
+}
+
+.badge.badge-danger {
+  background-color: #dd4563;
+}
+
+.badge.badge-primary {
+  background-color: #42c5bf;
+}
+
+.badge.badge-lg {
+  height: 50px;
+  width: 50px;
+  padding: 15px;
+  font-size: 0.5em;
+}
+
+.btn.btn-outline {
+  background-color: transparent;
+  /*font-weight: bold;*/
+}
+
+.btn.btn-danger.btn-outline {
+  color: #dd4563;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.btn.btn-danger.btn-outline:hover {
+  background-color: #dd4563;
+  color: #fff;
+}
+
+a {
+  color: #42c5bf;
+}
+
+.text-bold {
+  font-weight: bolder;
+}
+
+
+/* Homepage nav
+-----------------------------------------------------------*/
+nav {
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.6);
+  /*text-transform: uppercase;*/
+}
+
+nav .container-fluid .collapse li a:hover {
+  /*background-color: #42c5bf;*/
+  color: #42c5bf;
+}
+
+nav .navbar-brand img {
+  height: 30px;
+}
+
+nav .collapse li.new-mission a {
+  color: #42c5bf;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+nav .collapse li.new-mission a:hover {
+  color: #0ab4c5;
+}
+
+
+/* Home Page header
+-----------------------------------------------------------*/
+
+header.barner {
+  height: 60%;
+  /*background-image: url('../images/freelancer-banner.jpg');*/
+  background-size: cover;
+}
+
+header .block-info {
+  height: 190px;
+  margin-top: 50px;
+  color: #0ab4c5;
+}
+ header .block-info h1 {
+   font-weight: bolder;
+   font-size: 2em;
+ }
+
+
+/* Homepage search
+-----------------------------------------------------------*/
+
+.block-search {
+  margin-top: 10px;
+}
+
+.block-search .tab-pane p {
+  padding: 10px 0;
+  /*font-weight: bold;*/
+}
+
+.block-search .nav-tabs li a {
+  font-size: 1.3em;
+  /*color: #42c5bf;*/
+  border-radius: 0;
+}
+
+/* Homepage Domains
+-----------------------------------------------------------*/
+
+.domains {
+  margin-top: 50px;
+}
+
+.domains .thumbnail {
+  border-radius: 5px;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+.domains .thumbnail img {
+  height: 100px;
+  width: 100%;
+}
+
+/*.domains .carousel-inner {*/
+  /*margin-top: 45px;*/
+  /*text-align: center;*/
+/*}*/
+
+/*.domains .carousel-control .glyphicon {*/
+  /*display: none;*/
+/*}*/
+
+/*.domains .carousel-control {*/
+  /*-o-border-radius: 3px;*/
+  /*-webkit-border-radius: 3px;*/
+  /*-moz-border-radius: 3px;*/
+  /*border-radius: 3px;*/
+  /*width: 25px;*/
+  /*height: 25px;*/
+  /*background: none;*/
+  /*top: -35px;*/
+  /*font-size: 17px;*/
+  /*color: #ffffff;*/
+  /*text-align: center;*/
+  /*text-shadow: none;*/
+  /*-webkit-text-shadow: none;*/
+  /*-moz-text-shadow: none;*/
+  /*-o-text-shadow: none;*/
+  /*opacity: 0.5;*/
+  /*opacity: 1;*/
+  /*transition: all 0.17s ease-in-out;*/
+  /*-moz-transition: all 0.17s ease-in-out;*/
+  /*-webkit-transition: all 0.17s ease-in-out;*/
+  /*-o-transition: all 0.17s ease-in-out;*/
+/*}*/
+
+/*.domains .carousel-control.left {*/
+  /*right: 28px;*/
+  /*left: auto;*/
+  /*background: #42c5bf;*/
+/*}*/
+
+/*.domains .carousel-control.left:before {*/
+  /*font-family: 'FontAwesome';*/
+  /*content: "\f104";*/
+  /*position: absolute;*/
+  /*font-size: 19px;*/
+  /*color: #fff;*/
+  /*top: -1px;*/
+  /*left: 8px;*/
+/*}*/
+
+/*.domains .carousel-control.right {*/
+  /*right: 0;*/
+  /*background: #42c5bf;*/
+/*}*/
+
+/*.domains .carousel-control.right:before {*/
+  /*font-family: 'FontAwesome';*/
+  /*content: "\f105";*/
+  /*position: absolute;*/
+  /*font-size: 19px;*/
+  /*color: #fff;*/
+  /*top: -1px;*/
+  /*left: 10px;*/
+/*}*/
+
+/*.domains .carousel-control.left:hover {*/
+  /*background: #dd4563;*/
+  /*opacity: 1;*/
+/*}*/
+
+/*.domains .carousel-control.right:hover {*/
+  /*background: #dd4563;*/
+  /*opacity: 1;*/
+/*}*/
+
+
+/* Homepage statistics
+-----------------------------------------------------------*/
+
+.statistics {
+  background-color: #eee;
+  /*background-color: rgba(221, 69, 99, 0.8);;*/
+  margin-top: 50px;
+  padding-bottom: 50px;
+}
+
+.statistics span.fa-stack {
+  color: #42c5bf;
+}
+
+/* Homeapage how-to
+-----------------------------------------------------------*/
+.how-to {
+  margin-top: 50px;
+}
+
+.how-to .users {
+  height: 500px;
+  /*background-image: url('../images/freelancer2.jpg');*/
+  background-size: cover;
+}
+
+/*Homepage Testimonials
+-----------------------------------------------------------*/
+.testimonials {
+  margin-top: 100px;
+}
+.testimonials .carousel-control.left,.carousel-control.right  {background:none;width:25px;}
+.testimonials .carousel-control.left {left:-25px;}
+.testimonials .carousel-control.right {right:-25px;}
+.testimonials .broun-block {
+  background: #eee;
+  padding-bottom: 50px;
+}
+.testimonials .block-text {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 3px 0 #42c5bf;
+  color: #626262;
+  font-size: 14px;
+  margin-top: 27px;
+  padding: 15px 18px;
+}
+.testimonials .mark {
+  padding: 12px 0;background:none;
+}
+.testimonials .block-text p {
+  color: #585858;
+  font-family: Georgia;
+  font-style: italic;
+  line-height: 20px;
+}
+.testimonials .sprite {
+  ;
+}
+.testimonials .sprite-i-triangle {
+  background-position: 0 -1298px;
+  height: 44px;
+  width: 50px;
+}
+.testimonials .block-text ins {
+  bottom: -44px;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.testimonials .block {
+  display: block;
+}
+.testimonials .zmin {
+  z-index: 1;
+}
+
+.testimonials .zmin p {
+  height: 130px;
+  overflow: auto;
+}
+.testimonials .ab {
+  position: absolute;
+}
+
+.testimonials .person-text {
+  padding: 10px 0 0;
+  text-align: center;
+  z-index: 2;
+}
+.testimonials .person-text a {
+  color: #dd4563;
+  font-weight: bold;
+  display: block;
+  font-size: 14px;
+  margin-top: 3px;
+  text-decoration: underline;
+}
+.testimonials .person-text i {
+  font-family: Georgia;
+  font-size: 13px;
+}
+.testimonials .rel {
+  position: relative;
+}
+
+.testimonials .rel img {
+  height: 100px;
+  width: 100px;
+}
+
+/* 404 Page Styles
+-----------------------------------------------------------*/
+
+.error-404 {
+  font-size: 100px;
+}
+
+
+/* About page  our-team
+-----------------------------------------------------------*/
+
+.our-team .img-team-user {
+  height: 200px;
+  width: 200px;
+}
+
+/* Footer Styles
+-----------------------------------------------------------*/
+
+#footer {
+  border-top: 5px solid #dd4563;
+  background: #101010 none repeat scroll 0% 0%;
+  padding-top: 30px;
+  /*margin-top: 60px;*/
+  color: #AAA;
+  display: block;
+}
+
+#footer .widgettitle {
+  /*margin: 0px;*/
+  padding: 0px 0px 15px;
+  border-bottom: medium none;
+}
+
+#footer .widgettitle img {
+  height: 50px;
+}
+
+#footer h4 {
+  /*color: #FFF;*/
+}
+
+#footer ul {
+  list-style: outside none none;
+  margin-left: -40px;
+}
+
+#footer li {
+  padding: 7px 0px;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
+  margin: 0px;
+}
+
+#footer li a {
+  color: #DDD;
+}
+
+#sub-floor {
+  color: #AAA;
+  background: #000000 none repeat scroll 0% 0%;
+  padding: 10px 0px;
+}
+
+
+
+/* Responsive Styles
+-----------------------------------------------------------*/
+
+/*@media(max-width:991px) {
+.customer-img,
+.img-related {
+margin-bottom: 30px;
+}
+}
+
+@media(max-width:767px) {
+.img-portfolio {
+margin-bottom: 15px;
+}
+
+header.carousel .carousel {
+height: 70%;
+}
+}*/

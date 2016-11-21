@@ -1,0 +1,42 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{#{% use 'bootstrap_3_layout.html.twig' %}#}
+
+<div class="col-md-12">
+  <h1 class="page-header text-center">Connexion</h1>
+  {% if error %}
+    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+  {% endif %}
+
+  <form action="{{ path("fos_user_security_check") }}" method="post">
+    {% if csrf_token %}
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+    {% endif %}
+
+    <div class="form-group">
+      <label for="username" class="control-label">{{ 'security.login.username'|trans }}</label>
+      <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control input-lg"
+             required="required"/>
+    </div>
+
+    <div class="form-group">
+      <label for="password" class="control-label">{{ 'security.login.password'|trans }}</label>
+      <input type="password" id="password" name="_password" class="form-control input-lg" required="required"/>
+    </div>
+
+    <div class="form-group">
+      <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+      <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+    </div>
+
+    <div class="form-group">
+      <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}"
+             class="btn btn-primary btn-block btn-lg"/>
+    </div>
+  </form>
+  <p><a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a></p>
+  <p>
+    Pas de compte ? <br> Inscription <a href="{{ path('freelancer_registration') }}">freelancer</a> ou
+    <a href="{{ path('client_registration') }}">donneur de missions</a>
+  </p>
+</div>

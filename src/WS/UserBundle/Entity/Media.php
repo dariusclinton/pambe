@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Media
 {
+
     /**
      * @var integer
      *
@@ -46,7 +47,7 @@ class Media
     private $updateAt;
 
     /**
-     * @ORM\Postload()
+     * @ORM\PostLoad()
      */
     public function postLoad() {
         $this->updateAt = new \DateTime();

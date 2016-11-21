@@ -1,0 +1,545 @@
+{% extends 'WSCoreBundle::layout.html.twig' %}
+
+{% block title %}
+  Lorem ipsum dolor sit amet sum - {{ parent() }}
+{% endblock title %}
+
+{% block body %}
+  <!-- Header Carousel -->
+  <header class="barner" style="background-image: url('{{ asset('images/freelancer-banner.jpg') }}')">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="block-info">
+            <div class="row text-center">
+              <h3><span class="bg-danger">Vous avez des projets et besoin de main d'oeuvre</span></h3>
+              <h1>
+                <span class="bg-primary">Déposez gratuitement vos offres de missions et laissez les freelances vous suivre</span>
+              </h1>
+              <h3><span class="bg-danger">Vous êtes freelance</span></h3>
+              <h1>
+                <span class="bg-primary">Postulez à des missions et gagnez des marchés de grande envergure</span>
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  {# search #}
+  <div class="search">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="block-search">
+            <div class="row">
+              <div class="col-md-12">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                  <li class="active">
+                    <a href="#freelance-search" role="tab" data-toggle="tab">Rechercher un freelance</a>
+                  </li>
+                  <li><a href="#client-search" role="tab" data-toggle="tab">Rechercher une mission</a></li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                  <!-- tab-pane 1 -->
+                  <div class="tab-pane active" id="freelance-search">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                          labore et dolore magna aliqua.
+                        </p>
+                      </div>
+                      <div class="col-md-5">
+                        <select class="form-control">
+                          <option value="--">Domaine</option>
+                          <option value="Developpement">Developpement</option>
+                          <option value="Analyse des SI">Analyse des SI</option>
+                          <option value="Administration de BD">Administration de BD</option>
+                          <option value="Réseau informatique">Réseau informatique</option>
+                          <option value="Télécommunications">Télécommunications</option>
+                          <option value="Infographie">Infographie</option>
+                          <option value="Cryptographie">Cryptographie</option>
+                          <option value="Maintenance">Maintenance</option>
+                          <option value="Bureautique">Bureautique</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <select class="form-control">
+                          <option value="--">Pays</option>
+                          <option value="Cameroun">Cameroun</option>
+                          <option value="Côte d'ivoire">Côte d'ivoire</option>
+                        </select>
+                      </div>
+                      <div class="col-md-3">
+                        <button type="submit" class="btn btn-danger btn-block">Rechercher</button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- tab-pane 2 -->
+                  <div class="tab-pane" id="client-search">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                          labore et dolore magna aliqua.
+                        </p>
+                      </div>
+                      <div class="col-md-5">
+                        <select class="form-control">
+                          <option value="--">Domaine</option>
+                          <option value="Developpement">Developpement</option>
+                          <option value="Analyse des SI">Analyse des SI</option>
+                          <option value="Administration de BD">Administration de BD</option>
+                          <option value="Réseau informatique">Réseau informatique</option>
+                          <option value="Télécommunications">Télécommunications</option>
+                          <option value="Infographie">Infographie</option>
+                          <option value="Cryptographie">Cryptographie</option>
+                          <option value="Maintenance">Maintenance</option>
+                          <option value="Bureautique">Bureautique</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <select class="form-control">
+                          <option value="--">Pays</option>
+                          <option value="Cameroun">Cameroun</option>
+                          <option value="Cote d'ivoire">Cameroun</option>
+                        </select>
+                      </div>
+                      <div class="col-md-3">
+                        <button type="submit" class="btn btn-danger btn-block">Rechercher</button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.tab-pane 2 -->
+                </div>
+                <!-- /.tab-pane -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {# /.search #}
+
+  <!-- domains section -->
+  <div class="domains">
+    <div class="container">
+      <h1 class="page-header text-center text-bold">Trouvez des freelances en 1 clic </h1>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/dev2.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">200</span> Freelances</p>#}
+              <h3>Développement</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block btn-sm">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/analyse.png') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">167</span> Freelances</p>#}
+              <h3>Analyse des SI</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/dba.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">95</span> Freelances</p>#}
+              <h3>Administration de BD</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/reseau.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">50</span> Freelances</p>#}
+              <h3>Réseau</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/telecom2.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">34</span> Freelances</p>#}
+              <h3>Télécommunications</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/infographie.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">167</span> Freelances</p>#}
+              <h3>Infographie</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/crypto.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">95</span> Freelances</p>#}
+              <h3>Cryptographie</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/maintenance.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">50</span> Freelances</p>#}
+              <h3>Maintenance</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/bureautique.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">34</span> Freelances</p>#}
+              <h3>Bureautique</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/bureautique.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">34</span> Freelances</p>#}
+              <h3>Bureautique</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/bureautique.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">34</span> Freelances</p>#}
+              <h3>Bureautique</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a href="#"><img src="{{ asset('images/bureautique.jpg') }}" alt="..."></a>
+            <div class="caption">
+              {#<p><span class="badge badge-danger">34</span> Freelances</p>#}
+              <h3>Bureautique</h3>
+              <hr>
+              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.domains section -->
+
+  <!-- statistics -->
+  <div class="statistics">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1 class="page-header text-bold">Un pôle du freelance</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 text-center">
+          <span class="fa-stack fa-2x">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+          </span>
+          <p><b>Entreprises</b><br> 240 Entreprises inscrites, offrant des missions</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <span class="fa-stack fa-2x">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+          </span>
+          <p><b>Freelances</b> <br>4500 Freelances inscrits et disponibles </p>
+        </div>
+        <div class="col-md-4 text-center">
+          <span class="fa-stack fa-2x">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+          </span>
+          <p><b>Missions</b> <br>400 Missions soumises </p>
+        </div>
+      </div>
+      <br><br>
+      <div class="row">
+        <div class="col-md-3 text-center">
+          <span class="fa-stack fa-2x">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+          </span>
+          <p><b>Informatique</b> <br>2400 Freelances inscrits et disponibles </p>
+        </div>
+        <div class="col-md-3 text-center">
+          <span class="fa-stack fa-2x">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+          </span>
+          <p><b>Informatique</b> <br>2400 Freelances inscrits et disponibles </p>
+        </div>
+        <div class="col-md-3 text-center">
+          <span class="fa-stack fa-2x">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+          </span>
+          <p><b>Informatique</b> <br>2400 Freelances inscrits et disponibles </p>
+        </div>
+        <div class="col-md-3 text-center">
+          <span class="fa-stack fa-2x">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+          </span>
+          <p><b>Informatique</b> <br>2400 Freelances inscrits et disponibles </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.statistics -->
+
+  <!-- how-to -->
+  <div class="how-to">
+    <div class="container">
+      <h1 class="page-header text-center">Comment ça marche ?</h1>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h1><span class="badge badge-lg">1</span></h1>
+              <p>
+              <p>Qui et cillum consectetur ea enim ut consectetur ad ipsum tempor id minim id sunt do sit amet.
+                Occaecat cillum laboris est consequat id ut nisi sint sit sunt aliqua commodo adipisicing dolore
+                deserunt. Dolor pariatur eiusmod irure aliquip aute cupidatat non nulla et.</p>
+              </p>
+            </div>
+            <div class="col-md-12 text-center">
+              <h1><span class="badge badge-lg">2</span></h1>
+              <p>
+              <p>Qui et cillum consectetur ea enim ut consectetur ad ipsum tempor id minim id sunt do sit amet.
+                Occaecat cillum laboris est consequat id ut nisi sint sit sunt aliqua commodo adipisicing dolore
+                deserunt. Dolor pariatur eiusmod irure aliquip aute cupidatat non nulla et.</p>
+              </p>
+            </div>
+            <div class="col-md-12 text-center">
+              <h1><span class="badge badge-lg">3</span></h1>
+              <p>
+              <p>Qui et cillum consectetur ea enim ut consectetur ad ipsum tempor id minim id sunt do sit amet.
+                Occaecat cillum laboris est consequat id ut nisi sint sit sunt aliqua commodo adipisicing dolore
+                deserunt. Dolor pariatur eiusmod irure aliquip aute cupidatat non nulla et.</p>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="users" style="background-image: url('{{ asset('images/freelancer2.jpg') }}')">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.how-to -->
+
+  <!-- testimonial Section -->
+  <div class="testimonials">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h1 class="text-bold">Pambé, on en parle</h1>
+          <br>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-reviews broun-block">
+      <div class="container">
+        <div id="carousel-reviews" class="carousel slide" data-ride="carousel" data-interval="10000">
+
+          <div class="carousel-inner">
+            <div class="item active">
+              <div class="col-md-4 col-sm-6">
+                <div class="block-text rel zmin">
+                  <p>Never before has there been a good film portrayal of ancient Greece's favourite myth. So why
+                    would Hollywood start now? This latest attempt at bringing the son of Zeus to the big screen is
+                    brought to us by X-Men: The last Stand director Brett Ratner. If the name of the director wasn't
+                    enough to dissuade ...</p>
+                  <ins class="ab zmin sprite sprite-i-triangle block"></ins>
+                </div>
+                <div class="person-text rel">
+                  <img alt="" src="{{ asset('images/img.jpg') }}" class="img-circle">
+                  <a title="" href="#">Peter Mc Donald</a>
+                  <i>Cameroun</i>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 hidden-xs">
+                <div class="block-text rel zmin">
+                  <p>The 2013 movie "The Purge" left a bad taste in all of our mouths as nothing more than a
+                    pseudo-slasher with a hamfisted plot, poor pacing, and a desperate attempt at "horror." Upon
+                    seeing the first trailer for "The Purge: Anarchy," my first and most immediate thought was "we
+                    really don't need another one of these." </p>
+                  <ins class="ab zmin sprite sprite-i-triangle block"></ins>
+                </div>
+                <div class="person-text rel">
+                  <img alt="" src="{{ asset('images/aurelien.jpg') }}" class="img-circle">
+                  <a title="" href="#">Aurelien Tegus</a>
+                  <i>Nigeria</i>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 hidden-sm hidden-xs">
+                <div class="block-text rel zmin">
+                  <p>What a funny and entertaining film! I did not know what to expect, this is the fourth film in
+                    this vehicle's universe with the two Cars movies and then the first Planes movie. I was wondering
+                    if maybe Disney pushed it a little bit. However, Planes: Fire and Rescue is an entertaining film
+                    that is a fantastic sequel in this magical franchise. </p>
+                  <ins class="ab zmin sprite sprite-i-triangle block"></ins>
+                </div>
+                <div class="person-text rel">
+                  <img alt="" src="{{ asset('images/user.png') }}" class="img-circle">
+                  <a title="" href="#">Rannynm</a>
+                  <i>Cameroun</i>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="col-md-4 col-sm-6">
+                <div class="block-text rel zmin">
+                  <p>Never before has there been a good film portrayal of ancient Greece's favourite myth. So why
+                    would Hollywood start now? This latest attempt at bringing the son of Zeus to the big screen is
+                    brought to us by X-Men: The last Stand director Brett Ratner. If the name of the director wasn't
+                    enough to dissuade ...</p>
+                  <ins class="ab zmin sprite sprite-i-triangle block"></ins>
+                </div>
+                <div class="person-text rel">
+                  <img alt="" src="{{ asset('images/img.jpg') }}" class="img-circle">
+                  <a title="" href="#">Anna</a>
+                  <i>Gabon</i>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 hidden-xs">
+                <div class="block-text rel zmin">
+                  <p>The 2013 movie "The Purge" left a bad taste in all of our mouths as nothing more than a
+                    pseudo-slasher with a hamfisted plot, poor pacing, and a desperate attempt at "horror." Upon
+                    seeing the first trailer for "The Purge: Anarchy," my first and most immediate thought was "we
+                    really don't need another one of these." </p>
+                  <ins class="ab zmin sprite sprite-i-triangle block"></ins>
+                </div>
+                <div class="person-text rel">
+                  <img alt="" src="{{ asset('images/img.jpg') }}" class="img-circle">
+                  <a title="" href="#">Ella Mentree</a>
+                  <i>Côte d'ivoire</i>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 hidden-sm hidden-xs">
+                <div class="block-text rel zmin">
+                  <p>What a funny and entertaining film! I did not know what to expect, this is the fourth film in
+                    this vehicle's universe with the two Cars movies and then the first Planes movie. I was wondering
+                    if maybe Disney pushed it a little bit. However, Planes: Fire and Rescue is an entertaining film
+                    that is a fantastic sequel in this magical franchise. </p>
+                  <ins class="ab zmin sprite sprite-i-triangle block"></ins>
+                </div>
+                <div class="person-text rel">
+                  <img alt="" src="{{ asset('images/user.png') }}" class="img-circle">
+                  <a title="" href="#">Rannynm</a>
+                  <i>Nigeria</i>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="col-md-4 col-sm-6">
+                <div class="block-text rel zmin">
+                  <p>Never before has there been a good film portrayal of ancient Greece's favourite myth. So why
+                    would Hollywood start now? This latest attempt at bringing the son of Zeus to the big screen is
+                    brought to us by X-Men: The last Stand director Brett Ratner. If the name of the director wasn't
+                    enough to dissuade ...</p>
+                  <ins class="ab zmin sprite sprite-i-triangle block"></ins>
+                </div>
+                <div class="person-text rel">
+                  <img alt="" src="{{ asset('images/darius.jpg') }}" class="img-circle">
+                  <a title="" href="#">Anna</a>
+                  <i>Nigeria</i>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 hidden-xs">
+                <div class="block-text rel zmin">
+                  <p>The 2013 movie "The Purge" left a bad taste in all of our mouths as nothing more than a
+                    pseudo-slasher with a hamfisted plot, poor pacing, and a desperate attempt at "horror." Upon
+                    seeing the first trailer for "The Purge: Anarchy," my first and most immediate thought was "we
+                    really don't need another one of these." </p>
+                  <ins class="ab zmin sprite sprite-i-triangle block"></ins>
+                </div>
+                <div class="person-text rel">
+                  <img alt="" src="{{ asset('images/aurelien.jpg') }}" class="img-circle">
+                  <a title="" href="#">Ella Mentree</a>
+                  <i>Cameroun</i>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 hidden-sm hidden-xs">
+                <div class="block-text rel zmin">
+                  <p>What a funny and entertaining film! I did not know what to expect, this is the fourth film in
+                    this vehicle's universe with the two Cars movies and then the first Planes movie. I was wondering
+                    if maybe Disney pushed it a little bit. However, Planes: Fire and Rescue is an entertaining film
+                    that is a fantastic sequel in this magical franchise. </p>
+                  <ins class="ab zmin sprite sprite-i-triangle block"></ins>
+                </div>
+                <div class="person-text rel">
+                  <img alt="" src="{{ asset('images/darius.jpg') }}" class="img-circle">
+                  <a title="" href="#">Rannynm</a>
+                  <i>Côte d'ivoire</i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class="left carousel-control" href="#carousel-reviews" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a class="right carousel-control" href="#carousel-reviews" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- testimonial section -->
+{% endblock body %}
+

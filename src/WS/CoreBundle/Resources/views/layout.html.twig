@@ -1,0 +1,157 @@
+{% extends '::base.html.twig' %}
+
+{% block main %}
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{{ path('ws_core_homepage') }}">
+          <img src="{{ asset('images/logo.png') }}" alt="Logo Pambé">
+        </a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{ path('ws_core_homepage') }}">Accueil</a></li>
+          <li><a href="{{ path('ws_core_how_to') }}">Comment ça marche ?</a></li>
+          <li class="new-mission"><a href="#">+ Deposer une mission</a></li>
+
+          {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle username" data-toggle="dropdown">
+                {{ app.user.prenom }} {{ app.user.nom }}<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{{ path('fos_user_profile_show') }}">Profil</a></li>
+                <li class="divider"></li>
+                <li>
+                  <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                  </a>
+                </li>
+              </ul>
+            </li>
+          {% else %}
+            <form class="navbar-form navbar-left">
+              {#<a href="{{ path('fos_user_security_login') }}" class="btn btn-danger btn-sm btn-outline">#}
+              {#{{ 'layout.login'|trans({}, 'FOSUserBundle') }}#}
+              {#</a>#}
+              <a class="btn btn-danger btn-sm btn-outline" data-toggle="modal" data-target="#modalLogin">
+                Connexion
+              </a>
+              <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalRegistration">
+                Inscription gratuite
+              </a>
+            </form>
+          {% endif %}
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+
+  {% block body %}
+
+  {% endblock body %}
+
+  <!-- Footer -->
+  <footer id="footer" class="clearfix">
+    <div id="footer-widgets">
+      <div class="container">
+        <div id="footer-wrapper">
+          <div class="row">
+            <div class="col-md-3">
+              <div id="meta-4" class="widget widgetFooter widget_meta">
+                <h1 class="widgettitle">
+                  <img src="{{ asset('images/logo_blanc.png') }}" alt="Logo Pambé" class="img-responsive">
+                </h1>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                  et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                  consequat.
+                </p>
+              </div>
+            </div> <!-- end widget1 -->
+
+            <div class="col-md-3">
+              <div id="meta-3" class="widget widgetFooter widget_meta">
+                <h4 class="widgettitle">Pages importantes :</h4>
+                <ul>
+                  <li><a href="{{ path('ws_core_homepage') }}"><i class="fa fa-home fa-fw"></i> Accueil</a></li>
+                  <li><a href="{{ path('ws_core_how_to') }}"><i class="fa fa-book"></i> Comment ça marche ?</a></li>
+                  <li><a href="{{ path('ws_core_contact') }}"><i class="fa fa-phone"></i> Nous contacter</a></li>
+                  <li><a href="{{ path('ws_core_about') }}"><i class="fa fa-info-circle"></i> A propos</a></li>
+                </ul>
+              </div>
+            </div> <!-- end widget1 -->
+
+            <div class="col-md-3">
+              <div id="recent-posts-3" class="widget widgetFooter widget_recent_entries">
+                <h4 class="widgettitle">Sur les réseaux sociaux :</h4>
+                <ul>
+                  <li>
+                    <a href="https://www.facebook.com/workerssearch" target="_blank">
+                      <i class="fa fa-facebook"></i> Facebook
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.twitter.com/workerssearch" target="_blank">
+                      <i class="fa fa-twitter"></i> Twitter
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://www.youtube.com/workerssearch" target="_blank">
+                      <i class="fa fa-youtube"></i> Youtube
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div> <!-- end widget2 -->
+
+            <div class="col-md-3">
+              <div id="meta-4" class="widget widgetFooter widget_meta">
+                <h4 class="widgettitle">Newsletter :</h4>
+                <div class="form-group">
+                  <div class="input-group">
+                    <input class="form-control" placeholder="Email..." type="text">
+                      <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button" style="text-transform: none">Souscrire</button>
+                      </span>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- end widget3 -->
+
+          </div> <!-- end .row -->
+        </div> <!-- end #footer-wrapper -->
+      </div> <!-- end .container -->
+    </div> <!-- end #footer-widgets -->
+
+    <div id="sub-floor">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-6 copyright" style="text-align: right;">
+            Copyright Pambé © 2016 | Tous droits réservés.
+          </div>
+        </div> <!-- end .row -->
+      </div>
+    </div>
+  </footer>
+
+  {# Modal login #}
+  {% include 'WSCoreBundle:Core:modal_login.html.twig' %}
+
+  {# Modal registration #}
+  {% include 'WSCoreBundle:Core:modal_registration.html.twig' %}
+{% endblock main %}
+
+
