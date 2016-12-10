@@ -1,6 +1,38 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-</div>
+<center>
+    <a class="btn btn-default thumbnail" href="{{ path('profile_photo_update') }}" style="width: 200px;">
+        {% if app.user.image == null %}
+            <img src="{{ asset('images/avatar.png') }}" alt="{{ user.email }}" id="imgprofil" style="height: 200px;">
+        {% else %}
+            <img src="{{ asset('uploads/profils/'~app.user.image) }}" alt="{{ user.email }}" id="imgprofil" style="height: 200px;">
+        {% endif %}
+        <div class="info"></div>
+    </a>
+
+    <h3>{{ user.prenom }} {{ user.nom }}</h3>
+
+    {% if is_granted('ROLE_FREELANCE') %}
+        <p>{{ user.rating | rating }}</p>
+    {% endif %}
+
+    <p>
+        <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default">
+            Modifier Profil <i class="fa fa-pencil-square-o"></i>
+        </a>
+    </p>
+</center>
+
+<ul class="nav nav-pills nav-stacked">
+    {% if is_granted('ROLE_FREELANCE') %}
+        <li><a href="{{ path('profile_language_index') }}">Langues <span class="badge pull-right">{{ user.langues | length }}</span></a></li>
+        <li><a href="{{ path('profile_domain_index') }}">Domaines <span class="badge pull-right">{{ user.domains | length }}</span></a></li>
+        <li><a href="{{ path('profile_competence_index') }}">Compétences <span class="badge pull-right">{{ user.competences | length }}</span></a></li>
+        <li><a href="{{ path('profile_tool_index') }}">Outils <span class="badge pull-right">{{ user.outils | length }}</span></a></li>
+        <li><a href="{{ path('profile_realization_index') }}">Réalisations <span class="badge pull-right">{{ user.realizations | length }}</span></a></li>
+        <li><a href="{{ path('profile_missions_postulated_index') }}">Missions Postulées <span class="badge pull-right">{{ user.missionPostules | length }}</span></a></li>
+        <li><a href="{{ path('profile_missions_solicited_index') }}">Missions Solicitées <span class="badge pull-right">{{ user.missionSolicites | length }}</span></a></li>
+    {% endif %}
+
+    <li><a href="{{ path('profile_my_missions_index') }}">Dépôt Missions<span class="badge pull-right">{{ user.missions | length }}</span></a></li>
+</ul>

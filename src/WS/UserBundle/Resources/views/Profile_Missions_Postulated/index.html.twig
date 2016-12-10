@@ -1,0 +1,44 @@
+{% extends "WSUserBundle:Profile:show.html.twig" %}
+
+{% block breadcrumb %}
+    <li class="active">Missions postulées</li>
+{% endblock breadcrumb %}
+
+{% block sideright %}
+
+    {% if user.missionPostules | length != 0  %}
+
+        <div class="panel panel-default">
+            <table id="_table_tool" class="table table-striped table-hover table-dynamic" cellspacing="0">
+                <thead>
+                <tr>
+                    <th style="text-align: center;">Mission</th>
+                    <th style="text-align: center;">Durée proposée</th>
+                    <th style="text-align: center;">Coût proposé</th>
+                </tr>
+                </thead>
+                <tbody id="_tbody">
+                {% for mp in user.missionPostules %}
+
+                    <tr>
+                        <td style="text-align: center;">{{ mp.mission.object }}</td>
+                        <td style="text-align: center;">{{ mp.duration }}</td>
+                        <td style="text-align: center;">{{ mp.cost }}</td>
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    {% else %}
+
+        <center>
+            <h1>
+                <span class="label label-danger">Aucune missions postulées !</span>
+            </h1>
+        </center>
+
+    {% endif %}
+
+{% endblock sideright %}

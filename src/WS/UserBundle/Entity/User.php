@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="WS\UserBundle\Repository\UserRepository")
  * @ORM\Table(name="User")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
@@ -49,6 +50,11 @@ abstract class User extends BaseUser
      * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\Testimonial", mappedBy="user")
      */
     private $testimonials;
+
+    /**
+     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\Mission", mappedBy="user")
+     */
+    private $missions;
 
     /**
      * Set image
@@ -252,5 +258,39 @@ abstract class User extends BaseUser
     public function getTestimonials()
     {
         return $this->testimonials;
+    }
+
+    /**
+     * Add mission
+     *
+     * @param \WS\ServiceBundle\Entity\Mission $mission
+     *
+     * @return User
+     */
+    public function addMission(\WS\ServiceBundle\Entity\Mission $mission)
+    {
+        $this->missions[] = $mission;
+
+        return $this;
+    }
+
+    /**
+     * Remove mission
+     *
+     * @param \WS\ServiceBundle\Entity\Mission $mission
+     */
+    public function removeMission(\WS\ServiceBundle\Entity\Mission $mission)
+    {
+        $this->missions->removeElement($mission);
+    }
+
+    /**
+     * Get missions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMissions()
+    {
+        return $this->missions;
     }
 }

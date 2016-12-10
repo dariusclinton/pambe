@@ -1,0 +1,128 @@
+{% extends 'WSCoreBundle::layout.html.twig' %}
+
+{% block title %}
+    {{ parent() }}
+{% endblock title %}
+
+{% block body %}
+    <!-- Results of Search -->
+    <div class="results-search">
+        <div class="container">
+            <h1 class="page-header" style="margin-top: 25px; text-align: center;">
+                Résultats de la recherche
+            </h1>
+            <div class="row">
+                {% if searched == 'freelances' %}
+
+                    {% if results|length == 0 %}
+                        Aucun freelance trouvé !!
+                    {% else %}
+                        <div class="panel panel-default">
+                            <table id="_table_tool" class="table table-striped table-hover table-dynamic" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th style="text-align: center;">Freelances</th>
+                                </tr>
+                                </thead>
+                                <tbody id="_tbody">
+                                {% for r in results %}
+                                    <tr>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    {{ r.prenom }} {{ r.nom }}
+                                                </div>
+                                                <div class="col-md-4">
+                                                    {{ r.rating | rating }}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Compétences</th>
+                                                            <th>Année(s) d'expérience</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for c in r.competences %}
+                                                            <tr>
+                                                                <td>{{ c.libel }}</td>
+                                                                <td>{{ c.nbAnneeExp }}</td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2 col-md-offset-10">
+                                                    <a href="#" class="btn btn-default">
+                                                        Soliciter
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endif %}
+
+                {% else %}
+
+                    {% if results|length == 0 %}
+                        Aucune mission trouvée !!
+                    {% else %}
+                        <div class="panel panel-default">
+                            <table id="_table_tool" class="table table-striped table-hover table-dynamic" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th style="text-align: center;">Missions</th>
+                                </tr>
+                                </thead>
+                                <tbody id="_tbody">
+                                {% for r in results %}
+                                    <tr>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    Objet : {{ r.object }}
+                                                </div>
+                                                <div class="col-md-4">
+                                                    Date de début : {{ r.startDate | localizeddate('long', 'none', app.request.locale) }}
+                                                </div>
+                                                <div class="col-md-4">
+                                                    Lieu : {{ r.place }}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">Durée : {{ r.duration }} jour(s)</div>
+                                                <div class="col-md-4">Budget : {{ r.budget }} FCFA</div>
+                                                <div class="col-md-4"></div>
+                                            </div>
+                                            <div class="row">
+                                                {% if is_granted('ROLE_FREELANCE') %}
+                                                    <div class="col-md-2 col-md-offset-10">
+                                                        <a href="#" class="btn btn-default">
+                                                            Postuler
+                                                        </a>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endif %}
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <br>
+{% endblock body %}

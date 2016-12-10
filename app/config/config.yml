@@ -78,3 +78,10 @@ swiftmailer:
 #    db_driver: orm
 #    firewall_name: main
 #    user_class: WS\UserBundle\Entity\User
+
+jms_serializer:
+    metadata:
+        directories:
+            FOSUB:
+                namespace_prefix: "FOS\\UserBundle"
+                path: "%kernel.root_dir%/serializer/FOSUserBundle"

@@ -1,8 +1,11 @@
+console:
+    resource: "@CoreSphereConsoleBundle/Resources/config/routing.yml"
+
+#ADMIN_HOMEPAGE
 ws_admin_homepage:
     path:     /
     defaults: { _controller: WSAdminBundle:Acceuil:index }
 
-#ADMIN_HOMEPAGE
 admin_registration:
     path:  /administrateur/registration
     defaults: { _controller: AppUserBundle:RegistrationAdmin:register }

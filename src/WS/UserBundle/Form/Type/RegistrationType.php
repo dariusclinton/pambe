@@ -14,7 +14,7 @@ class RegistrationType extends AbstractType {
         ->add('prenom')
         ->add('country')
         ->add('adresse')
-        ->add('image', new MediaType());
+        ->add('image', new MediaType(), ['required' => false]);
   }
   
   public function getParent()

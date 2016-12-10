@@ -4,41 +4,11 @@
 >
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-body">
-        {#{% include('WSUserBundle:Security:login_content.html.twig') %}#}
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-          <li class="active">
-            <a href="#freelance-form" role="tab" data-toggle="tab">Freelance</a>
-          </li>
-          <li><a href="#client-form" role="tab" data-toggle="tab">Donneur de mission</a></li>
-        </ul>
-
-        <!-- Tab panes -->
-        <div class="tab-content">
-          <!-- tab-pane 1 -->
-          <div class="tab-pane active" id="freelance-form">
-            <div class="row">
-              <div class="col-md-12">
-                <h4 class="label label-warning">
-                  Vous vous inscrivez sur la plateforme en tant que <em>freelance</em>
-                </h4>
-              </div>
-            </div>
-          </div>
-          <!-- tab-pane 2 -->
-          <div class="tab-pane" id="client-form">
-            <div class="row">
-              <div class="col-md-12">
-                <h4 class="label label-warning">
-                  Vous vous inscrivez sur la plateforme en tant que <em>donneur de mission</em>
-                </h4>
-              </div>
-            </div>
-          </div>
-          <!-- /.tab-pane 2 -->
-        </div>
-        <!-- /.tab-pane -->
+      <div class="modal-body" style="text-align: center; font-weight: bold; font-size: medium;">
+          <br> Inscription en tant que
+          <a href="{{ path('freelancer_registration') }}">Freelance</a>
+          ou
+          <a href="{{ path('client_registration') }}">Donneur de missions</a>.
       </div>
       <div class="modal-footer">
       </div>

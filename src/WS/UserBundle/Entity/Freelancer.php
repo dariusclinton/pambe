@@ -52,7 +52,7 @@ class Freelancer extends User
     private $realizations;
 
     /**
-     * @ORM\ManyToMany(targetEntity="WS\UserBundle\Entity\Domain", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="WS\UserBundle\Entity\Domain", cascade={"persist"}, inversedBy="freelances")
      */
     private $domains;
 

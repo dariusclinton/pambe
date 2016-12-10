@@ -1,7 +1,128 @@
 freelancer_registration:
-    path:  /register/freelancer
+    path:  /register/freelance
     defaults: { _controller: WSUserBundle:RegistrationFreelancer:register }
 
 client_registration:
     path:  /register/client
     defaults: { _controller: WSUserBundle:RegistrationClient:register }
+
+#Profile - Language
+profile_language_index:
+    path: /profile/language
+    defaults: { _controller: WSUserBundle:Language:index }
+
+profile_language_add:
+    path: /profile/language/add/{id}
+    defaults: { _controller: WSUserBundle:Language:add }
+    options:
+        expose: true
+
+profile_language_remove:
+    path: /profile/language/remove/{id}
+    defaults: { _controller: WSUserBundle:Language:remove }
+
+#Profile - Competence
+profile_competence_index:
+    path: /profile/competence
+    defaults: { _controller: WSUserBundle:Competence:index }
+
+profile_competences_freelance:
+    path: /profile/competences/freelance
+    defaults: { _controller: WSUserBundle:Competence:competencesByUser }
+    options:
+        expose: true
+
+profile_competence_add:
+    path: /profile/competence/add
+    defaults: { _controller: WSUserBundle:Competence:add }
+    options:
+        expose: true
+
+profile_competence_remove:
+    path: /profile/competence/remove/{id}
+    defaults: { _controller: WSUserBundle:Competence:remove }
+    options:
+        expose: true
+
+#Profile - Domain
+profile_domain_index:
+    path: /profile/domain
+    defaults: { _controller: WSUserBundle:Domain:index }
+
+profile_domains_category:
+    path: /profile/domains/category/{id}
+    defaults: { _controller: WSUserBundle:Domain:domainsByCategory }
+    options:
+        expose: true
+
+profile_domains_freelance:
+    path: /profile/domains/freelance
+    defaults: { _controller: WSUserBundle:Domain:domainsByUser }
+    options:
+        expose: true
+
+profile_domain_add:
+    path: /profile/domain/add/{id}
+    defaults: { _controller: WSUserBundle:Domain:add }
+    options:
+        expose: true
+
+profile_domain_remove:
+    path: /profile/domain/remove/{id}
+    defaults: { _controller: WSUserBundle:Domain:remove }
+    options:
+        expose: true
+
+#Profile - Realization
+profile_realization_index:
+    path: /profile/realization
+    defaults: { _controller: WSUserBundle:Realization:index }
+
+profile_realization_remove:
+    path: /profile/realization/remove/{id}
+    defaults: { _controller: WSUserBundle:Realization:remove }
+    options:
+        expose: true
+
+#Profile - Tool
+profile_tool_index:
+    path: /profile/tool
+    defaults: { _controller: WSUserBundle:Tool:index }
+
+profile_tools_freelance:
+    path: /profile/tools/freelance
+    defaults: { _controller: WSUserBundle:Tool:toolsByUser }
+    options:
+        expose: true
+
+profile_tool_add:
+    path: /profile/tool/add
+    defaults: { _controller: WSUserBundle:Tool:add }
+    options:
+        expose: true
+
+profile_tool_remove:
+    path: /profile/tool/remove/{id}
+    defaults: { _controller: WSUserBundle:Tool:remove }
+    options:
+        expose: true
+
+#Update Photo Profil
+profile_photo_update:
+    path: /profile/photo/update
+    defaults: { _controller: WSUserBundle:Default:updatePhotoProfil }
+
+#Profile - MyMissions
+profile_my_missions_index:
+    path: /profile/mymissions
+    defaults: { _controller: WSUserBundle:MyMissions:index }
+
+#Profile - Missions Postulated
+profile_missions_postulated_index:
+    path: /profile/missions/postulated
+    defaults: { _controller: WSUserBundle:MissionsPostulated:index }
+
+#Profile - Missions Solicited
+profile_missions_solicited_index:
+    path: /profile/missions/solicited
+    defaults: { _controller: WSUserBundle:MissionsSolicited:index }

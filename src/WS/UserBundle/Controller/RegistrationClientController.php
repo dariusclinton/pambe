@@ -4,6 +4,8 @@ namespace WS\UserBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use WS\UserBundle\Entity\Client;
+use WS\UserBundle\Form\Type\RegistrationClientFormType;
 
 class RegistrationClientController extends Controller
 {

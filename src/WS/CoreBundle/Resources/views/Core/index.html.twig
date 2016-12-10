@@ -1,7 +1,7 @@
 {% extends 'WSCoreBundle::layout.html.twig' %}
 
 {% block title %}
-  Lorem ipsum dolor sit amet sum - {{ parent() }}
+   {{ parent() }}
 {% endblock title %}
 
 {% block body %}
@@ -47,73 +47,51 @@
                 <div class="tab-content">
                   <!-- tab-pane 1 -->
                   <div class="tab-pane active" id="freelance-search">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <p>
+                    <form action="{{ path('ws_core_result_freelance') }}" {{ form_enctype(form_freelance) }} method="POST" autocomplete="off">
+                      {{ form_errors(form_freelance) }}
+                      <div class="form-group">
+                        <div class="control-label" style="margin: 20px;">
                           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                           labore et dolore magna aliqua.
-                        </p>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-5">
+                            {{ form_widget(form_freelance.domain, { 'attr' : { 'class' : 'form-control'} }) }}
+                          </div>
+                          <div class="col-md-4">
+                            {{ form_widget(form_freelance.country, { 'attr' : { 'class' : 'form-control'} }) }}
+                          </div>
+                          <div class="col-md-3">
+                            <button type="submit" class="btn btn-danger btn-block">Rechercher</button>
+                          </div>
+                        </div>
                       </div>
-                      <div class="col-md-5">
-                        <select class="form-control">
-                          <option value="--">Domaine</option>
-                          <option value="Developpement">Developpement</option>
-                          <option value="Analyse des SI">Analyse des SI</option>
-                          <option value="Administration de BD">Administration de BD</option>
-                          <option value="Réseau informatique">Réseau informatique</option>
-                          <option value="Télécommunications">Télécommunications</option>
-                          <option value="Infographie">Infographie</option>
-                          <option value="Cryptographie">Cryptographie</option>
-                          <option value="Maintenance">Maintenance</option>
-                          <option value="Bureautique">Bureautique</option>
-                        </select>
-                      </div>
-                      <div class="col-md-4">
-                        <select class="form-control">
-                          <option value="--">Pays</option>
-                          <option value="Cameroun">Cameroun</option>
-                          <option value="Côte d'ivoire">Côte d'ivoire</option>
-                        </select>
-                      </div>
-                      <div class="col-md-3">
-                        <button type="submit" class="btn btn-danger btn-block">Rechercher</button>
-                      </div>
-                    </div>
+                      <span class="hidden"> {{ form_rest(form_freelance) }} </span>
+                    </form>
                   </div>
                   <!-- tab-pane 2 -->
                   <div class="tab-pane" id="client-search">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <p>
+                    <form action="{{ path('ws_core_result_mission') }}" {{ form_enctype(form_mission) }} method="POST" autocomplete="off">
+                      {{ form_errors(form_mission) }}
+                      <div class="form-group">
+                        <div class="control-label" style="margin: 20px;">
                           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                           labore et dolore magna aliqua.
-                        </p>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-5">
+                            {{ form_widget(form_mission.domain, { 'attr' : { 'class' : 'form-control'} }) }}
+                          </div>
+                          <div class="col-md-4">
+                            {{ form_widget(form_mission.country, { 'attr' : { 'class' : 'form-control'} }) }}
+                          </div>
+                          <div class="col-md-3">
+                            <button type="submit" class="btn btn-danger btn-block">Rechercher</button>
+                          </div>
+                        </div>
                       </div>
-                      <div class="col-md-5">
-                        <select class="form-control">
-                          <option value="--">Domaine</option>
-                          <option value="Developpement">Developpement</option>
-                          <option value="Analyse des SI">Analyse des SI</option>
-                          <option value="Administration de BD">Administration de BD</option>
-                          <option value="Réseau informatique">Réseau informatique</option>
-                          <option value="Télécommunications">Télécommunications</option>
-                          <option value="Infographie">Infographie</option>
-                          <option value="Cryptographie">Cryptographie</option>
-                          <option value="Maintenance">Maintenance</option>
-                          <option value="Bureautique">Bureautique</option>
-                        </select>
-                      </div>
-                      <div class="col-md-4">
-                        <select class="form-control">
-                          <option value="--">Pays</option>
-                          <option value="Cameroun">Cameroun</option>
-                          <option value="Cote d'ivoire">Cameroun</option>
-                        </select>
-                      </div>
-                      <div class="col-md-3">
-                        <button type="submit" class="btn btn-danger btn-block">Rechercher</button>
-                      </div>
-                    </div>
+                      <span class="hidden"> {{ form_rest(form_mission) }} </span>
+                    </form>
                   </div>
                   <!-- /.tab-pane 2 -->
                 </div>
@@ -132,142 +110,19 @@
     <div class="container">
       <h1 class="page-header text-center text-bold">Trouvez des freelances en 1 clic </h1>
       <div class="row">
-        <div class="col-md-3">
-          <div class="thumbnail">
-            <a href="#"><img src="{{ asset('images/dev2.jpg') }}" alt="..."></a>
-            <div class="caption">
-              {#<p><span class="badge badge-danger">200</span> Freelances</p>#}
-              <h3>Développement</h3>
-              <hr>
-              <p><a href="#" class="btn btn-primary btn-block btn-sm">Rechercher</a></p>
+        {% for d in domains %}
+          <div class="col-md-3">
+            <div class="thumbnail">
+              <a href="#"><img src="{{ asset('uploads/images/'~d.image) }}" alt="..."></a>
+              <div class="caption">
+                <p><span class="badge badge-danger">{{ d.freelances | length }}</span> Freelance(s)</p>
+                <h3>{{ d.libel }}</h3>
+                <hr>
+                <p><a href="{{ path("ws_core_find_freelance_by_domain", {'id' : d.id}) }}" class="btn btn-primary btn-block btn-sm">Rechercher</a></p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-3">
-          <div class="thumbnail">
-            <a href="#"><img src="{{ asset('images/analyse.png') }}" alt="..."></a>
-            <div class="caption">
-              {#<p><span class="badge badge-danger">167</span> Freelances</p>#}
-              <h3>Analyse des SI</h3>
-              <hr>
-              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="thumbnail">
-            <a href="#"><img src="{{ asset('images/dba.jpg') }}" alt="..."></a>
-            <div class="caption">
-              {#<p><span class="badge badge-danger">95</span> Freelances</p>#}
-              <h3>Administration de BD</h3>
-              <hr>
-              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="thumbnail">
-            <a href="#"><img src="{{ asset('images/reseau.jpg') }}" alt="..."></a>
-            <div class="caption">
-              {#<p><span class="badge badge-danger">50</span> Freelances</p>#}
-              <h3>Réseau</h3>
-              <hr>
-              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3">
-          <div class="thumbnail">
-            <a href="#"><img src="{{ asset('images/telecom2.jpg') }}" alt="..."></a>
-            <div class="caption">
-              {#<p><span class="badge badge-danger">34</span> Freelances</p>#}
-              <h3>Télécommunications</h3>
-              <hr>
-              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="thumbnail">
-            <a href="#"><img src="{{ asset('images/infographie.jpg') }}" alt="..."></a>
-            <div class="caption">
-              {#<p><span class="badge badge-danger">167</span> Freelances</p>#}
-              <h3>Infographie</h3>
-              <hr>
-              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="thumbnail">
-            <a href="#"><img src="{{ asset('images/crypto.jpg') }}" alt="..."></a>
-            <div class="caption">
-              {#<p><span class="badge badge-danger">95</span> Freelances</p>#}
-              <h3>Cryptographie</h3>
-              <hr>
-              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="thumbnail">
-            <a href="#"><img src="{{ asset('images/maintenance.jpg') }}" alt="..."></a>
-            <div class="caption">
-              {#<p><span class="badge badge-danger">50</span> Freelances</p>#}
-              <h3>Maintenance</h3>
-              <hr>
-              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3">
-          <div class="thumbnail">
-            <a href="#"><img src="{{ asset('images/bureautique.jpg') }}" alt="..."></a>
-            <div class="caption">
-              {#<p><span class="badge badge-danger">34</span> Freelances</p>#}
-              <h3>Bureautique</h3>
-              <hr>
-              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="thumbnail">
-            <a href="#"><img src="{{ asset('images/bureautique.jpg') }}" alt="..."></a>
-            <div class="caption">
-              {#<p><span class="badge badge-danger">34</span> Freelances</p>#}
-              <h3>Bureautique</h3>
-              <hr>
-              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="thumbnail">
-            <a href="#"><img src="{{ asset('images/bureautique.jpg') }}" alt="..."></a>
-            <div class="caption">
-              {#<p><span class="badge badge-danger">34</span> Freelances</p>#}
-              <h3>Bureautique</h3>
-              <hr>
-              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="thumbnail">
-            <a href="#"><img src="{{ asset('images/bureautique.jpg') }}" alt="..."></a>
-            <div class="caption">
-              {#<p><span class="badge badge-danger">34</span> Freelances</p>#}
-              <h3>Bureautique</h3>
-              <hr>
-              <p><a href="#" class="btn btn-primary btn-block">Rechercher</a></p>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </div>

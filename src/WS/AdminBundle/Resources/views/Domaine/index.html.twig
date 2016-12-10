@@ -9,6 +9,7 @@
     <link href="{{ asset('admin/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
+
 {% endblock %}
 
 {% block body %}
@@ -62,7 +63,7 @@
 
                                 <div class="form-group">
                                     {{ form_label(form.image.file, 'Image', { 'attr' : { 'class' : 'control-label col-md-3 col-sm-3 col-xs-12'} }) }} <span class="asterisk red">*</span>
-                                    {{ form_widget(form.image.file, { 'attr' : { 'class' : 'form-control col-md-7 col-xs-12'} }) }}
+                                    {{ form_widget(form.image.file, { 'attr' : { 'class' : 'form-control fichierImage col-md-7 col-xs-12'} }) }}
                                 </div>
                             </div>
 
@@ -74,7 +75,6 @@
                             <span class="hidden"> {{ form_rest(form) }} </span>
 
                         </form>
-
 
                     </div>
                 </div>
@@ -252,4 +252,15 @@
         });
     </script>
     <!-- /Datatables -->
+
+    {# FileInput #}
+    <script>
+        console.log(true);
+        $("#" + $(".fichierImage").attr("id")).fileinput({
+            showCaption: true,
+            showUpload: false,
+            allowedFileTypes: ['image'],
+            allowedFileExtensions: ['jpg', 'jpeg', 'png']
+        });
+    </script>
 {% endblock %}

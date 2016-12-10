@@ -3,6 +3,8 @@
 namespace WS\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use WS\UserBundle\Entity\Freelancer;
+use WS\UserBundle\Form\Type\RegistrationFreelancerFormType;
 
 class RegistrationFreelancerController extends Controller
 {

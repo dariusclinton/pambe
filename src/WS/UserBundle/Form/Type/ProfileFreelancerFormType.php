@@ -4,12 +4,18 @@ namespace WS\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use WS\UserBundle\Form\MediaType;
 
 
 class ProfileFreelancerFormType extends AbstractType {
   
   public function buildForm(FormBuilderInterface $builder, array $options) {
       $builder
+          ->add('image', new MediaType(), ['required' => false])
+          ->add('nom')
+          ->add('prenom')
+          ->add('country')
+          ->add('adresse')
           ->add('sexe', 'choice', array(
               'mapped' => true,
               'choices' => array(

@@ -3,12 +3,15 @@
 namespace WS\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\ExclusionPolicy;
 
 /**
  * Domain
  *
  * @ORM\Table(name="domain")
  * @ORM\Entity(repositoryClass="WS\UserBundle\Repository\DomainRepository")
+ * @ExclusionPolicy("all")
  */
 class Domain
 {
@@ -18,6 +21,7 @@ class Domain
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     private $id;
 
@@ -25,6 +29,7 @@ class Domain
      * @var string
      *
      * @ORM\Column(name="libel", type="string", length=255)
+     * @Expose
      */
     private $libel;
 
@@ -32,6 +37,7 @@ class Domain
      * @var string
      *
      * @ORM\Column(name="description", type="text", nullable=true)
+     * @Expose
      */
     private $description;
 
@@ -47,6 +53,10 @@ class Domain
      */
     private $category;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="WS\UserBundle\Entity\Freelancer", mappedBy="domains")
+     */
+    private $freelances;
 
     /**
      * Get id
@@ -152,5 +162,45 @@ class Domain
     public function getCategory()
     {
         return $this->category;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+    }
+
+    /**
+     * Add freelance
+     *
+     * @param \WS\UserBundle\Entity\Freelancer $freelance
+     *
+     * @return Domain
+     */
+    public function addFreelance(\WS\UserBundle\Entity\Freelancer $freelance)
+    {
+        $this->freelances[] = $freelance;
+
+        return $this;
+    }
+
+    /**
+     * Remove freelance
+     *
+     * @param \WS\UserBundle\Entity\Freelancer $freelance
+     */
+    public function removeFreelance(\WS\UserBundle\Entity\Freelancer $freelance)
+    {
+        $this->freelances->removeElement($freelance);
+    }
+
+    /**
+     * Get freelances
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFreelances()
+    {
+        return $this->freelances;
     }
 }

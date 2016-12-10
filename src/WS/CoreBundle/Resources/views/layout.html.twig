@@ -21,7 +21,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li><a href="{{ path('ws_core_homepage') }}">Accueil</a></li>
           <li><a href="{{ path('ws_core_how_to') }}">Comment ça marche ?</a></li>
-          <li class="new-mission"><a href="#">+ Deposer une mission</a></li>
+          <li class="new-mission"><a href="{{ path('ws_mission_create_index') }}">+ Deposer une mission</a></li>
 
           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <li class="dropdown">
@@ -40,12 +40,12 @@
             </li>
           {% else %}
             <form class="navbar-form navbar-left">
-              {#<a href="{{ path('fos_user_security_login') }}" class="btn btn-danger btn-sm btn-outline">#}
-              {#{{ 'layout.login'|trans({}, 'FOSUserBundle') }}#}
-              {#</a>#}
-              <a class="btn btn-danger btn-sm btn-outline" data-toggle="modal" data-target="#modalLogin">
-                Connexion
+              <a href="{{ path('fos_user_security_login') }}" class="btn btn-danger btn-sm btn-outline">
+              {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
               </a>
+              {#<a class="btn btn-danger btn-sm btn-outline" data-toggle="modal" data-target="#modalLogin">#}
+                {#Connexion#}
+              {#</a>#}
               <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalRegistration">
                 Inscription gratuite
               </a>
@@ -148,7 +148,7 @@
   </footer>
 
   {# Modal login #}
-  {% include 'WSCoreBundle:Core:modal_login.html.twig' %}
+  {#{% include 'WSCoreBundle:Core:modal_login.html.twig' %}#}
 
   {# Modal registration #}
   {% include 'WSCoreBundle:Core:modal_registration.html.twig' %}

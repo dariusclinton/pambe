@@ -3,6 +3,7 @@
 namespace WS\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Realization
@@ -45,6 +46,10 @@ class Realization
     /**
      * @ORM\OneToOne(targetEntity="WS\UserBundle\Entity\Media", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
+     * @Assert\Image(
+     *     mimeTypes = {"image/jpeg", "image/jpg", "image/png"},
+     *     mimeTypesMessage = "Le fichier choisi ne correspond pas à un fichier valide!"
+     * )
      */
     private $image;
 

@@ -10,4 +10,30 @@ namespace WS\UserBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository {
 
+    public function findAllFreelanceByDomainAndCountry($idDomain, $codeCountry) {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('
+            SELECT f
+            FROM WSUserBundle:Freelancer f
+            INNER JOIN f.domains d
+            WHERE d.id = :idDomain AND f.country = :codeCountry
+        ')->setParameters( array (
+            'idDomain' => $idDomain,
+            'codeCountry' => $codeCountry
+        ));
+        return $query->getResult();
+    }
+
+    public function findAllFreelanceByDomain($idDomain) {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('
+            SELECT f
+            FROM WSUserBundle:Freelancer f
+            INNER JOIN f.domains d
+            WHERE d.id = :idDomain ORDER BY f.rating DESC
+        ')->setParameters( array (
+            'idDomain' => $idDomain
+        ));
+        return $query->getResult();
+    }
 }

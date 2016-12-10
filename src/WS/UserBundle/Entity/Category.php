@@ -3,12 +3,15 @@
 namespace WS\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\ExclusionPolicy;
 
 /**
  * Category
  *
  * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="WS\UserBundle\Repository\CategoryRepository")
+ * @ExclusionPolicy("all")
  */
 class Category
 {
@@ -25,6 +28,7 @@ class Category
      * @var string
      *
      * @ORM\Column(name="libelle", type="string", length=255)
+     * @Expose
      */
     private $libelle;
 

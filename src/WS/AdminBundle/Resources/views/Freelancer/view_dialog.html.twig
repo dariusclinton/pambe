@@ -117,10 +117,10 @@
                                                 {{ c.category.libelle }}
                                             </td>
                                             <td style="text-align: center;">
-                                                {{ f.libel }}
+                                                {{ c.libel }}
                                             </td>
                                             <td style="text-align: center;">
-                                                {{ f.description }}
+                                                {{ c.description }}
                                             </td>
                                         </tr>
                                     {% endfor %}
@@ -157,7 +157,7 @@
                                                 {{ c.libel }}
                                             </td>
                                             <td style="text-align: center;">
-                                                {{ f.nbAnneeExp }}
+                                                {{ c.nbAnneeExp }}
                                             </td>
                                         </tr>
                                     {% endfor %}
@@ -200,7 +200,7 @@
                                                 {{ c.libel }}
                                             </td>
                                             <td style="text-align: center;">
-                                                {{ f.description }}
+                                                {{ c.description }}
                                             </td>
                                             <td style="text-align: center;">
                                                 {{ c.url }}
@@ -238,7 +238,7 @@
                                     {% for o in f.outils %}
                                         <tr>
                                             <td style="text-align: center;">
-                                                {{ o.libel }}
+                                                {{ o.libelle }}
                                             </td>
                                             <td style="text-align: center;">
                                                 {{ o.nivExpertise }}

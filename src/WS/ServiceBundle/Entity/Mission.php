@@ -3,6 +3,8 @@
 namespace WS\ServiceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use WS\UserBundle\Entity\Media;
 
 /**
  * RequestService
@@ -43,9 +45,15 @@ class Mission
     private $place;
 
     /**
-     * @var string
+     * @Assert\Country()
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $country;
+
+    /**
+     * @var integer
      *
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $duration;
 
@@ -87,11 +95,10 @@ class Mission
     private $domains;
 
     /**
-     * @ORM\ManyToOne(targetEntity="WS\UserBundle\Entity\Client", inversedBy="missions", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="WS\UserBundle\Entity\User", inversedBy="missions", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $client;
-
+    private $user;
 
     /**
      * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\FreelancePostuleMission", mappedBy="mission")
@@ -103,10 +110,20 @@ class Mission
      */
     private $solicits;
 
+    /**
+     * @ORM\OneToOne(targetEntity="WS\UserBundle\Entity\Media", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $fichier;
+
 
 
     public function __construct() {
         $this->dateCreation = new \DateTime;
+        $this->startDate = new \DateTime;
+        $this->open = true;
+        $this->validate = true;
+        $this->fichier = new Media();
     }
 
     /**
@@ -165,30 +182,6 @@ class Mission
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set client
-     *
-     * @param \WS\UserBundle\Entity\Client $client
-     *
-     * @return RequestService
-     */
-    public function setClient(\WS\UserBundle\Entity\Client $client)
-    {
-        $this->client = $client;
-
-        return $this;
-    }
-
-    /**
-     * Get client
-     *
-     * @return \WS\UserBundle\Entity\Client
-     */
-    public function getClient()
-    {
-        return $this->client;
     }
 
     /**
@@ -390,30 +383,6 @@ class Mission
     }
 
     /**
-     * Set duration
-     *
-     * @param string $duration
-     *
-     * @return Mission
-     */
-    public function setDuration($duration)
-    {
-        $this->duration = $duration;
-
-        return $this;
-    }
-
-    /**
-     * Get duration
-     *
-     * @return string
-     */
-    public function getDuration()
-    {
-        return $this->duration;
-    }
-
-    /**
      * Set startDate
      *
      * @param \DateTime $startDate
@@ -458,5 +427,101 @@ class Mission
     public function getOpen()
     {
         return $this->open;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \WS\UserBundle\Entity\User $user
+     *
+     * @return Mission
+     */
+    public function setUser(\WS\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \WS\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     *
+     * @return Mission
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set duration
+     *
+     * @param integer $duration
+     *
+     * @return Mission
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Get duration
+     *
+     * @return integer
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * Set fichier
+     *
+     * @param \WS\UserBundle\Entity\Media $fichier
+     *
+     * @return Mission
+     */
+    public function setFichier(\WS\UserBundle\Entity\Media $fichier = null)
+    {
+        $this->fichier = $fichier;
+
+        return $this;
+    }
+
+    /**
+     * Get fichier
+     *
+     * @return \WS\UserBundle\Entity\Media
+     */
+    public function getFichier()
+    {
+        return $this->fichier;
     }
 }

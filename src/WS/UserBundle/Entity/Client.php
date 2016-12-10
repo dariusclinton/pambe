@@ -26,10 +26,6 @@ class Client extends User
      */
     private $siteWeb;
 
-    /**
-     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\Mission", mappedBy="client")
-     */
-    private $missions;
 
     public function __construct() {
         parent::__construct();
@@ -58,39 +54,5 @@ class Client extends User
     public function getSiteWeb()
     {
         return $this->siteWeb;
-    }
-
-    /**
-     * Add mission
-     *
-     * @param \WS\ServiceBundle\Entity\Mission $mission
-     *
-     * @return Client
-     */
-    public function addMission(\WS\ServiceBundle\Entity\Mission $mission)
-    {
-        $this->missions[] = $mission;
-
-        return $this;
-    }
-
-    /**
-     * Remove mission
-     *
-     * @param \WS\ServiceBundle\Entity\Mission $mission
-     */
-    public function removeMission(\WS\ServiceBundle\Entity\Mission $mission)
-    {
-        $this->missions->removeElement($mission);
-    }
-
-    /**
-     * Get missions
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMissions()
-    {
-        return $this->missions;
     }
 }

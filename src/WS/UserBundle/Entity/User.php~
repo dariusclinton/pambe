@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="WS\UserBundle\Repository\UserRepository")
  * @ORM\Table(name="User")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
@@ -33,6 +34,10 @@ abstract class User extends BaseUser
     /**
      * @ORM\OneToOne(targetEntity="WS\UserBundle\Entity\Media", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
+     * @Assert\Image(
+     *     mimeTypes = {"image/jpeg", "image/jpg", "image/png"},
+     *     mimeTypesMessage = "Le fichier choisi ne correspond pas à un fichier valide!"
+     * )
      */
     private $image;
 
@@ -45,6 +50,11 @@ abstract class User extends BaseUser
      * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\Testimonial", mappedBy="user")
      */
     private $testimonials;
+
+    /**
+     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\Mission", mappedBy="user")
+     */
+    private $missions;
 
     /**
      * Set image
@@ -180,5 +190,73 @@ abstract class User extends BaseUser
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Add donate
+     *
+     * @param \WS\ServiceBundle\Entity\Donate $donate
+     *
+     * @return User
+     */
+    public function addDonate(\WS\ServiceBundle\Entity\Donate $donate)
+    {
+        $this->donates[] = $donate;
+
+        return $this;
+    }
+
+    /**
+     * Remove donate
+     *
+     * @param \WS\ServiceBundle\Entity\Donate $donate
+     */
+    public function removeDonate(\WS\ServiceBundle\Entity\Donate $donate)
+    {
+        $this->donates->removeElement($donate);
+    }
+
+    /**
+     * Get donates
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDonates()
+    {
+        return $this->donates;
+    }
+
+    /**
+     * Add testimonial
+     *
+     * @param \WS\ServiceBundle\Entity\Testimonial $testimonial
+     *
+     * @return User
+     */
+    public function addTestimonial(\WS\ServiceBundle\Entity\Testimonial $testimonial)
+    {
+        $this->testimonials[] = $testimonial;
+
+        return $this;
+    }
+
+    /**
+     * Remove testimonial
+     *
+     * @param \WS\ServiceBundle\Entity\Testimonial $testimonial
+     */
+    public function removeTestimonial(\WS\ServiceBundle\Entity\Testimonial $testimonial)
+    {
+        $this->testimonials->removeElement($testimonial);
+    }
+
+    /**
+     * Get testimonials
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTestimonials()
+    {
+        return $this->testimonials;
     }
 }

@@ -2,7 +2,9 @@
 
 namespace WS\AdminBundle\Controller;
 
+use Symfony\Component\HttpFoundation\File\File;
 use WS\UserBundle\Entity\Freelancer;
+use WS\UserBundle\Entity\Media;
 use WS\UserBundle\Form\Type\RegistrationFreelancerFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -21,6 +23,10 @@ class FreelancerController extends Controller
 
             $freeLancer->setEnabled(true);
             $freeLancer->setLastLogin(new \DateTime);
+
+//            if ($freeLancer->getImage() == null) {
+//                $freeLancer->setImage(new Media());
+//            }
             $freeLancer->getImage()->setDirectory("profils");
 
             $em->persist($freeLancer);

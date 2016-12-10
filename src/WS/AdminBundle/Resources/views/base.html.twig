@@ -9,8 +9,6 @@
 
     <title>{% block title %}Pambé Dashboard{% endblock %}</title>
 
-
-
     <!-- Bootstrap -->
     <link href="{{ asset('admin/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
@@ -23,8 +21,10 @@
     <!-- Custom styling plus plugins -->
     <link href="{{ asset('admin/build/css/custom.min.css') }}" rel="stylesheet">
 
-    {% block stylesheets %}
+    {# FileInput #}
+    <link href="{{ asset('fileinput/css/fileinput.min.css') }}" media="all" rel="stylesheet" type="text/css" />
 
+    {% block stylesheets %}
     {% endblock %}
 </head>
 
@@ -170,7 +170,23 @@
 <!-- Custom Theme Scripts -->
 <script src="{{ asset('admin/build/js/custom.min.js') }}"></script>
 
-{% block javascripts %}{% endblock %}
+
+<!-- canvas-to-blob.min.js is only needed if you wish to resize images before upload.
+    This must be loaded before fileinput.min.js -->
+<script src="{{ asset('fileinput/js/plugins/canvas-to-blob.min.js') }}"></script>
+
+<!-- the main fileinput plugin file -->
+<script src="{{ asset('fileinput/js/fileinput.min.js') }}"></script>
+<!-- optionally if you need a theme like font awesome theme you can include
+    it as mentioned below -->
+<script src="{{ asset('fileinput/themes/fa/theme.js') }}"></script>
+<!-- optionally if you need translation for your language then include
+    locale file as mentioned below -->
+<script src="{{ asset('fileinput/locales/fr.js') }}"></script>
+<script src="{{ asset('fileinput/locales/es.js') }}"></script>
+
+{% block javascripts %}
+{% endblock %}
 
 <!-- bootstrap-wysiwyg -->
 <script>

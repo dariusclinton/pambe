@@ -16,15 +16,24 @@
     <!-- Custom Fonts -->
     <link href="{{ asset('icons/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
+    {# MultiSelect #}
+    <link href="{{ asset('multiselect/css/bootstrap-multiselect.css') }}"/>
+
     <!-- Custom CSS -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    <!-- Starrating CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+
+    <link href="{{ asset('fileinput/css/fileinput.min.css') }}" media="all" rel="stylesheet" type="text/css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <!--<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->
+    <!--<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
     <![endif]-->
+
   {% endblock %}
 
   <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
@@ -37,14 +46,39 @@
 
 
 {% block javascripts %}
+  <!-- Fosjsrouting JS -->
+  <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+  <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
   <!-- jQuery -->
   <script src="{{ asset('js/jquery.js') }}"></script>
 
   <!-- Bootstrap Core JavaScript -->
   <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
+  {# MultiSelect #}
+  <script src="{{ asset('multiselect/js/bootstrap-multiselect.js') }}"></script>
+
+  <!-- Starrating JS -->
+  <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+
   <!-- Custom JavaScript -->
   <script src="{{ asset('js/app.js') }}"></script>
+
+  <!-- canvas-to-blob.min.js is only needed if you wish to resize images before upload.
+     This must be loaded before fileinput.min.js -->
+  <script src="{{ asset('fileinput/js/plugins/canvas-to-blob.min.js') }}"></script>
+
+  <!-- the main fileinput plugin file -->
+  <script src="{{ asset('fileinput/js/fileinput.min.js') }}"></script>
+  <!-- optionally if you need a theme like font awesome theme you can include
+      it as mentioned below -->
+  <script src="{{ asset('fileinput/themes/fa/theme.js') }}"></script>
+  <!-- optionally if you need translation for your language then include
+      locale file as mentioned below -->
+  <script src="{{ asset('fileinput/locales/fr.js') }}"></script>
+  <script src="{{ asset('fileinput/locales/es.js') }}"></script>
+
 {% endblock %}
 </body>
 </html>
