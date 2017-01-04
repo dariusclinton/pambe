@@ -1,0 +1,4 @@
+services:
+#    ws_project.example:
+#        class: WS\ProjectBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

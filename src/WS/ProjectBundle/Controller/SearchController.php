@@ -1,6 +1,6 @@
 <?php
 
-namespace WS\CoreBundle\Controller;
+namespace WS\ProjectBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -9,18 +9,7 @@ use Symfony\Component\Intl\Intl;
 use WS\UserBundle\Entity\Domain;
 use WS\UserBundle\Entity\Search;
 
-class CoreController extends Controller {
-
-    //    Retourne EntityManager
-    public function getEM() {
-        return $this->getDoctrine()->getManager();
-    }
-
-    // Retourne la liste des pays
-    public function getCountries() {
-        $locale = $this->getRequest()->getLocale();
-        return \Symfony\Component\Locale\Locale::getDisplayCountries($locale);
-    }
+class SearchController extends Controller {
 
     // Formulaire de Recherche Freelance
     public function getFormSearch($search) {
@@ -41,22 +30,44 @@ class CoreController extends Controller {
         return $formBuilder->getForm();
     }
 
-    /**
-    * @return \Symfony\Component\HttpFoundation\Response
-    */
-    public function indexAction() {
-        $em = $this->getEM();
-        $categories = $em->getRepository('WSUserBundle:Category')->findAll();
-        $domains = $em->getRepository('WSUserBundle:Domain')->findAll();
 
+    public function resultFreelanceAction() {
         $search = new Search();
         $form = $this->getFormSearch($search);
+        $em = $this->getEM();
 
-        return $this->render('WSCoreBundle:Core:index.html.twig', [
-            "categories" => $categories,
-            "domains" => $domains,
-            'form_freelance' => $form->createView(),
-            'form_project' => $form->createView()
+        $request = $this->getRequest();
+        $form->bind($request);
+
+        $freelances = $em->getRepository('WSUserBundle:User')
+            ->findAllFreelanceByDomainAndCountry(
+                $search->getDomain(),
+                $search->getCountry()
+             );
+
+        return $this->render('WSCoreBundle:Search:index.html.twig', [
+            "searched" => "freelances",
+            "results" => $freelances
+        ]);
+    }
+
+    public function resultProjectAction() {
+        $search = new Search();
+        $form = $this->getFormSearch($search);
+        $em = $this->getEM();
+
+        $request = $this->getRequest();
+        $form->bind($request);
+
+        $projects = $em->getRepository('WSServiceBundle:Project')
+            ->findAllProjectByDomainAndCountry(
+                $search->getDomain(),
+                $search->getCountry()
+            );
+
+        return $this->render('WSCoreBundle:Search:index.html.twig', [
+            "searched" => "projects",
+            "results" => $projects
         ]);
     }
 
@@ -74,25 +85,4 @@ class CoreController extends Controller {
         ]);
     }
 
-  /**
-   * @return \Symfony\Component\HttpFoundation\Response
-   */
-  public function aboutAction() {
-
-    return $this->render('WSCoreBundle:Core:about.html.twig');
-  }
-
-  /**
-   * @return \Symfony\Component\HttpFoundation\Response
-   */
-  public function contactAction() {
-    return $this->render('WSCoreBundle:Core:contact.html.twig');
-  }
-
-  /**
-   * @return \Symfony\Component\HttpFoundation\Response
-   */
-  public function howtoAction() {
-    return $this->render('WSCoreBundle:Core:howto.html.twig');
-  }
 }

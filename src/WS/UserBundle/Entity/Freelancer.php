@@ -67,14 +67,14 @@ class Freelancer extends User
     private $langues;
 
     /**
-     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\FreelancePostuleMission", mappedBy="freelancer")
+     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\FreelancePostuleProject", mappedBy="freelancer")
      */
-    private $missionPostules;
+    private $projectPostules;
 
     /**
-     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\MissionSolicitFreelance", mappedBy="freelancer")
+     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\ProjectSolicitFreelance", mappedBy="freelancer")
      */
-    private $missionSolicites;
+    private $projectSolicites;
 
 
     /**
@@ -320,9 +320,9 @@ class Freelancer extends User
      *
      * @return Freelancer
      */
-    public function addMissionPostule(\WS\ServiceBundle\Entity\FreelancePostuleMission $missionPostule)
+    public function addProjectPostule(\WS\ServiceBundle\Entity\FreelancePostuleProject $projectPostule)
     {
-        $this->missionPostules[] = $missionPostule;
+        $this->projectPostules[] = $projectPostule;
 
         return $this;
     }
@@ -332,9 +332,9 @@ class Freelancer extends User
      *
      * @param \WS\ServiceBundle\Entity\FreelancePostuleMission $missionPostule
      */
-    public function removeMissionPostule(\WS\ServiceBundle\Entity\FreelancePostuleMission $missionPostule)
+    public function removeProjectPostule(\WS\ServiceBundle\Entity\FreelancePostuleProject $projectPostule)
     {
-        $this->missionPostules->removeElement($missionPostule);
+        $this->projectPostules->removeElement($projectPostule);
     }
 
     /**
@@ -342,9 +342,9 @@ class Freelancer extends User
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getMissionPostules()
+    public function getProjectPostules()
     {
-        return $this->missionPostules;
+        return $this->projectPostules;
     }
 
     /**
@@ -354,9 +354,9 @@ class Freelancer extends User
      *
      * @return Freelancer
      */
-    public function addMissionSolicite(\WS\ServiceBundle\Entity\MissionSolicitFreelance $missionSolicite)
+    public function addProjectSolicite(\WS\ServiceBundle\Entity\ProjectSolicitFreelance $projectSolicite)
     {
-        $this->missionSolicites[] = $missionSolicite;
+        $this->projectSolicites[] = $projectSolicite;
 
         return $this;
     }
@@ -366,9 +366,9 @@ class Freelancer extends User
      *
      * @param \WS\ServiceBundle\Entity\MissionSolicitFreelance $missionSolicite
      */
-    public function removeMissionSolicite(\WS\ServiceBundle\Entity\MissionSolicitFreelance $missionSolicite)
+    public function removeProjectSolicite(\WS\ServiceBundle\Entity\ProjectSolicitFreelance $projectSolicite)
     {
-        $this->missionSolicites->removeElement($missionSolicite);
+        $this->projectSolicites->removeElement($projectSolicite);
     }
 
     /**
@@ -376,9 +376,9 @@ class Freelancer extends User
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getMissionSolicites()
+    public function getProjectSolicites()
     {
-        return $this->missionSolicites;
+        return $this->projectSolicites;
     }
 
     /**

@@ -1,0 +1,36 @@
+# Register Project
+ws_project_create_index:
+    path:     /project/create
+    defaults: { _controller: WSProjectBundle:Project:index }
+
+ws_project_delete:
+    path:     /project/delete/{id}
+    defaults: { _controller: WSProjectBundle:Project:delete }
+
+ws_project_update:
+    path:     /project/update/{id}
+    defaults: { _controller: WSProjectBundle:Project:update }
+
+ws_project_open_or_close:
+    path:     /project/open_or_close/{id}/{val}
+    defaults: { _controller: WSProjectBundle:Project:openOrClose }
+
+ws_project_all_domains:
+    path:     /create/project/alldomains
+    defaults: { _controller: WSProjectBundle:Project:allDomains }
+    options:
+        expose: true
+
+# Results Search
+ws_core_result_freelance:
+    path:     /result/freelances
+    defaults: { _controller: WSProjectBundle:Search:resultFreelance }
+
+ws_core_result_project:
+    path:     /result/projects
+    defaults: { _controller: WSProjectBundle:Search:resultProject }
+
+# Find freelance by domain
+ws_core_find_freelance_by_domain:
+    path:     /domain/{id}/freelances
+    defaults: { _controller: WSProjectBundle:Search:findFreelance }

@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new WS\AdminBundle\WSAdminBundle(),
             new WS\ServiceBundle\WSServiceBundle(),
             new WS\CoreBundle\WSCoreBundle(),
+            new WS\ProjectBundle\WSProjectBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

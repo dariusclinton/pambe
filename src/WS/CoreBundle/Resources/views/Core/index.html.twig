@@ -1,132 +1,241 @@
 {% extends 'WSCoreBundle::layout.html.twig' %}
 
 {% block title %}
-   {{ parent() }}
+  {{ parent() }}
 {% endblock title %}
 
 {% block body %}
   <!-- Header Carousel -->
-  <header class="barner" style="background-image: url('{{ asset('images/freelancer-banner.jpg') }}')">
+  {# style="background-image: url('{{ asset('images/freelancer-banner.jpg') }}')" #}
+  <header class="barner">
     <div class="container">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
           <div class="block-info">
-            <div class="row text-center">
-              <h3><span class="bg-danger">Vous avez des projets et besoin de main d'oeuvre</span></h3>
-              <h1>
-                <span class="bg-primary">Déposez gratuitement vos offres de missions et laissez les freelances vous suivre</span>
-              </h1>
-              <h3><span class="bg-danger">Vous êtes freelance</span></h3>
-              <h1>
-                <span class="bg-primary">Postulez à des missions et gagnez des marchés de grande envergure</span>
-              </h1>
+            <div class="row">
+              <div class="col-md-12">
+                <h1 class="text-white">Besoin de freelances pour votre projet ?</h1>
+                <h3 class="text-white">Déposez gratuitement votre projet et les freelances vous contacteront</h3>
+              </div>
             </div>
           </div>
+          <form action="#">
+            <div class="row">
+              <div class="col-md-6">
+                <input type="text" name="projetName" class="form-control input-lg col-md-7"
+                       placeholder="Exp: Refonte site web, Développer jeux 3D">
+              </div>
+              <button type="submit" class="btn btn-lg btn-default btn-pink col-md-2">Déposer</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </header>
 
-  {# search #}
-  <div class="search">
+  {# wellcome #}
+  <div class="wellcome bg-grey">
     <div class="container">
+      <br><br>
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <div class="block-search">
-            <div class="row">
-              <div class="col-md-12">
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
-                  <li class="active">
-                    <a href="#freelance-search" role="tab" data-toggle="tab">Rechercher un freelance</a>
-                  </li>
-                  <li><a href="#client-search" role="tab" data-toggle="tab">Rechercher une mission</a></li>
-                </ul>
-
-                <!-- Tab panes -->
-                <div class="tab-content">
-                  <!-- tab-pane 1 -->
-                  <div class="tab-pane active" id="freelance-search">
-                    <form action="{{ path('ws_core_result_freelance') }}" {{ form_enctype(form_freelance) }} method="POST" autocomplete="off">
-                      {{ form_errors(form_freelance) }}
-                      <div class="form-group">
-                        <div class="control-label" style="margin: 20px;">
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                          labore et dolore magna aliqua.
-                        </div>
-                        <div class="row">
-                          <div class="col-md-5">
-                            {{ form_widget(form_freelance.domain, { 'attr' : { 'class' : 'form-control'} }) }}
-                          </div>
-                          <div class="col-md-4">
-                            {{ form_widget(form_freelance.country, { 'attr' : { 'class' : 'form-control'} }) }}
-                          </div>
-                          <div class="col-md-3">
-                            <button type="submit" class="btn btn-danger btn-block">Rechercher</button>
-                          </div>
-                        </div>
-                      </div>
-                      <span class="hidden"> {{ form_rest(form_freelance) }} </span>
-                    </form>
-                  </div>
-                  <!-- tab-pane 2 -->
-                  <div class="tab-pane" id="client-search">
-                    <form action="{{ path('ws_core_result_mission') }}" {{ form_enctype(form_mission) }} method="POST" autocomplete="off">
-                      {{ form_errors(form_mission) }}
-                      <div class="form-group">
-                        <div class="control-label" style="margin: 20px;">
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                          labore et dolore magna aliqua.
-                        </div>
-                        <div class="row">
-                          <div class="col-md-5">
-                            {{ form_widget(form_mission.domain, { 'attr' : { 'class' : 'form-control'} }) }}
-                          </div>
-                          <div class="col-md-4">
-                            {{ form_widget(form_mission.country, { 'attr' : { 'class' : 'form-control'} }) }}
-                          </div>
-                          <div class="col-md-3">
-                            <button type="submit" class="btn btn-danger btn-block">Rechercher</button>
-                          </div>
-                        </div>
-                      </div>
-                      <span class="hidden"> {{ form_rest(form_mission) }} </span>
-                    </form>
-                  </div>
-                  <!-- /.tab-pane 2 -->
-                </div>
-                <!-- /.tab-pane -->
-              </div>
+        <div class="col-md-6">
+          <div class="panel">
+            <div class="panel-body">
+              <h1 class="text-green"><i class="fa fa-edit"></i> Je suis donneur de projet</h1>
+              <p>
+                Vous avez du travail à réaliser et vous recherchez de la main d'oeuvre de qualité ? <br>
+                Vous êtes justement au bon endroit, désormais vous ferez cela en quelques minutes seulement.
+              </p>
+              <h4>
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x text-green"></i>
+                    <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                  </span>
+                <a href="#">Déposez votre projet</a><br>
+              </h4>
+              <h4>
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x text-green"></i>
+                    <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                  </span>
+                Les freelances vous contactent<br>
+              </h4>
+              <h4>
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x text-green"></i>
+                    <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                  </span>
+                Choisissez vos freelances<br>
+              </h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="panel">
+            <div class="panel-body">
+              <h1 class="text-pink"><i class="fa fa-check-square-o"></i> Je suis freelance</h1>
+              <p>
+                Vous avez des compétences de qualités et vous aimerez les mettre au services des autres ?
+                Vous pourrez désormais le faire facilement en quelques clics. <br>
+                Vous êtes par la suite notifié des projets que vous pourrez réaliser.
+              </p>
+              <h4>
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x text-pink"></i>
+                    <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                  </span>
+                <a href="#">Devenez freelance</a><br>
+              </h4>
+              <h4>
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x text-pink"></i>
+                    <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                  </span>
+                Remplissez votre profil<br>
+              </h4>
+              <h4>
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x text-pink"></i>
+                    <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                  </span>
+                Postulez aux projets<br>
+              </h4>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div> {# ./container #}
   </div>
-  {# /.search #}
-
+  {# ./wellcome #}
   <!-- domains section -->
   <div class="domains">
     <div class="container">
-      <h1 class="page-header text-center text-bold">Trouvez des freelances en 1 clic </h1>
       <div class="row">
-        {% for d in domains %}
-          <div class="col-md-3">
-            <div class="thumbnail">
-              <a href="#"><img src="{{ asset('uploads/images/'~d.image) }}" alt="..."></a>
-              <div class="caption">
-                <p><span class="badge badge-danger">{{ d.freelances | length }}</span> Freelance(s)</p>
-                <h3>{{ d.libel }}</h3>
-                <hr>
-                <p><a href="{{ path("ws_core_find_freelance_by_domain", {'id' : d.id}) }}" class="btn btn-primary btn-block btn-sm">Rechercher</a></p>
-              </div>
+        <div class="col-md-8 col-md-offset-2">
+          <h2 class="page-header text-center">Les domaines par catégories </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="row">
+            <div class="col-md-3 col-sm-4">
+              <a class="thumbnail bg-green" href="#"
+                 style="background-image: url({{ asset('images/dev-web3.jpg') }}); background-size: cover;
+                     background-position: left top">
+                <h4>Web</h4>
+              </a>
             </div>
+            <div class="col-md-3 col-sm-4">
+              <a class="thumbnail bg-green" href="#"
+                 style="background-image: url({{ asset('images/ecommerce2.jpg') }}); background-size: cover;
+                     background-position: left top">
+                <h4>E-commerce</h4>
+              </a>
+            </div>
+            <div class="col-md-3 col-sm-4">
+              <a class="thumbnail bg-green" href="#"
+                 style="background-image: url({{ asset('images/graphisme3.jpg') }}); background-size: cover;
+                     background-position: left top">
+                <h4>Graphisme</h4>
+              </a>
+            </div>
+            <div class="col-md-3 col-sm-4">
+              <a class="thumbnail bg-green" href="#"
+                 style="background-image: url({{ asset('images/dev2.jpg') }}); background-size: cover;">
+                <h4>Développement</h4>
+              </a>
+            </div>
+            <div class="col-md-3 col-sm-4">
+              <a class="thumbnail bg-green" href="#"
+                 style="background-image: url({{ asset('images/entreprise3.jpg') }}); background-size: cover;">
+                <h4>Systèmes d'entreprise</h4>
+              </a>
+            </div>
+            <div class="col-md-3 col-sm-4">
+              <a class="thumbnail bg-green" href="#"
+                 style="background-image: url({{ asset('images/webmarketing2.jpg') }}); background-size: cover;">
+                <h4>Webmarketing</h4>
+              </a>
+            </div>
+            <div class="col-md-3 col-sm-4">
+              <a class="thumbnail bg-green" href="#"
+                 style="background-image: url({{ asset('images/reseau.jpg') }}); background-size: cover">
+                <h4>Réseaux informatiques</h4>
+              </a>
+            </div>
+            <div class="col-md-3 col-sm-4">
+              <a class="thumbnail bg-green" href="#"
+                 style="background-image: url({{ asset('images/other.jpg') }}); background-size: cover;">
+                <h4>Autres services</h4>
+              </a>
+            </div>
+            {# {% for d in domains %}
+              <div class="col-md-3">
+                <a class="thumbnail"  href="#"
+                style="background-image: url({{ asset('uploads/images/'~d.image) }}); background-size: cover">
+                  <h4>Autres services</h4>
+                </a>
+              </div>
+              <div class="col-md-3">
+                <div class="thumbnail">
+                  <a href="#"><img src="{{ asset('uploads/images/'~d.image) }}" alt="..."></a>
+                  <div class="caption">
+                    <p><span class="badge badge-pink">{{ d.freelances | length }}</span> Freelance(s)</p>
+                    <h3>{{ d.libel }}</h3>
+                    <hr>
+                    <p><a href="{{ path("ws_core_find_freelance_by_domain", {'id' : d.id}) }}" class="btn btn-primary btn-block btn-sm">Rechercher</a></p>
+                  </div>
+                </div>
+              </div>
+            {% endfor %} #}
           </div>
-        {% endfor %}
+        </div>
+
       </div>
     </div>
   </div>
   <!-- /.domains section -->
+
+  {# last-misisons #}
+  {#  <div class="last-missions">
+     <div class="container">
+       <h3 class="page-header">Missions récemment postées</h3>
+         <div class="row">
+           {% for d in 1..0 %}
+             <div class="col-md-6">
+               <h3><a href="#">Refonte de site web Joomla!</a></h3>
+               <p class="text-muted">
+                 <span><i class="fa fa-clock-o"></i> 26/12/2016 12h:08</span> |
+                 <span><i class="fa fa-money"></i> 150000 FCFA</span> |
+                 <span><i class="fa fa-comments-o"></i> 3</span>
+               </p>
+               <p>
+                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                 consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+               </p>
+               <p>
+                 <span class="label label-default">Developpement android</span>
+                 <span class="label label-default">Backend symfony3</span>
+                 <span class="label label-default">AngularJS</span>
+               </p>
+             </div>
+           {% endfor %}
+         </div>
+       <hr>
+       <ul class="pagination pull-right">
+         <li><a href="#">&laquo;</a></li>
+         <li><a href="#">1</a></li>
+         <li><a href="#">2</a></li>
+         <li><a href="#">3</a></li>
+         <li><a href="#">4</a></li>
+         <li><a href="#">5</a></li>
+         <li><a href="#">&raquo;</a></li>
+       </ul>
+     </div> <!-- ./container -->
+   </div> #}
+  {# ./last-missions #}
 
   <!-- statistics -->
   <div class="statistics">
@@ -138,104 +247,30 @@
       </div>
       <div class="row">
         <div class="col-md-4 text-center">
-          <span class="fa-stack fa-2x">
+          <span class="fa-stack fa-5x">
             <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-edit fa-stack-1x fa-inverse"></i>
           </span>
-          <p><b>Entreprises</b><br> 240 Entreprises inscrites, offrant des missions</p>
+          <p><b>Donneurs de projets</b><br> 240 inscrits, offrant des projets</p>
         </div>
         <div class="col-md-4 text-center">
-          <span class="fa-stack fa-2x">
+          <span class="fa-stack fa-5x">
             <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-check-square-o fa-stack-1x fa-inverse"></i>
           </span>
           <p><b>Freelances</b> <br>4500 Freelances inscrits et disponibles </p>
         </div>
         <div class="col-md-4 text-center">
-          <span class="fa-stack fa-2x">
+          <span class="fa-stack fa-5x">
             <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+            <i class="fa fa-calendar fa-stack-1x fa-inverse"></i>
           </span>
-          <p><b>Missions</b> <br>400 Missions soumises </p>
-        </div>
-      </div>
-      <br><br>
-      <div class="row">
-        <div class="col-md-3 text-center">
-          <span class="fa-stack fa-2x">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
-          </span>
-          <p><b>Informatique</b> <br>2400 Freelances inscrits et disponibles </p>
-        </div>
-        <div class="col-md-3 text-center">
-          <span class="fa-stack fa-2x">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
-          </span>
-          <p><b>Informatique</b> <br>2400 Freelances inscrits et disponibles </p>
-        </div>
-        <div class="col-md-3 text-center">
-          <span class="fa-stack fa-2x">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
-          </span>
-          <p><b>Informatique</b> <br>2400 Freelances inscrits et disponibles </p>
-        </div>
-        <div class="col-md-3 text-center">
-          <span class="fa-stack fa-2x">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
-          </span>
-          <p><b>Informatique</b> <br>2400 Freelances inscrits et disponibles </p>
+          <p><b>Projets</b> <br>400 Projets soumis </p>
         </div>
       </div>
     </div>
   </div>
   <!-- /.statistics -->
-
-  <!-- how-to -->
-  <div class="how-to">
-    <div class="container">
-      <h1 class="page-header text-center">Comment ça marche ?</h1>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="row">
-            <div class="col-md-12 text-center">
-              <h1><span class="badge badge-lg">1</span></h1>
-              <p>
-              <p>Qui et cillum consectetur ea enim ut consectetur ad ipsum tempor id minim id sunt do sit amet.
-                Occaecat cillum laboris est consequat id ut nisi sint sit sunt aliqua commodo adipisicing dolore
-                deserunt. Dolor pariatur eiusmod irure aliquip aute cupidatat non nulla et.</p>
-              </p>
-            </div>
-            <div class="col-md-12 text-center">
-              <h1><span class="badge badge-lg">2</span></h1>
-              <p>
-              <p>Qui et cillum consectetur ea enim ut consectetur ad ipsum tempor id minim id sunt do sit amet.
-                Occaecat cillum laboris est consequat id ut nisi sint sit sunt aliqua commodo adipisicing dolore
-                deserunt. Dolor pariatur eiusmod irure aliquip aute cupidatat non nulla et.</p>
-              </p>
-            </div>
-            <div class="col-md-12 text-center">
-              <h1><span class="badge badge-lg">3</span></h1>
-              <p>
-              <p>Qui et cillum consectetur ea enim ut consectetur ad ipsum tempor id minim id sunt do sit amet.
-                Occaecat cillum laboris est consequat id ut nisi sint sit sunt aliqua commodo adipisicing dolore
-                deserunt. Dolor pariatur eiusmod irure aliquip aute cupidatat non nulla et.</p>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="users" style="background-image: url('{{ asset('images/freelancer2.jpg') }}')">
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- /.how-to -->
 
   <!-- testimonial Section -->
   <div class="testimonials">
@@ -286,11 +321,11 @@
                   <p>What a funny and entertaining film! I did not know what to expect, this is the fourth film in
                     this vehicle's universe with the two Cars movies and then the first Planes movie. I was wondering
                     if maybe Disney pushed it a little bit. However, Planes: Fire and Rescue is an entertaining film
-                    that is a fantastic sequel in this magical franchise. </p>
+                    that </p>
                   <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                 </div>
                 <div class="person-text rel">
-                  <img alt="" src="{{ asset('images/user.png') }}" class="img-circle">
+                  <img alt="" src="{{ asset('images/avatar.png') }}" class="img-circle">
                   <a title="" href="#">Rannynm</a>
                   <i>Cameroun</i>
                 </div>
@@ -306,7 +341,7 @@
                   <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                 </div>
                 <div class="person-text rel">
-                  <img alt="" src="{{ asset('images/img.jpg') }}" class="img-circle">
+                  <img alt="" src="{{ asset('images/darius.jpg') }}" class="img-circle">
                   <a title="" href="#">Anna</a>
                   <i>Gabon</i>
                 </div>
@@ -320,7 +355,7 @@
                   <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                 </div>
                 <div class="person-text rel">
-                  <img alt="" src="{{ asset('images/img.jpg') }}" class="img-circle">
+                  <img alt="" src="{{ asset('images/aurelien.jpg') }}" class="img-circle">
                   <a title="" href="#">Ella Mentree</a>
                   <i>Côte d'ivoire</i>
                 </div>
@@ -329,12 +364,12 @@
                 <div class="block-text rel zmin">
                   <p>What a funny and entertaining film! I did not know what to expect, this is the fourth film in
                     this vehicle's universe with the two Cars movies and then the first Planes movie. I was wondering
-                    if maybe Disney pushed it a little bit. However, Planes: Fire and Rescue is an entertaining film
-                    that is a fantastic sequel in this magical franchise. </p>
+                    if maybe Disney pushed it a little bit. However, Planes: Fire and Rescue is an entertaining
+                    film. </p>
                   <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                 </div>
                 <div class="person-text rel">
-                  <img alt="" src="{{ asset('images/user.png') }}" class="img-circle">
+                  <img alt="" src="{{ asset('images/avatar.png') }}" class="img-circle">
                   <a title="" href="#">Rannynm</a>
                   <i>Nigeria</i>
                 </div>
@@ -397,4 +432,3 @@
   </div>
   <!-- testimonial section -->
 {% endblock body %}
-
