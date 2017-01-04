@@ -112,26 +112,6 @@ profile_photo_update:
     path: /profile/photo/update
     defaults: { _controller: WSUserBundle:Default:updatePhotoProfil }
 
-<<<<<<< HEAD
-#Profile - MyMissions
-profile_my_missions_index:
-    path: /profile/mymissions
-    defaults: { _controller: WSUserBundle:MyMissions:index }
-
-profile_my_missions_list_postulant_solicit:
-    path: /profile/mission/{id}/postulants_solicites
-    defaults: { _controller: WSUserBundle:MyMissions:postulantOrSolicit }
-
-#Profile - Missions Postulated
-profile_missions_postulated_index:
-    path: /profile/missions/postulated
-    defaults: { _controller: WSUserBundle:MissionsPostulated:index }
-
-#Profile - Missions Solicited
-profile_missions_solicited_index:
-    path: /profile/missions/solicited
-    defaults: { _controller: WSUserBundle:MissionsSolicited:index }
-=======
 #Profile - MyProjects
 profile_my_projects_index:
     path: /profile/myprojects
@@ -146,4 +126,3 @@ profile_projects_postulated_index:
 profile_projects_solicited_index:
     path: /profile/projects/solicited
     defaults: { _controller: WSUserBundle:ProjectsSolicited:index }
->>>>>>> 0785d02ce6ee10b9ad39ece3040788bd06c5580b
