@@ -50,7 +50,7 @@ class MissionController extends Controller {
             ]);
 
         } else {
-            return $this->render('WSCoreBundle:Mission:index.html.twig');
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
         }
 
     }
@@ -71,7 +71,7 @@ class MissionController extends Controller {
         $em->remove($mission);
         $em->flush();
 
-        $this->get('session')->getFlashBag()->Add('success', "Mission supprimée avec succès");
+        $this->get('session')->getFlashBag()->Add('success', "Mission : '".$mission->getObject()."' supprimée avec succès");
         return $this->redirect($this->generateUrl('profile_my_missions_index'));
     }
 
@@ -89,7 +89,7 @@ class MissionController extends Controller {
             $em->merge($mission);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->Add('success', "La Mission a été modifié avec succès!");
+            $this->get('session')->getFlashBag()->Add('success', "La Mission : '".$mission->getObject()."' a été modifié avec succès!");
             return $this->redirect($this->generateUrl('profile_my_missions_index'));
         }
 
@@ -109,9 +109,25 @@ class MissionController extends Controller {
         $em->flush();
 
         if ($val == 1) {
-            $this->get('session')->getFlashBag()->Add('success', "Mission ouverte avec succès");
+            $this->get('session')->getFlashBag()->Add('success', "Mission : '".$mission->getObject()."' ouverte avec succès");
         } else {
-            $this->get('session')->getFlashBag()->Add('success', "Mission fermée avec succès");
+            $this->get('session')->getFlashBag()->Add('success', "Mission : '".$mission->getObject()."' fermée avec succès");
+        }
+        return $this->redirect($this->generateUrl('profile_my_missions_index'));
+    }
+
+    public function validOrNotAction($id, $val) {
+        $em = $this->getDoctrine()->getManager();
+        $mission = $em->getRepository('WSServiceBundle:Mission')->find($id);
+
+        $mission->setValidate($val);
+        $em->merge($mission);
+        $em->flush();
+
+        if ($val == 1) {
+            $this->get('session')->getFlashBag()->Add('success', "Mission : '".$mission->getObject()."' Valide!");
+        } else {
+            $this->get('session')->getFlashBag()->Add('success', "Mission : '".$mission->getObject()."' Invalide!");
         }
         return $this->redirect($this->generateUrl('profile_my_missions_index'));
     }

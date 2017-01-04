@@ -22,6 +22,13 @@ class FreelancePostuleMission
     private $id;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datePostule", type="datetime", nullable=true)
+     */
+    private $datePostule;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="validate", type="boolean")
@@ -61,6 +68,11 @@ class FreelancePostuleMission
      */
     private $freelancer;
 
+
+    public function __construct() {
+        $this->validate = false;
+        $this->datePostule = new \DateTime;
+    }
 
     /**
      * Get id
@@ -214,5 +226,29 @@ class FreelancePostuleMission
     public function getCost()
     {
         return $this->cost;
+    }
+
+    /**
+     * Set datePostule
+     *
+     * @param \DateTime $datePostule
+     *
+     * @return FreelancePostuleMission
+     */
+    public function setDatePostule($datePostule)
+    {
+        $this->datePostule = $datePostule;
+
+        return $this;
+    }
+
+    /**
+     * Get datePostule
+     *
+     * @return \DateTime
+     */
+    public function getDatePostule()
+    {
+        return $this->datePostule;
     }
 }

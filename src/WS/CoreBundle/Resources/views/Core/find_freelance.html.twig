@@ -15,6 +15,11 @@
                 {% if results|length == 0 %}
                     Aucun freelance trouvé !!
                 {% else %}
+                    {% if not (is_granted('ROLE_CLIENT') or is_granted('ROLE_FREELANCE')) %}
+                        <i style="color: red;">
+                            Se connecter en tant que 'Freelance' ou 'Donneur de missions' pour pouvoir soliciter des freelances!
+                        </i>
+                    {% endif %}
                     <div class="panel panel-default">
                         <table id="_table_tool" class="table table-striped table-hover table-dynamic" cellspacing="0">
                             <thead>
@@ -55,11 +60,13 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-2 col-md-offset-10">
-                                                <a href="#" class="btn btn-default">
-                                                    Soliciter
-                                                </a>
-                                            </div>
+                                            {% if is_granted('ROLE_CLIENT') or is_granted('ROLE_FREELANCE') %}
+                                                <div class="col-md-2 col-md-offset-10">
+                                                    <a href="#" class="btn btn-default">
+                                                        Soliciter
+                                                    </a>
+                                                </div>
+                                            {% endif %}
                                         </div>
                                     </td>
                                 </tr>

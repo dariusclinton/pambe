@@ -17,6 +17,11 @@
                     {% if results|length == 0 %}
                         Aucun freelance trouvé !!
                     {% else %}
+                        {% if not (is_granted('ROLE_CLIENT') or is_granted('ROLE_FREELANCE')) %}
+                            <i style="color: red;">
+                                Se connecter en tant que 'Freelance' ou 'Donneur de missions' pour pouvoir soliciter des freelances!
+                            </i>
+                        {% endif %}
                         <div class="panel panel-default">
                             <table id="_table_tool" class="table table-striped table-hover table-dynamic" cellspacing="0">
                                 <thead>
@@ -57,11 +62,13 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-2 col-md-offset-10">
-                                                    <a href="#" class="btn btn-default">
-                                                        Soliciter
-                                                    </a>
-                                                </div>
+                                                {% if is_granted('ROLE_CLIENT') or is_granted('ROLE_FREELANCE') %}
+                                                    <div class="col-md-2 col-md-offset-10">
+                                                        <a href="#" class="btn btn-default">
+                                                            Soliciter
+                                                        </a>
+                                                    </div>
+                                                {% endif %}
                                             </div>
                                         </td>
                                     </tr>
@@ -76,6 +83,9 @@
                     {% if results|length == 0 %}
                         Aucune mission trouvée !!
                     {% else %}
+                        {% if not is_granted('ROLE_FREELANCE') %}
+                            <i style="color: red;">Se connecter en tant que 'Freelance' pour pouvoir postuler aux missions!</i>
+                        {% endif %}
                         <div class="panel panel-default">
                             <table id="_table_tool" class="table table-striped table-hover table-dynamic" cellspacing="0">
                                 <thead>
@@ -88,32 +98,65 @@
                                     <tr>
                                         <td>
                                             <div class="row">
-                                                <div class="col-md-4">
-                                                    Objet : {{ r.object }}
-                                                </div>
-                                                <div class="col-md-4">
-                                                    Date de début : {{ r.startDate | localizeddate('long', 'none', app.request.locale) }}
-                                                </div>
-                                                <div class="col-md-4">
-                                                    Lieu : {{ r.place }}
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">Durée : {{ r.duration }} jour(s)</div>
-                                                <div class="col-md-4">Budget : {{ r.budget }} FCFA</div>
-                                                <div class="col-md-4"></div>
-                                            </div>
-                                            <div class="row">
                                                 {% if is_granted('ROLE_FREELANCE') %}
-                                                    <div class="col-md-2 col-md-offset-10">
-                                                        <a href="#" class="btn btn-default">
-                                                            Postuler
-                                                        </a>
+                                                    <div class="col-md-8">
+                                                    {% else %}
+                                                    <div class="col-md-12">
+                                                {% endif %}
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                Objet : {{ r.object }}
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                Date de début : {{ r.startDate | localizeddate('long', 'none', app.request.locale) }}
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                Lieu : {{ r.place }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4">Durée : {{ r.duration }} jour(s)</div>
+                                                            <div class="col-md-4">Budget : {{ r.budget }} FCFA</div>
+                                                            <div class="col-md-4"></div>
+                                                        </div>
+                                                    </div>
+                                                {% if is_granted('ROLE_FREELANCE') %}
+                                                    <div class="col-md-4">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <div class="control-label">
+                                                                        Proposer un coût
+                                                                    </div>
+                                                                    <input type="number" class="form-control" id="cout" required="required">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <div class="control-label">
+                                                                        Proposer une durée
+                                                                    </div>
+                                                                    <input type="date" class="form-control" id="cout" required="required">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-9 col-md-offset-3">
+                                                                <div id="_loading_postule{{ r.id }}"></div>
+                                                                <a class="btn btn-default" data-toggle="modal" data-target="#modalform">
+                                                                    Détails
+                                                                </a>
+                                                                <a id="{{ r.id }}" class="btn btn-default _postule">
+                                                                    Postuler
+                                                                </a>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 {% endif %}
                                             </div>
                                         </td>
                                     </tr>
+                                    {% include 'WSCoreBundle:Search:modal_detail.html.twig' with { 'm': r } %}
                                 {% endfor %}
                                 </tbody>
                             </table>
@@ -124,5 +167,36 @@
             </div>
         </div>
     </div>
-    <br>
 {% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(function () {
+            // Postule Mission
+            $("._postule").click(function () {
+                var id = $(this).attr("id");
+                $.ajax({
+                    type: 'post',
+                    url: Routing.generate('ws_core_postule_mission', { id: id }),
+                    beforeSend: function () {
+                        $("#_loading_postule"+id).parent().append('<center><img src="{{ asset('images/loading.gif') }}" id="_gif"></center>');
+                        $("#"+id).hide();
+                    },
+                    success: function (data) {
+                        $("#_gif").remove();
+                        $("#_loading_postule"+id).parent().append('<center><i>Postulée !</i></center>');
+                    },
+                    error: function (data) {
+                        console.log(data);
+                        $("#_gif").remove();
+                        $("#"+id).show();
+                    }
+                });
+            });
+
+
+        });
+    </script>
+{% endblock %}

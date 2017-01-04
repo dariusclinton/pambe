@@ -6,6 +6,12 @@ ws_admin_homepage:
     path:     /
     defaults: { _controller: WSAdminBundle:Acceuil:index }
 
+admin_counter:
+    path: /counter
+    defaults: { _controller: WSAdminBundle:Acceuil:counter }
+    options:
+        expose: true
+
 admin_registration:
     path:  /administrateur/registration
     defaults: { _controller: AppUserBundle:RegistrationAdmin:register }

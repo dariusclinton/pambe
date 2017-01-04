@@ -16,7 +16,8 @@ class UserRepository extends \Doctrine\ORM\EntityRepository {
             SELECT f
             FROM WSUserBundle:Freelancer f
             INNER JOIN f.domains d
-            WHERE d.id = :idDomain AND f.country = :codeCountry
+            WHERE d.id = :idDomain 
+            AND f.country = :codeCountry
         ')->setParameters( array (
             'idDomain' => $idDomain,
             'codeCountry' => $codeCountry

@@ -22,6 +22,13 @@ class MissionSolicitFreelance
     private $id;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateSolicit", type="datetime", nullable=true)
+     */
+    private $dateSolicit;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="validate", type="boolean")
@@ -47,6 +54,11 @@ class MissionSolicitFreelance
      */
     private $freelancer;
 
+
+    public function __construct() {
+        $this->validate = false;
+        $this->dateSolicit = new \DateTime;
+    }
 
     /**
      * Get id
@@ -152,5 +164,29 @@ class MissionSolicitFreelance
     public function getFreelancer()
     {
         return $this->freelancer;
+    }
+
+    /**
+     * Set dateSolicit
+     *
+     * @param \DateTime $dateSolicit
+     *
+     * @return MissionSolicitFreelance
+     */
+    public function setDateSolicit($dateSolicit)
+    {
+        $this->dateSolicit = $dateSolicit;
+
+        return $this;
+    }
+
+    /**
+     * Get dateSolicit
+     *
+     * @return \DateTime
+     */
+    public function getDateSolicit()
+    {
+        return $this->dateSolicit;
     }
 }

@@ -117,6 +117,10 @@ profile_my_missions_index:
     path: /profile/mymissions
     defaults: { _controller: WSUserBundle:MyMissions:index }
 
+profile_my_missions_list_postulant_solicit:
+    path: /profile/mission/{id}/postulants_solicites
+    defaults: { _controller: WSUserBundle:MyMissions:postulantOrSolicit }
+
 #Profile - Missions Postulated
 profile_missions_postulated_index:
     path: /profile/missions/postulated

@@ -3,11 +3,14 @@
 namespace WS\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Intl\Intl;
+use WS\ServiceBundle\Entity\FreelancePostuleMission;
 use WS\UserBundle\Entity\Domain;
 use WS\UserBundle\Entity\Search;
+use WS\ServiceBundle\Entity\Mission;
 
 class CoreController extends Controller {
 
@@ -82,6 +85,9 @@ class CoreController extends Controller {
 
     public function resultMissionAction() {
         $search = new Search();
+        $user = $this->getUser();
+        ($user == null) ? $idFreelance = 0 : $idFreelance = $user->getId();
+
         $form = $this->getFormSearch($search);
         $em = $this->getEM();
 
@@ -91,7 +97,8 @@ class CoreController extends Controller {
         $missions = $em->getRepository('WSServiceBundle:Mission')
             ->findAllMissionByDomainAndCountry(
                 $search->getDomain(),
-                $search->getCountry()
+                $search->getCountry(),
+                $idFreelance
             );
 
         return $this->render('WSCoreBundle:Search:index.html.twig', [
@@ -114,11 +121,31 @@ class CoreController extends Controller {
         ]);
     }
 
+    // Postuler à une Mission
+    public function postuleMissionAction(Mission $mission) {
+        $em = $this->getEM();
+        $user = $this->getUser();
+        $freelance_postule_mission = new FreelancePostuleMission();
+        $freelance_postule_mission->setFreelancer($user);
+        $freelance_postule_mission->setMission($mission);
+        
+        $em->persist($freelance_postule_mission);
+        $em->flush();
+
+        $this->get('session')
+            ->getFlashBag()
+            ->Add('success', "Mission : '".$mission->getObject()."'. Postulation effectuée !");
+
+        $response = new JsonResponse();
+        return $response->setData([
+            "response" => true
+        ]);
+    }
+
   /**
    * @return \Symfony\Component\HttpFoundation\Response
    */
   public function aboutAction() {
-
     return $this->render('WSCoreBundle:Core:about.html.twig');
   }
 

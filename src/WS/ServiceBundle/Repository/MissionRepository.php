@@ -10,7 +10,7 @@ namespace WS\ServiceBundle\Repository;
  */
 class MissionRepository extends \Doctrine\ORM\EntityRepository {
 
-    public function findAllMissionByDomainAndCountry($idDomain, $codeCountry) {
+    public function findAllMissionByDomainAndCountry($idDomain, $codeCountry, $idFreelance) {
 
         $em = $this->getEntityManager();
         $query = $em->createQuery('
@@ -21,10 +21,18 @@ class MissionRepository extends \Doctrine\ORM\EntityRepository {
               AND m.country = :codeCountry 
               AND m.validate = 1 
               AND m.open = 1 
-              ORDER BY m.dateCreation DESC 
+              AND m.id NOT IN (
+                SELECT mi.id 
+                FROM WSServiceBundle:FreelancePostuleMission fpm
+                JOIN fpm.mission mi
+                JOIN fpm.freelancer f 
+                WHERE f.id = :idFreelance
+              )
+            ORDER BY m.dateCreation DESC 
         ')->setParameters( array (
             'idDomain' => $idDomain,
-            'codeCountry' => $codeCountry
+            'codeCountry' => $codeCountry,
+            'idFreelance' => $idFreelance
         ));
 
         return $query->getResult();

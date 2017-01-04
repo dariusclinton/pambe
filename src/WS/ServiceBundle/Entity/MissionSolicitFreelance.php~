@@ -22,6 +22,13 @@ class MissionSolicitFreelance
     private $id;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateSolicit", type="datetime", nullable=true)
+     */
+    private $dateSolicit;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="validate", type="boolean")
@@ -105,5 +112,52 @@ class MissionSolicitFreelance
     {
         return $this->dateValidation;
     }
-}
 
+    /**
+     * Set mission
+     *
+     * @param \WS\ServiceBundle\Entity\Mission $mission
+     *
+     * @return MissionSolicitFreelance
+     */
+    public function setMission(\WS\ServiceBundle\Entity\Mission $mission)
+    {
+        $this->mission = $mission;
+
+        return $this;
+    }
+
+    /**
+     * Get mission
+     *
+     * @return \WS\ServiceBundle\Entity\Mission
+     */
+    public function getMission()
+    {
+        return $this->mission;
+    }
+
+    /**
+     * Set freelancer
+     *
+     * @param \WS\UserBundle\Entity\Freelancer $freelancer
+     *
+     * @return MissionSolicitFreelance
+     */
+    public function setFreelancer(\WS\UserBundle\Entity\Freelancer $freelancer)
+    {
+        $this->freelancer = $freelancer;
+
+        return $this;
+    }
+
+    /**
+     * Get freelancer
+     *
+     * @return \WS\UserBundle\Entity\Freelancer
+     */
+    public function getFreelancer()
+    {
+        return $this->freelancer;
+    }
+}
