@@ -59,51 +59,7 @@ class CoreController extends Controller {
             "categories" => $categories,
             "domains" => $domains,
             'form_freelance' => $form->createView(),
-            'form_mission' => $form->createView()
-        ]);
-    }
-
-    public function resultFreelanceAction() {
-        $search = new Search();
-        $form = $this->getFormSearch($search);
-        $em = $this->getEM();
-
-        $request = $this->getRequest();
-        $form->bind($request);
-
-        $freelances = $em->getRepository('WSUserBundle:User')
-            ->findAllFreelanceByDomainAndCountry(
-                $search->getDomain(),
-                $search->getCountry()
-             );
-
-        return $this->render('WSCoreBundle:Search:index.html.twig', [
-            "searched" => "freelances",
-            "results" => $freelances
-        ]);
-    }
-
-    public function resultMissionAction() {
-        $search = new Search();
-        $user = $this->getUser();
-        ($user == null) ? $idFreelance = 0 : $idFreelance = $user->getId();
-
-        $form = $this->getFormSearch($search);
-        $em = $this->getEM();
-
-        $request = $this->getRequest();
-        $form->bind($request);
-
-        $missions = $em->getRepository('WSServiceBundle:Mission')
-            ->findAllMissionByDomainAndCountry(
-                $search->getDomain(),
-                $search->getCountry(),
-                $idFreelance
-            );
-
-        return $this->render('WSCoreBundle:Search:index.html.twig', [
-            "searched" => "missions",
-            "results" => $missions
+            'form_project' => $form->createView()
         ]);
     }
 
@@ -118,27 +74,6 @@ class CoreController extends Controller {
         return $this->render('WSCoreBundle:Core:find_freelance.html.twig', [
             "domain" => $domain,
             "results" => $freelances
-        ]);
-    }
-
-    // Postuler à une Mission
-    public function postuleMissionAction(Mission $mission) {
-        $em = $this->getEM();
-        $user = $this->getUser();
-        $freelance_postule_mission = new FreelancePostuleMission();
-        $freelance_postule_mission->setFreelancer($user);
-        $freelance_postule_mission->setMission($mission);
-        
-        $em->persist($freelance_postule_mission);
-        $em->flush();
-
-        $this->get('session')
-            ->getFlashBag()
-            ->Add('success', "Mission : '".$mission->getObject()."'. Postulation effectuée !");
-
-        $response = new JsonResponse();
-        return $response->setData([
-            "response" => true
         ]);
     }
 

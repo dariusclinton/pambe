@@ -19,17 +19,38 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="{{ path('ws_core_homepage') }}">Accueil</a></li>
-          <li><a href="{{ path('ws_core_how_to') }}">Comment ça marche ?</a></li>
-          <li class="new-mission"><a href="{{ path('ws_mission_create_index') }}">+ Deposer une mission</a></li>
 
+          <li class="text-menu"><a href="{{ path('ws_core_homepage') }}">Accueil</a></li>
+          <li class="text-menu"><a href="{{ path('ws_core_how_to') }}">Comment ça marche ?</a></li>
+          
+          <form class="navbar-form navbar-left">
+              <a href="{{ path('ws_project_create_index') }}" class="new-mission btn btn-pink btn-sm">
+                <i class="fa fa-plus-circle"></i> Deposer un projet</a>
+          </form>
+          <form action="#" class="navbar-form navbar-left">
+            <div class="input-group">
+              <input type="text" class="form-control input-sm" placeholder="Valeur à rechercher...">
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle btn-green btn-sm" data-toggle="dropdown">Rechercher <span class="caret"></span></button>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                  <li><a href="#">Rechercher un projet</a></li>
+                  <li><a href="#">Rechercher un freelance</a></li>
+                </ul>
+              </div><!-- /btn-group -->
+            </div><!-- /input-group -->
+          </form>
           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle username" data-toggle="dropdown">
-                {{ app.user.prenom }} {{ app.user.nom }}<span class="caret"></span>
+              <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown">
+                {#{{ app.user.prenom }} {{ app.user.nom }}<span class="caret"></span>#}
+                <img alt="" src="{{ asset('images/avatar.png') }}" class="img-circle img-responsive"
+                     style="height: 30px; width: 30px;">
               </a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="{{ path('fos_user_profile_show') }}">Profil</a></li>
+                <li><a href="#">Tableau de bord</a></li>
+                <li><a href="{{ path('fos_user_profile_show') }}">Mon Profil</a></li>
+                <li><a href="#">Mon Compte</a></li>
+                <li><a href="#">Mes projets</a></li>
                 <li class="divider"></li>
                 {% if is_granted("ROLE_ADMIN") %}
                   <li>
@@ -39,23 +60,26 @@
                 {% endif %}
                 <li>
                   <a href="{{ path('fos_user_security_logout') }}">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                    <i class="fa fa-sign-out"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                   </a>
                 </li>
               </ul>
             </li>
           {% else %}
-            <form class="navbar-form navbar-left">
-              <a href="{{ path('fos_user_security_login') }}" class="btn btn-danger btn-sm btn-outline">
-              {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+            <li class="navbar-nav navbar-left">
+              <a href="{{ path('fos_user_security_login') }}">
+              <i class="fa fa-sign-in"></i> {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
               </a>
-              {#<a class="btn btn-danger btn-sm btn-outline" data-toggle="modal" data-target="#modalLogin">#}
+              {#<a class="btn btn-pink btn-sm btn-outline" data-toggle="modal" data-target="#modalLogin">#}
                 {#Connexion#}
               {#</a>#}
-              <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalRegistration">
-                Inscription gratuite
+
+            </li>
+            <li>
+              <a href="#" data-toggle="modal" data-target="#modalRegistration">
+                <i class="fa fa-user"></i> Inscription
               </a>
-            </form>
+            </li>
           {% endif %}
         </ul>
       </div>
@@ -87,7 +111,7 @@
       <div class="container">
         <div id="footer-wrapper">
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4 col-sm-4">
               <div id="meta-4" class="widget widgetFooter widget_meta">
                 <h1 class="widgettitle">
                   <img src="{{ asset('images/logo_blanc.png') }}" alt="Logo Pambé" class="img-responsive">
@@ -101,7 +125,7 @@
               </div>
             </div> <!-- end widget1 -->
 
-            <div class="col-md-3">
+            <div class="col-md-4 col-sm-4">
               <div id="meta-3" class="widget widgetFooter widget_meta">
                 <h4 class="widgettitle">Pages importantes :</h4>
                 <ul>
@@ -113,7 +137,7 @@
               </div>
             </div> <!-- end widget1 -->
 
-            <div class="col-md-3">
+            <div class="col-md-4 col-sm-4">
               <div id="recent-posts-3" class="widget widgetFooter widget_recent_entries">
                 <h4 class="widgettitle">Sur les réseaux sociaux :</h4>
                 <ul>
@@ -135,21 +159,6 @@
                 </ul>
               </div>
             </div> <!-- end widget2 -->
-
-            <div class="col-md-3">
-              <div id="meta-4" class="widget widgetFooter widget_meta">
-                <h4 class="widgettitle">Newsletter :</h4>
-                <div class="form-group">
-                  <div class="input-group">
-                    <input class="form-control" placeholder="Email..." type="text">
-                      <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button" style="text-transform: none">Souscrire</button>
-                      </span>
-                  </div>
-                </div>
-              </div>
-            </div> <!-- end widget3 -->
-
           </div> <!-- end .row -->
         </div> <!-- end #footer-wrapper -->
       </div> <!-- end .container -->

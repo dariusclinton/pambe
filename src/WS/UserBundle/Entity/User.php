@@ -52,9 +52,9 @@ abstract class User extends BaseUser
     private $testimonials;
 
     /**
-     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\Mission", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\Project", mappedBy="user")
      */
-    private $missions;
+    private $projects;
 
     /**
      * Set image
@@ -267,9 +267,9 @@ abstract class User extends BaseUser
      *
      * @return User
      */
-    public function addMission(\WS\ServiceBundle\Entity\Mission $mission)
+    public function addProject(\WS\ServiceBundle\Entity\Project $project)
     {
-        $this->missions[] = $mission;
+        $this->projects[] = $project;
 
         return $this;
     }
@@ -279,9 +279,9 @@ abstract class User extends BaseUser
      *
      * @param \WS\ServiceBundle\Entity\Mission $mission
      */
-    public function removeMission(\WS\ServiceBundle\Entity\Mission $mission)
+    public function removeProject(\WS\ServiceBundle\Entity\Project $project)
     {
-        $this->missions->removeElement($mission);
+        $this->projects->removeElement($project);
     }
 
     /**
@@ -289,8 +289,8 @@ abstract class User extends BaseUser
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getMissions()
+    public function getProjects()
     {
-        return $this->missions;
+        return $this->projects;
     }
 }

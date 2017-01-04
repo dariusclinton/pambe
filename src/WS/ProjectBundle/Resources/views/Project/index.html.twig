@@ -1,0 +1,367 @@
+{% extends 'WSCoreBundle::layout.html.twig' %}
+
+{% block title %}
+  Déposer un projet - {{ parent() }}
+{% endblock title %}
+
+{% block body %}
+  <div class="jumbotron text-center">
+    <h2>Enregistrement d'un nouveau projet</h2>
+  </div>
+  <!-- Déposer un projet -->
+  <div class="container">
+
+    {#right#}
+    <div class="col-md-8">
+      <p>Les champs marqués d'un <span class="text-red">*</span> sont obligatoires.</p>
+      {#login#}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Login
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+              <div class="col-md-6">
+                <a href="#" class="btn btn-green">J'ai déjà un compte</a>
+              </div>
+              <div class="col-md-6">
+                <a href="#" class="btn btn-pink" data-toggle="modal" data-target="#modalRegistration">Je n'ai pas de compte</a>
+              </div>
+            {% else %}
+              <div class="alert alert-info">
+                <p><i class="fa fa-check"></i> Vous êtes connectés en tant que <b>{{ app.user.username }}</b></p>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {#./login#}
+
+      <br>
+
+      {{ form_start(form) }}
+
+      {{ form_errors(form) }}
+
+      {#infos projet#}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Informations sur le projet
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                {{ form_label(form.object) }} <span class="text-red">*</span>
+                <br><em>(Ce nom sera visible par les freelances)</em>
+                {{ form_widget(form.object) }}
+              </div>
+              <div class="form-group">
+                {{ form_label(form.description) }} <span class="text-red">*</span>
+                <br><em>(Décrivez brièvement toutes les tâches nécessaires à la réalisation de votre projet)</em>
+                {{ form_widget(form.description) }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {#./infos projet#}
+
+      {#competences#}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Compétences requises
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                {{ form_label(form.domains, null, { 'attr' : { 'class' : 'control-label'} }) }}
+                <span class="text-red">*</span>
+                {{ form_widget(form.domains, { 'attr' : { 'class' : 'form-control domains'} }) }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {#./competences#}
+
+      {#params#}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Paramètres du projet
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                {{ form_label(form.budget, null, { 'attr' : { 'class' : 'control-label'} }) }}
+                <span class="text-red">*</span>
+                {{ form_widget(form.budget, { 'attr' : { 'class' : 'form-control budget'} }) }}
+                <br>
+                <input type="checkbox"> Moins de 50.000 FCFA
+                <input type="checkbox"> 50.000 - 250.000 FCFA
+                <input type="checkbox"> 250.000 - 500.000 FCFA
+                <input type="checkbox"> 500.000 - 750.000 FCFA
+                <input type="checkbox"> 750.000 - 1.000.000 FCFA
+                <input type="checkbox"> Plus de 1.000.000 FCFA
+              </div>
+              <div class="form-group">
+                {{ form_label(form.startDate, null, { 'attr' : { 'class' : 'control-label'} }) }}
+                {{ form_widget(form.startDate) }}
+                <input type="checkbox"> Tout de suite
+                <input type="checkbox"> Ce mois-ci
+                <input type="checkbox"> Ces prochains mois
+                <input type="checkbox"> Je ne sais pas
+              </div>
+              <div class="form-group">
+                <label for="">Souhaitez vous que vos coordonnées soient affichées?</label>
+                <br>
+                <input type="checkbox"> Non, J'utiliserai la messagerie interne
+                <input type="checkbox"> Oui, mon email
+                <input type="checkbox"> Oui, mon téléphone
+              </div>
+              <div class="form-group">
+                {{ form_label(form.fichier.file, 'Attacher un fichier', { 'attr' : { 'class' : 'control-label'} }) }}
+                <br><em>(Vous pouvez joindre un fichier contenant le cachier de charges)</em>
+                {{ form_widget(form.fichier.file, { 'attr' : { 'class' : 'form-control fichier'} }) }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {#./params#}
+
+      {#booster#}
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h2>Boostez la publication de votre projet (Facultatif)</h2>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <br>
+                <input type="checkbox"> Projet urgent: marquer mon projet urgent - <span class="label label-success"> 5000 FCFA </span><br>
+                <input type="checkbox"> Projet premium: placé au top des projets pendant 5 jours - <span class="label label-success">10.000 FCFA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {#./booster#}
+
+      {#infos perso#}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Informations personnells
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <p class="alert alert-info">
+                Ces informations ne seront envoyées aux freelances que vous aurez choisi.
+              </p>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Nom & prénoms</label> <span class="text-red">*</span>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Nom de l'entreprise</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Téléphone</label> <span class="text-red">*</span>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Email</label> <span class="text-red">*</span>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Adresse</label> <span class="text-red">*</span>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                {{ form_label(form.country, 'Pays', { 'attr' : { 'class' : 'control-label'} }) }}
+                <span class="text-red">*</span>
+                {{ form_widget(form.country, { 'attr' : { 'class' : 'form-control country'} }) }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{ form_rest(form) }}
+
+      <div class="panel">
+        <div class="row">
+          <div class="col-sm-12">
+            <p class="col-md-8 col-md-offset-2 text-center">
+              En cliquant sur le bouton "Déposer le projet" vous reconnaissez avoir lus et approuvés les
+              <a href="#">Termes & Conditions d'utilisation</a>.
+            </p>
+            <div class="pull-right">
+              <div id="_loading"></div>
+              <input type="submit" id="_submit" name="_submit" value="Déposer le projet" class="btn btn-green btn-lg"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      {#./infos perso#}
+
+      {{ form_end(form) }}
+
+    </div>
+    {#./left#}
+
+    {#right#}
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="panel panel-success">
+            <div class="panel-heading text-center">
+              <i class="fa fa-edit fa-4x"></i>
+              <h4>POSTEZ GRATUITEMENT VOTRE PROJET</h4>
+            </div>
+            <div class="panel-body">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias blanditiis consequuntur dolorum eligendi
+              fugit illum in iste minima nemo possimus praesentium quam quidem, quis, quos similique sint tenetur vitae.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="panel panel-success">
+            <div class="panel-heading text-center">
+              <i class="fa fa-money fa-4x"></i>
+              <h4>FAITES LE CHOIX PARMI PLUSIEURS DEVIS PROPOSES PAR LES FREELANCES</h4>
+            </div>
+            <div class="panel-body">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias blanditiis consequuntur dolorum eligendi
+              fugit illum in iste minima nemo possimus praesentium quam quidem, quis, quos similique sint tenetur vitae.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {#./right#}
+  </div>
+
+
+  <!-- Modal Registration -->
+  {#<div class="modal fade" id="modalRegistrationProjectCreate" tabindex="-1" role="dialog" aria-labelledby="Connexion"#}
+       {#aria-hidden="true">#}
+    {#<div class="modal-dialog">#}
+      {#<div class="modal-content">#}
+        {#<div class="modal-title"><h1>Incription</h1></div>#}
+        {#<div class="modal-body" style="text-align: center; font-weight: bold; font-size: medium;">#}
+          {#<h2 class="text-center">Inscription</h2>#}
+          {#{% render controller('WSUserBundle:RegistrationClient:register') %}#}
+        {#</div>#}
+        {#<div class="modal-footer">#}
+          {#<button type="submit" class="btn btn-green">Valider</button>#}
+          {#<button class="btn btn-default" data-dismiss="modal">Annuler</button>#}
+        {#</div>#}
+      {#</div>#}
+    {#</div>#}
+  {#</div>#}
+{% endblock body %}
+
+{% block javascripts %}
+  {{ parent() }}
+
+  <script>
+    $(function () {
+
+      $('.domains').multiselect({
+        maxHeight: 200,
+        enableFiltering: true,
+        buttonText: function (options, select) {
+          if (options.length === 0) {
+            return 'Aucun domaine sélectionné ...';
+          }
+          else if (options.length > 3) {
+            return 'Plus de 3 domaines sélectionnés!';
+          } else {
+            var labels = [];
+            options.each(function () {
+              if ($(this).attr('label') !== undefined) {
+                labels.push($(this).attr('label'));
+              }
+              else {
+                labels.push($(this).html());
+              }
+            });
+            return labels.join(', ') + '';
+          }
+        }
+      });
+
+      $("#" + $(".fichier").attr("id")).fileinput({
+        language: "{{ app.request.locale }}",
+        showCaption: true,
+        showUpload: false,
+        uploadAsync: true,
+        allowedFileExtensions: ['txt', 'pdf', 'docx', 'pptx', 'csv', 'xlsx']
+      });
+
+//            $("#_submit").click(function () {
+//                var projet = {
+//                    'object': $('.object').val(),
+//                    'description': $('.description').val(),
+//                    'startDate' : $('.startDate').val(),
+//                    'duration': $('.duration').val(),
+//                    'budget' : $('.budget').val(),
+//                    'country' : $('.country').val(),
+//                    'place' : $('.place').val(),
+//                    'domains': $('select#categories').val()
+//                };
+//                console.log(projet);
+//            });
+
+
+//            $('#categories').multiselect({
+//                enableCollapsibleOptGroups: true,
+//                enableClickableOptGroups: true,
+//                enableFiltering: true,
+//                maxHeight: 200,
+//                buttonText: function(options, select) {
+//                    if (options.length === 0) {
+//                        return 'Aucun domaine sélectionné ...';
+//                    }
+//                    else if (options.length > 3) {
+//                        return 'Plus de 3 domaines sélectionnés!';
+//                    } else {
+//                        var labels = [];
+//                        options.each(function() {
+//                            if ($(this).attr('label') !== undefined) {
+//                                labels.push($(this).attr('label'));
+//                            }
+//                            else {
+//                                labels.push($(this).html());
+//                            }
+//                        });
+//                        return labels.join(', ') + '';
+//                    }
+//                }
+//            });
+
+    });
+  </script>
+
+{% endblock %}
