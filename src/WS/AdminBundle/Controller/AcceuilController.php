@@ -17,13 +17,13 @@ class AcceuilController extends Controller {
         $users = $em->getRepository('WSUserBundle:User')->findAll();
         $freelances = $em->getRepository('WSUserBundle:Freelancer')->findAll();
         $clients = $em->getRepository('WSUserBundle:Client')->findAll();
-        $missions = $em->getRepository('WSServiceBundle:Mission')->findAll();
+        $projects = $em->getRepository('WSServiceBundle:Project')->findAll();
 
         $result = [
             "count_users" => count($users),
             "count_freelances" => count($freelances),
             "count_clients" => count($clients),
-            "count_missions" => count($missions),
+            "count_projects" => count($projects),
         ];
 
         $response = new JsonResponse();

@@ -559,28 +559,4 @@ class Project
     {
         return $this->fichier;
     }
-
-    /**
-     * Set showCoordonates
-     *
-     * @param string $showCoordonates
-     *
-     * @return Project
-     */
-    public function setShowCoordonates($showCoordonates)
-    {
-        $this->showCoordonates = $showCoordonates;
-
-        return $this;
-    }
-
-    /**
-     * Get showCoordonates
-     *
-     * @return string
-     */
-    public function getShowCoordonates()
-    {
-        return $this->showCoordonates;
-    }
 }

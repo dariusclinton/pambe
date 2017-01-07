@@ -9,15 +9,23 @@ use Symfony\Component\Intl\Intl;
 use WS\UserBundle\Entity\Domain;
 use WS\UserBundle\Entity\Search;
 
-class SearchController extends Controller {
+class SearchController extends Controller
+{
+    //    Retoune User
+    public function getUser()
+    {
+        return $this->get('security.token_storage')->getToken()->getUser();
+    }
 
     //    Retourne EntityManager
-    public function getEM() {
+    public function getEM()
+    {
         return $this->getDoctrine()->getManager();
     }
 
     // Formulaire de Recherche Freelance
-    public function getFormSearch($search) {
+    public function getFormSearch($search)
+    {
         $formBuilder = $this->get('form.factory')->createBuilder('form', $search);
         $formBuilder
             ->add('domain', 'entity', [
@@ -30,54 +38,52 @@ class SearchController extends Controller {
                 "required" => true,
                 'empty_value' => 'Pays',
                 'data' => 'CM'
-            ])
-        ;
+            ]);
         return $formBuilder->getForm();
     }
 
 
-    public function resultFreelanceAction() {
-        $search = new Search();
-        $form = $this->getFormSearch($search);
+    public function resultFreelanceAction()
+    {
+        $user = $this->getUser();
+        ($user == 'anon.') ? $idUser = 0 : $idUser = $user->getId();
+        $request = $this->getRequest();
+        $value = $request->query->get('valSearch');
         $em = $this->getEM();
 
-        $request = $this->getRequest();
-        $form->bind($request);
-
         $freelances = $em->getRepository('WSUserBundle:User')
-            ->findAllFreelanceByDomainAndCountry(
-                $search->getDomain(),
-                $search->getCountry()
-             );
-
-        return $this->render('WSCoreBundle:Search:index.html.twig', [
+            ->findAllFreelanceByValue(
+                $value,
+                $idUser
+            );
+        return $this->render('WSProjectBundle:Search:index.html.twig', [
             "searched" => "freelances",
             "results" => $freelances
         ]);
     }
 
-    public function resultProjectAction() {
-        $search = new Search();
-        $form = $this->getFormSearch($search);
+    public function resultProjectAction()
+    {
+        $user = $this->getUser();
+        ($user == 'anon.') ? $idUser = 0 : $idUser = $user->getId();
+        $request = $this->getRequest();
+        $value = $request->query->get('valSearch');
         $em = $this->getEM();
 
-        $request = $this->getRequest();
-        $form->bind($request);
-
         $projects = $em->getRepository('WSServiceBundle:Project')
-            ->findAllProjectByDomainAndCountry(
-                $search->getDomain(),
-                $search->getCountry()
+            ->findAllProjectByValue(
+                $value,
+                $idUser
             );
-
-        return $this->render('WSCoreBundle:Search:index.html.twig', [
+        return $this->render('WSProjectBundle:Search:index.html.twig', [
             "searched" => "projects",
             "results" => $projects
         ]);
     }
 
     // Find Freelance by Domain
-    public function findFreelanceAction(Domain $domain) {
+    public function findFreelanceAction(Domain $domain)
+    {
         $em = $this->getEM();
         $freelances = $em->getRepository('WSUserBundle:User')
             ->findAllFreelanceByDomain(
@@ -91,7 +97,8 @@ class SearchController extends Controller {
     }
 
     // Postuler à une Project
-    public function postuleProjectAction(Mission $mission) {
+    public function postuleProjectAction(Mission $mission)
+    {
         $em = $this->getEM();
         $user = $this->getUser();
         $freelance_postule_mission = new FreelancePostuleMission();
@@ -103,7 +110,7 @@ class SearchController extends Controller {
 
         $this->get('session')
             ->getFlashBag()
-            ->Add('success', "Mission : '".$mission->getObject()."'. Postulation effectuée !");
+            ->Add('success', "Mission : '" . $mission->getObject() . "'. Postulation effectuée !");
 
         $response = new JsonResponse();
         return $response->setData([

@@ -37,7 +37,7 @@ class Donate
 
     /**
      * @ORM\ManyToOne(targetEntity="WS\UserBundle\Entity\User", inversedBy="donates", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
@@ -101,5 +101,29 @@ class Donate
     public function getDatetime()
     {
         return $this->datetime;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \WS\UserBundle\Entity\User $user
+     *
+     * @return Donate
+     */
+    public function setUser(\WS\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \WS\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

@@ -99,5 +99,28 @@ class Outil
     {
         return $this->nivExpertise;
     }
-}
 
+    /**
+     * Set freelancer
+     *
+     * @param \WS\UserBundle\Entity\Freelancer $freelancer
+     *
+     * @return Outil
+     */
+    public function setFreelancer(\WS\UserBundle\Entity\Freelancer $freelancer)
+    {
+        $this->freelancer = $freelancer;
+
+        return $this;
+    }
+
+    /**
+     * Get freelancer
+     *
+     * @return \WS\UserBundle\Entity\Freelancer
+     */
+    public function getFreelancer()
+    {
+        return $this->freelancer;
+    }
+}

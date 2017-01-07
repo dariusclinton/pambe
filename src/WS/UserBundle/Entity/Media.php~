@@ -3,6 +3,7 @@
 namespace WS\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Media
@@ -46,14 +47,14 @@ class Media
      */
     private $updateAt;
 
+    public $file;
+
     /**
-     * @ORM\Postload()
+     * @ORM\PostLoad()
      */
     public function postLoad() {
         $this->updateAt = new \DateTime();
     }
-
-    public $file;
 
 
     public function getUploadRootDir() {
@@ -96,7 +97,7 @@ class Media
             $this->file->move($this->getUploadRootDir(), $this->path);
             unset($this->file);
 
-            if ($this->oldFile != null) {
+            if ($this->oldFile !== null && $this->oldFile !== "fileName") {
                 unlink($this->tempFile);
             }
         }
@@ -210,7 +211,7 @@ class Media
     public function __construct()
     {
         $this->name = "media";
-        $this->path = "user.png";
+        $this->path = "fileName";
     }
 
     /**
@@ -225,6 +226,7 @@ class Media
 
         return $this;
     }
+
     
     public function __toString() {
         return $this->getPath();

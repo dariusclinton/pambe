@@ -53,9 +53,9 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                {{ form_label(form.object) }} <span class="text-red">*</span>
+                {{ form_label(form.name) }} <span class="text-red">*</span>
                 <br><em>(Ce nom sera visible par les freelances)</em>
-                {{ form_widget(form.object) }}
+                {{ form_widget(form.name) }}
               </div>
               <div class="form-group">
                 {{ form_label(form.description) }} <span class="text-red">*</span>
@@ -98,29 +98,15 @@
               <div class="form-group">
                 {{ form_label(form.budget, null, { 'attr' : { 'class' : 'control-label'} }) }}
                 <span class="text-red">*</span>
-                {{ form_widget(form.budget, { 'attr' : { 'class' : 'form-control budget'} }) }}
-                <br>
-                <input type="checkbox"> Moins de 50.000 FCFA
-                <input type="checkbox"> 50.000 - 250.000 FCFA
-                <input type="checkbox"> 250.000 - 500.000 FCFA
-                <input type="checkbox"> 500.000 - 750.000 FCFA
-                <input type="checkbox"> 750.000 - 1.000.000 FCFA
-                <input type="checkbox"> Plus de 1.000.000 FCFA
+                {{ form_widget(form.budget) }}
               </div>
               <div class="form-group">
-                {{ form_label(form.startDate, null, { 'attr' : { 'class' : 'control-label'} }) }}
-                {{ form_widget(form.startDate) }}
-                <input type="checkbox"> Tout de suite
-                <input type="checkbox"> Ce mois-ci
-                <input type="checkbox"> Ces prochains mois
-                <input type="checkbox"> Je ne sais pas
+                {{ form_label(form.start, null, { 'attr' : { 'class' : 'control-label'} }) }}
+                {{ form_widget(form.start) }}
               </div>
               <div class="form-group">
-                <label for="">Souhaitez vous que vos coordonnées soient affichées?</label>
-                <br>
-                <input type="checkbox"> Non, J'utiliserai la messagerie interne
-                <input type="checkbox"> Oui, mon email
-                <input type="checkbox"> Oui, mon téléphone
+                {{ form_label(form.showCoordonates, null, { 'attr' : { 'class' : 'control-label'} }) }}
+                {{ form_widget(form.showCoordonates) }}
               </div>
               <div class="form-group">
                 {{ form_label(form.fichier.file, 'Attacher un fichier', { 'attr' : { 'class' : 'control-label'} }) }}
@@ -140,9 +126,12 @@
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <br>
-                <input type="checkbox"> Projet urgent: marquer mon projet urgent - <span class="label label-success"> 5000 FCFA </span><br>
-                <input type="checkbox"> Projet premium: placé au top des projets pendant 5 jours - <span class="label label-success">10.000 FCFA</span>
+                {{ form_label(form.urgent, null, { 'attr' : { 'class' : 'control-label'} }) }} - <span class="label label-success"> 5000 FCFA </span>
+                {{ form_widget(form.urgent) }}
+              </div>
+              <div class="form-group">
+                {{ form_label(form.premium, null, { 'attr' : { 'class' : 'control-label'} }) }} - <span class="label label-success"> 10.000 FCFA </span>
+                {{ form_widget(form.premium) }}
               </div>
             </div>
           </div>
@@ -151,57 +140,58 @@
       {#./booster#}
 
       {#infos perso#}
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          Informations personnells
-        </div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-12">
-              <p class="alert alert-info">
-                Ces informations ne seront envoyées aux freelances que vous aurez choisi.
-              </p>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="">Nom & prénoms</label> <span class="text-red">*</span>
-                <input type="text" class="form-control">
+      {#{% if app.user == 'anon.' %}#}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Informations personnells
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-12">
+                <p class="alert alert-info">
+                  Ces informations ne seront envoyées aux freelances que vous aurez choisi.
+                </p>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="">Nom de l'entreprise</label>
-                <input type="text" class="form-control">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form_label(form.user.nom, null, { 'attr' : { 'class' : 'control-label'} }) }}<span class="text-red">*</span>
+                  {{ form_widget(form.user.nom, { 'attr' : { 'class' : 'form-control required'} }) }}
+                </div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="">Téléphone</label> <span class="text-red">*</span>
-                <input type="text" class="form-control">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form_label(form.user.prenom, null, { 'attr' : { 'class' : 'control-label'} }) }}<span class="text-red">*</span>
+                  {{ form_widget(form.user.prenom, { 'attr' : { 'class' : 'form-control'} }) }}
+                </div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="">Email</label> <span class="text-red">*</span>
-                <input type="text" class="form-control">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form_label(form.user.enterpriseName, null, { 'attr' : { 'class' : 'control-label'} }) }}
+                  {{ form_widget(form.user.enterpriseName, { 'attr' : { 'class' : 'form-control'} }) }}
+                </div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="">Adresse</label> <span class="text-red">*</span>
-                <input type="text" class="form-control">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form_label(form.user.phoneNumber, null, { 'attr' : { 'class' : 'control-label'} }) }}<span class="text-red">*</span>
+                  {{ form_widget(form.user.phoneNumber, { 'attr' : { 'class' : 'form-control'} }) }}
+                </div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                {{ form_label(form.country, 'Pays', { 'attr' : { 'class' : 'control-label'} }) }}
-                <span class="text-red">*</span>
-                {{ form_widget(form.country, { 'attr' : { 'class' : 'form-control country'} }) }}
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form_label(form.user.email, null, { 'attr' : { 'class' : 'control-label'} }) }}<span class="text-red">*</span>
+                  {{ form_widget(form.user.email, { 'attr' : { 'class' : 'form-control'} }) }}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{ form_label(form.user.adresse, null, { 'attr' : { 'class' : 'control-label'} }) }}<span class="text-red">*</span>
+                  {{ form_widget(form.user.adresse, { 'attr' : { 'class' : 'form-control'} }) }}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      {#{% endif %}#}
 
       {{ form_rest(form) }}
 
@@ -289,7 +279,9 @@
     $(function () {
 
       $('.domains').multiselect({
-        maxHeight: 200,
+        enableCollapsibleOptGroups: true,
+        enableClickableOptGroups: false,
+        maxHeight: 300,
         enableFiltering: true,
         buttonText: function (options, select) {
           if (options.length === 0) {

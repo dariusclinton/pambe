@@ -3,6 +3,7 @@
 namespace WS\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Realization
@@ -45,6 +46,10 @@ class Realization
     /**
      * @ORM\OneToOne(targetEntity="WS\UserBundle\Entity\Media", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
+     * @Assert\Image(
+     *     mimeTypes = {"image/jpeg", "image/jpg", "image/png"},
+     *     mimeTypesMessage = "Le fichier choisi ne correspond pas à un fichier valide!"
+     * )
      */
     private $image;
 
@@ -159,5 +164,29 @@ class Realization
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set freelancer
+     *
+     * @param \WS\UserBundle\Entity\Freelancer $freelancer
+     *
+     * @return Realization
+     */
+    public function setFreelancer(\WS\UserBundle\Entity\Freelancer $freelancer)
+    {
+        $this->freelancer = $freelancer;
+
+        return $this;
+    }
+
+    /**
+     * Get freelancer
+     *
+     * @return \WS\UserBundle\Entity\Freelancer
+     */
+    public function getFreelancer()
+    {
+        return $this->freelancer;
     }
 }

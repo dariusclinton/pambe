@@ -52,7 +52,7 @@ class Freelancer extends User
     private $realizations;
 
     /**
-     * @ORM\ManyToMany(targetEntity="WS\UserBundle\Entity\Domain", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="WS\UserBundle\Entity\Domain", cascade={"persist"}, inversedBy="freelances")
      */
     private $domains;
 
@@ -67,27 +67,14 @@ class Freelancer extends User
     private $langues;
 
     /**
-     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\FreelancePostuleMission", mappedBy="freelancer")
+     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\FreelancePostuleProject", mappedBy="freelancer")
      */
-    private $missionPostules;
+    private $projectPostules;
 
     /**
-     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\MissionSolicitFreelance", mappedBy="freelancer")
-<<<<<<< HEAD
-=======
+     * @ORM\OneToMany(targetEntity="WS\ServiceBundle\Entity\ProjectSolicitFreelance", mappedBy="freelancer")
      */
-    private $missionSolicites;
-
-
-    /**
-     * Set premium
-     *
-     * @param boolean $premium
-     *
-     * @return User
->>>>>>> f1c8c176434cfa1e2605c82a992d0892156d3ea9
-     */
-    private $missionSolicites;
+    private $projectSolicites;
 
 
     /**
@@ -152,9 +139,8 @@ class Freelancer extends User
     public function __construct() {
         parent::__construct();
         $this->roles = array('ROLE_FREELANCE');
-        $this->premium = false;
         $this->rating = 0;
-        $this->dateCreation = new \DateTime;
+        $this->dateDerniereMiseAJour = new \DateTime;
     }
 
     /**
@@ -334,9 +320,9 @@ class Freelancer extends User
      *
      * @return Freelancer
      */
-    public function addMissionPostule(\WS\ServiceBundle\Entity\FreelancePostuleMission $missionPostule)
+    public function addProjectPostule(\WS\ServiceBundle\Entity\FreelancePostuleProject $projectPostule)
     {
-        $this->missionPostules[] = $missionPostule;
+        $this->projectPostules[] = $projectPostule;
 
         return $this;
     }
@@ -346,9 +332,9 @@ class Freelancer extends User
      *
      * @param \WS\ServiceBundle\Entity\FreelancePostuleMission $missionPostule
      */
-    public function removeMissionPostule(\WS\ServiceBundle\Entity\FreelancePostuleMission $missionPostule)
+    public function removeProjectPostule(\WS\ServiceBundle\Entity\FreelancePostuleProject $projectPostule)
     {
-        $this->missionPostules->removeElement($missionPostule);
+        $this->projectPostules->removeElement($projectPostule);
     }
 
     /**
@@ -356,9 +342,9 @@ class Freelancer extends User
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getMissionPostules()
+    public function getProjectPostules()
     {
-        return $this->missionPostules;
+        return $this->projectPostules;
     }
 
     /**
@@ -368,9 +354,9 @@ class Freelancer extends User
      *
      * @return Freelancer
      */
-    public function addMissionSolicite(\WS\ServiceBundle\Entity\MissionSolicitFreelance $missionSolicite)
+    public function addProjectSolicite(\WS\ServiceBundle\Entity\ProjectSolicitFreelance $projectSolicite)
     {
-        $this->missionSolicites[] = $missionSolicite;
+        $this->projectSolicites[] = $projectSolicite;
 
         return $this;
     }
@@ -380,9 +366,9 @@ class Freelancer extends User
      *
      * @param \WS\ServiceBundle\Entity\MissionSolicitFreelance $missionSolicite
      */
-    public function removeMissionSolicite(\WS\ServiceBundle\Entity\MissionSolicitFreelance $missionSolicite)
+    public function removeProjectSolicite(\WS\ServiceBundle\Entity\ProjectSolicitFreelance $projectSolicite)
     {
-        $this->missionSolicites->removeElement($missionSolicite);
+        $this->projectSolicites->removeElement($projectSolicite);
     }
 
     /**
@@ -390,8 +376,80 @@ class Freelancer extends User
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getMissionSolicites()
+    public function getProjectSolicites()
     {
-        return $this->missionSolicites;
+        return $this->projectSolicites;
+    }
+
+    /**
+     * Set dateDerniereMiseAJour
+     *
+     * @param \DateTime $dateDerniereMiseAJour
+     *
+     * @return Freelancer
+     */
+    public function setDateDerniereMiseAJour($dateDerniereMiseAJour)
+    {
+        $this->dateDerniereMiseAJour = $dateDerniereMiseAJour;
+
+        return $this;
+    }
+
+    /**
+     * Get dateDerniereMiseAJour
+     *
+     * @return \DateTime
+     */
+    public function getDateDerniereMiseAJour()
+    {
+        return $this->dateDerniereMiseAJour;
+    }
+
+    /**
+     * Set dateValiditeEnchere
+     *
+     * @param \DateTime $dateValiditeEnchere
+     *
+     * @return Freelancer
+     */
+    public function setDateValiditeEnchere($dateValiditeEnchere)
+    {
+        $this->dateValiditeEnchere = $dateValiditeEnchere;
+
+        return $this;
+    }
+
+    /**
+     * Get dateValiditeEnchere
+     *
+     * @return \DateTime
+     */
+    public function getDateValiditeEnchere()
+    {
+        return $this->dateValiditeEnchere;
+    }
+
+    /**
+     * Set dateValiditePremium
+     *
+     * @param \DateTime $dateValiditePremium
+     *
+     * @return Freelancer
+     */
+    public function setDateValiditePremium($dateValiditePremium)
+    {
+        $this->dateValiditePremium = $dateValiditePremium;
+
+        return $this;
+    }
+
+    /**
+     * Get dateValiditePremium
+     *
+     * @return \DateTime
+     */
+    public function getDateValiditePremium()
+    {
+        return $this->dateValiditePremium;
     }
 }

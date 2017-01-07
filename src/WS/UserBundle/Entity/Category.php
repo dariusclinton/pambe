@@ -40,6 +40,12 @@ class Category
     private $description;
 
     /**
+     * @ORM\OneToOne(targetEntity="WS\UserBundle\Entity\Media", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $image;
+
+    /**
      * @ORM\OneToMany(targetEntity="WS\UserBundle\Entity\Domain", mappedBy="category")
      */
     private $domains;
@@ -142,5 +148,29 @@ class Category
     public function getDomains()
     {
         return $this->domains;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \WS\UserBundle\Entity\Media $image
+     *
+     * @return Category
+     */
+    public function setImage(\WS\UserBundle\Entity\Media $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \WS\UserBundle\Entity\Media
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

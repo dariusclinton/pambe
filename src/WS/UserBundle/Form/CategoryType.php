@@ -15,7 +15,8 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('libelle')
-            ->add('description', 'text', array('required' => false));
+            ->add('description', 'text', array('required' => false))
+            ->add('image', new MediaType());
     }
     
     /**

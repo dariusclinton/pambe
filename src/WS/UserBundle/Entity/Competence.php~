@@ -29,7 +29,7 @@ class Competence
     private $libel;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $nbAnneeExp;
 
@@ -96,5 +96,29 @@ class Competence
     public function getFreelancer()
     {
         return $this->freelancer;
+    }
+
+    /**
+     * Set nbAnneeExp
+     *
+     * @param integer $nbAnneeExp
+     *
+     * @return Competence
+     */
+    public function setNbAnneeExp($nbAnneeExp)
+    {
+        $this->nbAnneeExp = $nbAnneeExp;
+
+        return $this;
+    }
+
+    /**
+     * Get nbAnneeExp
+     *
+     * @return integer
+     */
+    public function getNbAnneeExp()
+    {
+        return $this->nbAnneeExp;
     }
 }

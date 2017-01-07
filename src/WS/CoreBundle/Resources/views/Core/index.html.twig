@@ -19,10 +19,10 @@
               </div>
             </div>
           </div>
-          <form action="#">
+          <form action="{{ path('ws_project_create_index') }}" autocomplete="off">
             <div class="row">
               <div class="col-md-6">
-                <input type="text" name="projetName" class="form-control input-lg col-md-7"
+                <input type="text" name="projectName" class="form-control input-lg col-md-7" required="true"
                        placeholder="Exp: Refonte site web, Développer jeux 3D">
               </div>
               <button type="submit" class="btn btn-lg btn-default btn-pink col-md-2">Déposer</button>

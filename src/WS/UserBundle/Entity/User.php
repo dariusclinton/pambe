@@ -57,30 +57,7 @@ abstract class User extends BaseUser
     private $projects;
 
     /**
-     * Set image
-     *
-     * @param \WS\UserBundle\Entity\Media $image
-     * @return User
-     */
-    public function setImage(\WS\UserBundle\Entity\Media $image = null)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return \WS\UserBundle\Entity\Media
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-    
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $nom;
 
@@ -93,6 +70,16 @@ abstract class User extends BaseUser
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $adresse;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $phoneNumber;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $enterpriseName;
 
     /**
      * Set nom
@@ -292,5 +279,77 @@ abstract class User extends BaseUser
     public function getProjects()
     {
         return $this->projects;
+    }
+
+    /**
+     * Set enterpriseName
+     *
+     * @param string $enterpriseName
+     *
+     * @return User
+     */
+    public function setEnterpriseName($enterpriseName)
+    {
+        $this->enterpriseName = $enterpriseName;
+
+        return $this;
+    }
+
+    /**
+     * Get enterpriseName
+     *
+     * @return string
+     */
+    public function getEnterpriseName()
+    {
+        return $this->enterpriseName;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \WS\UserBundle\Entity\Media $image
+     *
+     * @return User
+     */
+    public function setImage(\WS\UserBundle\Entity\Media $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \WS\UserBundle\Entity\Media
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set phoneNumber
+     *
+     * @param string $phoneNumber
+     *
+     * @return User
+     */
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get phoneNumber
+     *
+     * @return string
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
     }
 }

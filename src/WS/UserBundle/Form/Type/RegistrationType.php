@@ -14,16 +14,16 @@ class RegistrationType extends AbstractType {
         ->add('prenom')
         ->add('country')
         ->add('adresse')
+        ->add('phoneNumber')
+        ->add('enterpriseName')
         ->add('image', new MediaType(), ['required' => false]);
   }
   
-  public function getParent()
-  {
+  public function getParent() {
       return 'FOS\UserBundle\Form\Type\RegistrationFormType';
   }
 
-  public function getBlockPrefix()
-  {
+  public function getBlockPrefix() {
       return 'user_registration';
   }
 

@@ -25,7 +25,7 @@ class DomaineController extends Controller {
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
 
-            if ($domain->getImage()->getPath() === 'user.png') {
+            if ($domain->getImage()->getPath() === 'media') {
                 $domain->getImage()->setPath('');
             }
 

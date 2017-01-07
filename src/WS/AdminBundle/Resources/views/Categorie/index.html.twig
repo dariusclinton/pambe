@@ -49,8 +49,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                    {{ form_label(form.description, 'Description', { 'attr' : { 'class' : 'control-label col-md-3 col-sm-3 col-xs-12'} }) }} <span class="asterisk red">*</span>
+                                    {{ form_label(form.description, 'Description', { 'attr' : { 'class' : 'control-label col-md-3 col-sm-3 col-xs-12'} }) }}
                                     {{ form_widget(form.description, { 'attr' : { 'class' : 'form-control col-md-7 col-xs-12'} }) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.image.file, 'Image', { 'attr' : { 'class' : 'control-label col-md-3 col-sm-3 col-xs-12'} }) }}
+                                    {{ form_widget(form.image.file, { 'attr' : { 'class' : 'form-control fichierImage col-md-7 col-xs-12'} }) }}
                                 </div>
                             </div>
 
@@ -93,6 +98,7 @@
                         <table id="datatable-responsive" class="table table-striped table-hover table-dynamic table-bordered" cellspacing="0" width="100%">
                             <thead>
                             <tr>
+                                <th>Image</th>
                                 <th>Libelle</th>
                                 <th>Description</th>
                                 <th>Options</th>
@@ -101,6 +107,9 @@
                             <tbody>
                             {% for f in categories %}
                                 <tr>
+                                    <td style="text-align: center;">
+                                        <img src="{{ asset('uploads/images/'~f.image) }}" alt="{{ f.libelle }}" width="60px" height="60px">
+                                    </td>
                                     <td style="text-align: center;">
                                         {{ f.libelle }}
                                     </td>
@@ -232,4 +241,15 @@
         });
     </script>
     <!-- /Datatables -->
+
+    {# FileInput #}
+    <script>
+        console.log(true);
+        $("#" + $(".fichierImage").attr("id")).fileinput({
+            showCaption: true,
+            showUpload: false,
+            allowedFileTypes: ['image'],
+            allowedFileExtensions: ['jpg', 'jpeg', 'png']
+        });
+    </script>
 {% endblock %}

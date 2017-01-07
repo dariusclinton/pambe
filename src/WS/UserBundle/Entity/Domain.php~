@@ -169,4 +169,38 @@ class Domain
     public function __construct()
     {
     }
+
+    /**
+     * Add freelance
+     *
+     * @param \WS\UserBundle\Entity\Freelancer $freelance
+     *
+     * @return Domain
+     */
+    public function addFreelance(\WS\UserBundle\Entity\Freelancer $freelance)
+    {
+        $this->freelances[] = $freelance;
+
+        return $this;
+    }
+
+    /**
+     * Remove freelance
+     *
+     * @param \WS\UserBundle\Entity\Freelancer $freelance
+     */
+    public function removeFreelance(\WS\UserBundle\Entity\Freelancer $freelance)
+    {
+        $this->freelances->removeElement($freelance);
+    }
+
+    /**
+     * Get freelances
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFreelances()
+    {
+        return $this->freelances;
+    }
 }

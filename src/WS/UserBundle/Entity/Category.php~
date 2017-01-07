@@ -3,12 +3,15 @@
 namespace WS\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\ExclusionPolicy;
 
 /**
  * Category
  *
  * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="WS\UserBundle\Repository\CategoryRepository")
+ * @ExclusionPolicy("all")
  */
 class Category
 {
@@ -25,6 +28,7 @@ class Category
      * @var string
      *
      * @ORM\Column(name="libelle", type="string", length=255)
+     * @Expose
      */
     private $libelle;
 
@@ -34,6 +38,12 @@ class Category
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
+
+    /**
+     * @ORM\OneToOne(targetEntity="WS\UserBundle\Entity\Media", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $image;
 
     /**
      * @ORM\OneToMany(targetEntity="WS\UserBundle\Entity\Domain", mappedBy="category")
@@ -98,5 +108,69 @@ class Category
     {
         return $this->description;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->domains = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add domain
+     *
+     * @param \WS\UserBundle\Entity\Domain $domain
+     *
+     * @return Category
+     */
+    public function addDomain(\WS\UserBundle\Entity\Domain $domain)
+    {
+        $this->domains[] = $domain;
+
+        return $this;
+    }
+
+    /**
+     * Remove domain
+     *
+     * @param \WS\UserBundle\Entity\Domain $domain
+     */
+    public function removeDomain(\WS\UserBundle\Entity\Domain $domain)
+    {
+        $this->domains->removeElement($domain);
+    }
+
+    /**
+     * Get domains
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDomains()
+    {
+        return $this->domains;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \WS\UserBundle\Entity\Media $image
+     *
+     * @return Category
+     */
+    public function setImage(\WS\UserBundle\Entity\Media $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \WS\UserBundle\Entity\Media
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+}

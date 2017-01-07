@@ -12,9 +12,9 @@ ws_service:
 
 ws_admin:
     resource: "@WSAdminBundle/Resources/config/routing.yml"
-#    prefix:   /{_locale}/admin
-#    requirements:
-#        _locale: en|fr
+    prefix:   /{_locale}/admin
+    requirements:
+        _locale: en|fr
 
 ws_user:
     resource: "@WSUserBundle/Resources/config/routing.yml"

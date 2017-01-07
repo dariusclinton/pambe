@@ -25,6 +25,8 @@ class CategorieController extends Controller {
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
 
+            $category->getImage()->setDirectory("images");
+
             $em->persist($category);
             $em->flush();
 
@@ -65,6 +67,8 @@ class CategorieController extends Controller {
 
         if ($request->getMethod() == 'POST'){
             $form->handleRequest($request);
+
+            $category->getImage()->setDirectory("images");
 
             $em->merge($category);
             $em->flush();

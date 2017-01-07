@@ -13,3 +13,9 @@ services:
         class: Twig_Extensions_Extension_Intl
         tags:
             - { name: twig.extension }
+
+    form.project_type:
+        class: WS\ServiceBundle\Form\ProjectType
+        arguments: ['@security.token_storage']
+        tags:
+            - { name: form.type }

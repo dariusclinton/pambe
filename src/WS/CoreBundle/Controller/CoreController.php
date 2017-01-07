@@ -12,21 +12,25 @@ use WS\UserBundle\Entity\Domain;
 use WS\UserBundle\Entity\Search;
 use WS\ServiceBundle\Entity\Mission;
 
-class CoreController extends Controller {
+class CoreController extends Controller
+{
 
     //    Retourne EntityManager
-    public function getEM() {
+    public function getEM()
+    {
         return $this->getDoctrine()->getManager();
     }
 
     // Retourne la liste des pays
-    public function getCountries() {
+    public function getCountries()
+    {
         $locale = $this->getRequest()->getLocale();
         return \Symfony\Component\Locale\Locale::getDisplayCountries($locale);
     }
 
     // Formulaire de Recherche Freelance
-    public function getFormSearch($search) {
+    public function getFormSearch($search)
+    {
         $formBuilder = $this->get('form.factory')->createBuilder('form', $search);
         $formBuilder
             ->add('domain', 'entity', [
@@ -39,15 +43,15 @@ class CoreController extends Controller {
                 "required" => true,
                 'empty_value' => 'Pays',
                 'data' => 'CM'
-            ])
-        ;
+            ]);
         return $formBuilder->getForm();
     }
 
     /**
-    * @return \Symfony\Component\HttpFoundation\Response
-    */
-    public function indexAction() {
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function indexAction()
+    {
         $em = $this->getEM();
         $categories = $em->getRepository('WSUserBundle:Category')->findAll();
         $domains = $em->getRepository('WSUserBundle:Domain')->findAll();
@@ -64,7 +68,8 @@ class CoreController extends Controller {
     }
 
     // Find Freelance by Domain
-    public function findFreelanceAction(Domain $domain) {
+    public function findFreelanceAction(Domain $domain)
+    {
         $em = $this->getEM();
         $freelances = $em->getRepository('WSUserBundle:User')
             ->findAllFreelanceByDomain(
@@ -77,24 +82,27 @@ class CoreController extends Controller {
         ]);
     }
 
-  /**
-   * @return \Symfony\Component\HttpFoundation\Response
-   */
-  public function aboutAction() {
-    return $this->render('WSCoreBundle:Core:about.html.twig');
-  }
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function aboutAction()
+    {
+        return $this->render('WSCoreBundle:Core:about.html.twig');
+    }
 
-  /**
-   * @return \Symfony\Component\HttpFoundation\Response
-   */
-  public function contactAction() {
-    return $this->render('WSCoreBundle:Core:contact.html.twig');
-  }
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function contactAction()
+    {
+        return $this->render('WSCoreBundle:Core:contact.html.twig');
+    }
 
-  /**
-   * @return \Symfony\Component\HttpFoundation\Response
-   */
-  public function howtoAction() {
-    return $this->render('WSCoreBundle:Core:howto.html.twig');
-  }
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function howtoAction()
+    {
+        return $this->render('WSCoreBundle:Core:howto.html.twig');
+    }
 }
